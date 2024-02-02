@@ -3,7 +3,12 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
 
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        cinzel: ["Cinzel", "serif"],
+        montserat: ["Montserrat", "serif"],
+      },
+    },
   },
   plugins: [],
 };
