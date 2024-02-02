@@ -4,9 +4,13 @@ module.exports = {
 
   theme: {
     extend: {
+      fontFamily: {
+        cinzel: ["Cinzel", "serif"],
+        montserat: ["Montserrat", "serif"],
+      },
       backgroundImage: {
-        'flame_bg': "url('src/Assets/Common_images/flames_bg.png')",
-      }
+        flame_bg: "url('src/Assets/Common_images/flames_bg.png')",
+      },
     },
   },
   plugins: [],
