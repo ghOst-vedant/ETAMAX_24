@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-
   theme: {
     extend: {
       fontFamily: {
@@ -10,6 +9,7 @@ module.exports = {
       },
       backgroundImage: {
         flame_bg: "url('src/Assets/Common_images/flames_bg.png')",
+        // hero: "url('src/Assets/Common_images/Hero_Section.png')",
       },
     },
   },

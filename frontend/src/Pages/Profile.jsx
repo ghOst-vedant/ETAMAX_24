@@ -1,5 +1,5 @@
 import React from "react";
-import Profile_card from "../components/Profile_card";
+import Profile_card from "../Components/Profile_card";
 
 const Profile = () => {
   return (
