@@ -1,10 +1,17 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Profile from "./Pages/Profile";
 import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <div>
-      <Navbar />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </Router>
     </div>
   );
 };
