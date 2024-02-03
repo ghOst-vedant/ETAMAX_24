@@ -12,7 +12,7 @@ const NavigationBar = () => {
         ETAMAX-24
       </NavLink>
       <div className="flex lg:gap-10 sm:gap-5 ">
-        <div className="flex text-white lg:text-xl sm:text-lg sm:gap-5 lg:gap-10 items-center">
+        <div className="flex text-white lg:text-xl sm:text-lg sm:gap-5 lg:gap-10 items-center font-montserat">
           <NavLink
             exact="true"
             to="/"
@@ -24,10 +24,10 @@ const NavigationBar = () => {
           <NavLink activeclassname="active" to="/about" className="navlinks">
             About Us
           </NavLink>
-          <NavLink activeclassname="active" to="/services" className="navlinks">
+          <NavLink activeclassname="active" to="/schedule" className="navlinks">
             Schedule
           </NavLink>
-          <NavLink activeclassname="active" to="/projects" className="navlinks">
+          <NavLink activeclassname="active" to="/profile" className="navlinks">
             Profile
           </NavLink>
           <div
@@ -43,7 +43,7 @@ const NavigationBar = () => {
             <NotificationsIcon />
           </div>
           {open && (
-            <div className="absolute right-5 top-[75px] bg-black/50 rounded-xl px-5 py-4 h-[300px] w-[300px] ">
+            <div className="absolute right-5 top-[70px] bg-black/50 rounded-xl px-5 py-4 h-[300px] w-[300px] ">
               {events?.map((event, index) => (
                 <div key={index} className="flex flex-col ">
                   <span className=" text-gray-300  text-xl font-medium">
