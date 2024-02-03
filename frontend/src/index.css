@@ -19,8 +19,9 @@
 }
 
 .bg-screen {
-  background-image: url("./Assets/Common_images/Hero_Section.png");
+  background-image: url("./Assets/Common_images/homeb2.png");
   background-size: cover;
+  /* background-repeat: repeat; */
 }
 
 @media screen and (max-width: 768px) {
