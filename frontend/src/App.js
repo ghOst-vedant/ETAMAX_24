@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Profile from "./Pages/Profile";
-import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
 import HambergerMenu from "./Components/HambergerMenu";
 
