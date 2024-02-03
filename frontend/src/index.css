@@ -18,8 +18,19 @@
   transform: scaleX(1);
 }
 
-.bg-home {
+.bg-screen {
   background-image: url("./Assets/Common_images/Hero_Section.png");
+  background-size: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .bg-screen {
+    background-image: url("./Assets/Common_images/Phone-Hero.png");
+  }
+}
+
+.bg-nav {
+  background-image: url("./Assets/Common_images/nav-flames.png");
   background-size: cover;
 }
 
