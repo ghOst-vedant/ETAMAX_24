@@ -4,7 +4,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="pt-5 flex justify-between items-center text-white px-10 bg-transparent absolute w-[100vw]">
+    <div className="pt-5 flex  justify-between items-center text-white px-10 bg-transparent absolute w-[100vw]">
       <NavLink
         className="flex gap-2 items-center font-cinzel font-bold text-2xl"
         to="/"
@@ -12,7 +12,7 @@ const Navbar = () => {
         ETAMAX-24
       </NavLink>
       <div className="flex lg:gap-10 sm:gap-5 ">
-        <div className="flex text-white lg:text-xl sm:text-lg sm:gap-5 lg:gap-10 items-center font-montserat">
+        <div className="flex text-white gap-10 items-center font-montserat lg:text-xl sm:text-lg">
           <NavLink
             exact="true"
             to="/"
