@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.flameBg{
+    background-image:  url("./Assets/Common_images/flameBg.png");
+    background-size: cover;
+}
 .navlinks:after {
   display: block;
   content: "";
