@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Profile from "./Pages/Profile";
 import Home from "./Pages/Home";
 import HambergerMenu from "./Components/HambergerMenu";
+import NavigationBar from "./Components/NavigationBar";
 
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
@@ -18,7 +19,7 @@ const App = () => {
   return (
     <div>
       <Router>
-        {windowStatus ? <Navbar /> : <HambergerMenu />}
+        {windowStatus ? <NavigationBar /> : <HambergerMenu />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />

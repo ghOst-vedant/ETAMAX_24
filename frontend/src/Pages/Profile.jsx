@@ -1,16 +1,14 @@
 import React from "react";
-import Navbar from "../Components/Navbar"
-import Profile_card from "../Components/Profile_card";
+import ProfileCard from "../Components/ProfileCard";
 import male from "../Assets/other_images/boy.png";
-import female from "../Assets/other_images/girl.png";
+// import female from "../Assets/other_images/girl.png";
 
 
 const Profile = () => {
     return (
         <div className=" bg-black flameBg pb-1">
-            <Navbar />
             <div className="flex items-center gap-6 my-8 px-6">
-                <img src={male} alt="person image" className="rounded-full w-28 h-28 border-2 border-white/80" />
+                <img src={male} alt="person_image" className="rounded-full w-28 h-28 border-2 border-white/80" />
                 <span className="montserat text-white">
                     <h2 className="text-2xl font-semibold ">Aniket sahu</h2>
                     <h3 className="font-medium text-lg">1021237</h3>
@@ -25,9 +23,9 @@ const Profile = () => {
                 </div>
             </div>
             <div className="px-6 flex flex-col lg:flex-row gap-6">
-                <Profile_card />
-                <Profile_card />
-                <Profile_card />
+                <ProfileCard />
+                <ProfileCard />
+                <ProfileCard />
             </div>
         </div>
     );
