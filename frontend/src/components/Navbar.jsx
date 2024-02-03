@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-const NavigationBar = () => {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="pt-5 flex justify-between items-center text-white px-10 bg-transparent absolute w-[100vw]">
@@ -80,4 +80,4 @@ const events = [
     Message: "Seats Full",
   },
 ];
-export default NavigationBar;
+export default Navbar;
