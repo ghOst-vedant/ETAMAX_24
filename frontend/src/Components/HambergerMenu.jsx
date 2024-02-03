@@ -22,7 +22,7 @@ const HambergerMenu = () => {
   const [open, setOpen] = useState(false);
   return (
     <div
-      className={`absolute w-full  p-[10px] pl-[20px] z-10 ${
+      className={`absolute w-full  pt-4 px-2 pl-4  z-10 ${
         expanded ? "bg-nav shadow-lg  " : "bg-none"
       }`}
     >

@@ -5,6 +5,7 @@ import Profile from "./Pages/Profile";
 import Home from "./Pages/Home";
 import HambergerMenu from "./Components/HambergerMenu";
 import NavigationBar from "./Components/NavigationBar";
+import Footer from "./Components/Footer";
 
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
