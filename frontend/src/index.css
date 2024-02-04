@@ -53,7 +53,6 @@
 .profile_table td{
   padding:10px;
   font-size: large;
-  /* border: 2px solid white; */
 }
 
 input::placeholder{
