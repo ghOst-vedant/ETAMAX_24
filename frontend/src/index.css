@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .flameBg {
-  background-image: url("./Assets/Common_images/flameBg.png");
+  background-image: url("./Assets/Common_images/nav-flames.png");
   background-size: cover;
 }
 .navlinks:after {
