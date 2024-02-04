@@ -12,7 +12,7 @@ const Navbar = () => {
         ETAMAX-24
       </NavLink>
       <div className="flex lg:gap-10 sm:gap-5 ">
-        <div className="flex text-white gap-10 items-center font-montserat lg:text-xl sm:text-lg">
+        <div className="flex text-white gap-10 items-center font-montserat sm:text-lg">
           <NavLink
             exact="true"
             to="/"
