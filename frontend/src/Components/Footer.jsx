@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div className=" w-[100%] bottom-20  ">
       <div className="  py-8 flex items-center flex-col gap-3">
-        <span className=" font-montserat font-semibold lg:text-3xl mobile:text-2xl lg:flex  text-center">
+        <span className=" font-montserat font-semibold lg:text-3xl text-2xl lg:flex  text-center">
           Fr. C. Rodrigues Institute of Technology
           <Link className="pl-1 pb-1" to="https://fcrit.ac.in" target="_blank">
             <LaunchIcon
@@ -21,7 +21,7 @@ const Footer = () => {
           </Link>
         </span>
         <span className="flex flex-col items-center">
-          <p className="font-montserat text-center mobile:text-lg">
+          <p className="font-montserat text-center text-lg px-6">
             Agnel Technical Education Complex, Sector 9-A, Vashi, Navi Mumbai,
           </p>
           <span className="font-montserat">
@@ -44,7 +44,7 @@ const Footer = () => {
             Ideaplots
           </Link>
         </span>
-        <span className="font-montserat text-center ">
+        <span className="font-montserat text-center px-6">
           Developed by Aniket, Vedant, Savio, Jayesh, Koustubh, Alex
         </span>
       </div>
