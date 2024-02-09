@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-const Navbar = () => {
+const Navbar = ({ setAuth }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="pt-5 flex  justify-between items-center text-white px-10 bg-transparent absolute w-[100vw]">
+    <div className="pt-5 flex  justify-between items-center text-white px-10 bg-transparent absolute w-[100%]">
       <NavLink
         className="flex gap-2 items-center font-cinzel font-bold text-2xl"
         to="/"
@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="flex text-white gap-10 items-center font-montserat sm:text-lg">
           <NavLink
             exact="true"
-            to="/"
+            to="/home"
             activeclassname="active"
             className="navlinks"
           >
@@ -24,11 +24,17 @@ const Navbar = () => {
           <NavLink activeclassname="active" to="/about" className="navlinks">
             About Us
           </NavLink>
+          <NavLink activeclassname="active" to="/events" className="navlinks">
+            Events
+          </NavLink>
           <NavLink activeclassname="active" to="/schedule" className="navlinks">
             Schedule
           </NavLink>
           <NavLink activeclassname="active" to="/profile" className="navlinks">
             Profile
+          </NavLink>
+          <NavLink activeclassname="active" to="/" className="navlinks" onClick={() => { setAuth(false) }}>
+            Logout
           </NavLink>
           <div
             className=""
