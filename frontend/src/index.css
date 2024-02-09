@@ -18,7 +18,7 @@
   transform: scaleX(1);
 }
 
-.bg-screen {
+.bg-nextHome {
   background-image: url("./Assets/Common_images/homeb2.png");
   background-size: cover;
   /* background-repeat: repeat; */
@@ -46,16 +46,16 @@
   margin: 0rem;
 }
 
-.profile_table{
+.profile_table {
   width: 100%;
 }
 
-.profile_table td{
-  padding:10px;
+.profile_table td {
+  padding: 10px;
   font-size: large;
 }
 
-input::placeholder{
+input::placeholder {
   color: white;
   opacity: 0.6;
 }
