@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Profile from "./Pages/Profile";
 import Home from "./Pages/Home";
 import HambergerMenu from "./Components/HambergerMenu";
 import NavigationBar from "./Components/NavigationBar";
 import Footer from "./Components/Footer";
 import About from "./Pages/About";
+import Login from "./Pages/Login";
 
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
@@ -18,16 +19,21 @@ const App = () => {
   }
 
   window.onresize = checkWindowSize;
+
+  const [isAuth, setIsAuth] = useState(false);
+
   return (
     <div>
       <Router>
-        {windowStatus ? <NavigationBar /> : <HambergerMenu />}
+        {isAuth && (windowStatus ? <NavigationBar setAuth={setIsAuth} /> : <HambergerMenu setAuth={setIsAuth} />)}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/home" element={isAuth ? <Home /> : <Navigate to="/" />} />
+          <Route path="/about" element={isAuth ? <About /> : <Navigate to="/" />} />
+          <Route path="/profile" element={isAuth ? <Profile /> : <Navigate to="/" />} />
+          <Route path="/" element={!isAuth ? <Login setAuth={setIsAuth} /> : <Navigate to="/home" />} />
         </Routes>
-        <Footer />
+        {isAuth && (<Footer />)}
+
       </Router>
     </div>
   );
