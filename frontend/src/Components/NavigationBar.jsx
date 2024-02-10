@@ -33,11 +33,17 @@ const Navbar = ({ setAuth }) => {
           <NavLink activeclassname="active" to="/profile" className="navlinks">
             Profile
           </NavLink>
-          <NavLink activeclassname="active" to="/" className="navlinks" onClick={() => { setAuth(false) }}>
+          <NavLink
+            activeclassname="active"
+            to="/"
+            className="navlinks"
+            onClick={() => {
+              setAuth(false);
+            }}
+          >
             Logout
           </NavLink>
           <div
-            className=""
             onClick={() => {
               if (open) {
                 setOpen(false);
