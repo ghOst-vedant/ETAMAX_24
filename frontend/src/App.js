@@ -12,8 +12,8 @@ import HambergerMenu from "./Components/HambergerMenu";
 import NavigationBar from "./Components/NavigationBar";
 import Footer from "./Components/Footer";
 import About from "./Pages/About";
-import EventDetails from "./Pages/EventDetails";
 import Login from "./Pages/Login";
+import EventDetails from "./Pages/EventDetails";
 
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
@@ -38,10 +38,6 @@ const App = () => {
             <HambergerMenu setAuth={setIsAuth} />
           ))}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/events/eventdetails" element={<EventDetails />} />
           <Route
             path="/home"
             element={isAuth ? <Home /> : <Navigate to="/" />}
@@ -53,6 +49,10 @@ const App = () => {
           <Route
             path="/profile"
             element={isAuth ? <Profile /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/events"
+            element={isAuth ? <EventDetails /> : <Navigate to="/" />}
           />
           <Route
             path="/"
