@@ -14,6 +14,7 @@ import Footer from "./Components/Footer";
 import About from "./Pages/About";
 import Login from "./Pages/Login";
 import Schedule from "./Pages/Schedule";
+import EventDetails from "./Pages/EventDetails";
 
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
@@ -53,6 +54,10 @@ const App = () => {
           <Route
             path="/schedule"
             element={isAuth ? <Schedule /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/events"
+            element={isAuth ? <EventDetails /> : <Navigate to="/" />}
           />
           <Route
             path="/"
