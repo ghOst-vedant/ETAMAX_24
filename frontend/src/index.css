@@ -59,3 +59,25 @@ input::placeholder {
   color: white;
   opacity: 0.6;
 }
+
+/* Start: Centering placeholder */
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+:-ms-input-placeholder {
+  text-align: center;
+}
+
+/* End: Centering placeholder */
