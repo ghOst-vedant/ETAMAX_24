@@ -18,7 +18,7 @@
   transform: scaleX(1);
 }
 
-.bg-screen {
+.bg-nextHome {
   background-image: url("./Assets/Common_images/homeb2.png");
   background-size: cover;
   /* background-repeat: repeat; */
