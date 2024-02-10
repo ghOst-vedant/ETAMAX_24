@@ -46,16 +46,38 @@
   margin: 0rem;
 }
 
-.profile_table{
+.profile_table {
   width: 100%;
 }
 
-.profile_table td{
-  padding:10px;
+.profile_table td {
+  padding: 10px;
   font-size: large;
 }
 
-input::placeholder{
+input::placeholder {
   color: white;
   opacity: 0.6;
 }
+
+/* Start: Centering placeholder */
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+:-ms-input-placeholder {
+  text-align: center;
+}
+
+/* End: Centering placeholder */

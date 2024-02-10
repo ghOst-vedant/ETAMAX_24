@@ -7,6 +7,7 @@ import HambergerMenu from "./Components/HambergerMenu";
 import NavigationBar from "./Components/NavigationBar";
 import Footer from "./Components/Footer";
 import About from "./Pages/About";
+import EventDetails from "./Pages/EventDetails";
 
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/events/eventdetails" element={<EventDetails />} />
         </Routes>
         <Footer />
       </Router>
