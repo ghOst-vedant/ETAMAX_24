@@ -19,9 +19,9 @@ const FeaturedEventCard = ({
         <img
           src={eventImage}
           alt=""
-          className="w-[100%] self-center rounded-xl"
+          className="w-[100%] self-center sm:rounded-xl"
         />
-        <div className=" absolute right-2  p-2 z-10">
+        <div className=" absolute right-2  p-1 sm:p-2 z-10">
           <PersonOutlineOutlinedIcon
             sx={{
               position: "absolute",
