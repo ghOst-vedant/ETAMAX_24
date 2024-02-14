@@ -45,7 +45,7 @@ const Footer = () => {
           </Link>
         </span>
         <span className="font-montserat text-center px-6">
-          Developed by Aniket, Vedant, Savio, Jayesh, Koustubh, Alex
+          Developed by Aniket, Vedant, Md Tahir, Sakshi, Koustubh, Alex
         </span>
       </div>
     </div>
