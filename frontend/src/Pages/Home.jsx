@@ -74,7 +74,7 @@ const Home = () => {
 
   SwiperCore.use([EffectCards]);
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden">
       <img
         src={windowStatus ? heroPc : heroMobile}
         alt="hero"
