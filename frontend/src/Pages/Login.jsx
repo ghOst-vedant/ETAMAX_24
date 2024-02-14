@@ -21,11 +21,11 @@ const Login = ({ setAuth }) => {
                     <form action="submit" className='flex flex-col gap-4'>
                         <div className="bg-white/30 border-2 border-white rounded-full flex p-1 gap-2">
                             <img src={user} alt="icon" className="w-[15%] sm:w-[10%] rounded-full" />
-                            <input type="text" name="rollno" id="rollno" placeholder="Roll no / email" className="text-xl outline-none w-[80%] bg-transparent rounded-r-full font-semibold text-white" />
+                            <input type="text" name="rollno" id="rollno" placeholder="Roll no / email" className="text-xl w-[80%] bg-transparent rounded-r-full font-semibold text-white" />
                         </div>
                         <div className="bg-white/30 border-2 border-white rounded-full flex p-2 gap-2">
-                            <img src={lock} alt="icon" className="w-[13%] sm:w-[8%] rounded-full mr-1" />
-                            <input type="text" name="rollno" id="rollno" placeholder="Password" className="text-xl outline-none w-[80%] bg-transparent rounded-r-full font-semibold text-white" />
+                            <img src={lock} alt="icon" className="w-[14%] my-auto sm:w-[8%] rounded-full mr-1" />
+                            <input type="text" name="rollno" id="rollno" placeholder="Password" className="text-xl w-[80%] bg-transparent rounded-r-full font-semibold text-white" />
                         </div>
                         <button type='submit' className='bg-[#FFB800] w-fit m-auto py-3 px-10 rounded-full text-xl font-semibold text-gray-700' onClick={handleLogin}>Login</button>
                     </form>
