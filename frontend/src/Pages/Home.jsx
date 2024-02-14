@@ -8,6 +8,7 @@ import wing1 from "../Assets/Common_images/wing1.png";
 import wing2 from "../Assets/Common_images/wing2.png";
 import FeaturedEventCard from "../Components/FeaturedEventCard";
 import eventImage from "../Assets/Common_images/sampleEvent.png";
+import cloud from "../Assets/other_images/clouds.png"
 const FeaturedEvents = [
   {
     key: 1,
@@ -66,17 +67,33 @@ const Home = () => {
 
   window.onresize = checkWindowSize;
   return (
-    <>
-      <img src={windowStatus ? heroPc : heroMobile} alt="" />
-      <embed
-        className="w-full"
-        // width="1500"
-        auto="true"
-        height="465"
-        src="http://www.youtube.com/embed/J---aiyznGQ?autoplay=0&controls=0&showinfo=0&modestbranding=1"
-        frameBorder="0"
-        allowFullScreen
-      ></embed>
+    <div className="w-full">
+      <img src={windowStatus ? heroPc : heroMobile} alt="hero" className="z-20" />
+      <div className=" bg-[#1c1c1e] flex items-center justify-center sm:py-10 relative overflow-hidden">
+        <img src={cloud} alt="" className="opacity-50 hidden sm:flex absolute w-[40%] rotate-90 -left-[10%] z-0" />
+        <img src={cloud} alt="" className="opacity-50 hidden sm:flex absolute w-[40%] -rotate-90 -right-[10%]" />
+        {windowStatus ?
+          <embed
+            className="z-10"
+            auto="true"
+            width="900"
+            height="500"
+            src="https://www.youtube.com/embed/ZQyyj0SN860?autoplay=1&controls=0&&showinfo=0&loop=1"
+            frameBorder="0"
+            autostart={1}
+            autoplay={1}
+          ></embed>
+          :
+          <embed
+            className="w-full"
+            auto="true"
+            height="220"
+            src="https://www.youtube.com/embed/ZQyyj0SN860?autoplay=1&controls=0&&showinfo=0&loop=1"
+            frameBorder="0"
+            autostart={1}
+            autoplay={1}
+          ></embed>}
+      </div>
       <div className="bg-nextHome py-20">
         <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
           {/* sponsors */}
@@ -108,7 +125,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
