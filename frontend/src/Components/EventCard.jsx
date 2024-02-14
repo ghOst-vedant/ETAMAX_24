@@ -1,68 +1,126 @@
-import React, { useEffect, useRef } from 'react';
-import image1 from "../Assets/other_images/Rectangle 62.png";
-import image2 from "../Assets/other_images/Rectangle 64.png";
-import image3 from "../Assets/other_images/Rectangle 79.png";
-import image4 from "../Assets/other_images/Rectangle 81.png";
-import image5 from "../Assets/other_images/Rectangle 80.png";
-import Swiper from 'swiper/swiper-bundle'; 
-import 'swiper/swiper-bundle.css';
+// import React, { useEffect, useRef } from 'react';
+// import SwiperCore from 'swiper/core';
+// import 'swiper/swiper-bundle.min.css';
 
-const EventCard = () => {
-    const images = [
-        image1,
-        image2,
-        image3,
-        image4,
-        image5
-    ];
+// import image1 from "../Assets/other_images/Rectangle 62.png";
+// import image2 from "../Assets/other_images/Rectangle 64.png";
+// import image3 from "../Assets/other_images/Rectangle 79.png";
+// import image4 from "../Assets/other_images/Rectangle 81.png";
+// import image5 from "../Assets/other_images/Rectangle 80.png";
 
-    const swiperRef = useRef(null);
+// const EventCard = () => {
+//     const images = [
+//         image1,
+//         image2,
+//         image3,
+//         image4,
+//         image5
+//     ];
 
-    useEffect(() => {
-        swiperRef.current = new Swiper('.swiper-container', {
-            loop: true,
-            slidesPerView: 5,
-            centeredSlides: true,
-            spaceBetween: 30, 
-            effect: "coverflow",
-            coverflowEffect: {
-                rotate: -20,
-                depth: 100,
-                stretch: 20,
-                modifier: 1,
-                scale: 1,
-                slideShadows: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
+//     const swiperRef = useRef(null);
 
-        return () => {
-            if (swiperRef.current && swiperRef.current.destroy) {
-                swiperRef.current.destroy();
-            }
-        };
-    }, []);
+//     useEffect(() => {
+//         swiperRef.current = new SwiperCore('.swiper-container', {
+//             loop: true,
+//             slidesPerView: 3,
+//             spaceBetween: 30,
+//             centeredSlides: true,
+//             effect: 'coverflow',
+//             coverflowEffect: {
+//                 rotate: 50,
+//                 stretch: 0,
+//                 depth: 100,
+//                 modifier: 1,
+//                 slideShadows: true,
+//             },
+//             navigation: {
+//                 nextEl: '.swiper-button-next',
+//                 prevEl: '.swiper-button-prev',
+//             },
+//         });
 
-    return (
-        <div className="swiper-container" style={{ background: 'transparent' }}> 
-            <div className="swiper-wrapper" style={{ paddingLeft: '0px', paddingRight: '20px' }}> 
-                {images.map((imageUrl, index) => (
-                    <div key={index} className="swiper-slide">
-                        <img src={imageUrl} alt={`image-${index}`} style={{ width: '400%', height: '400px' }} /> 
-                    </div>
-                ))}
-            </div>
-            <div className="swiper-pagination" style={{ display: 'none' }}></div> 
-            <div className="swiper-button-next"></div>
-        </div>
-    );
-}
+//         return () => {
+//             if (swiperRef.current) {
+//                 swiperRef.current.destroy(true, true);
+//             }
+//         };
+//     }, []);
 
-export default EventCard;
+//     return (
+//         <div className="swiper-container">
+//             <div className="swiper-wrapper">
+//                 {images.map((imageUrl, index) => (
+//                     <div key={index} className="swiper-slide">
+//                         <img src={imageUrl} alt={`Slide ${index + 1}`} />
+//                     </div>
+//                 ))}
+//             </div>
+//             <div className="swiper-pagination"></div>
+//             <div className="swiper-button-prev"></div>
+//             <div className="swiper-button-next"></div>
+//         </div>
+//     );
+// }
+
+// export default EventCard;
+
+
+
+
+// import React from 'react';
+// import Coverflow from 'react-coverflow';
+// import image1 from "../Assets/other_images/Rectangle 62.png";
+// import image2 from "../Assets/other_images/Rectangle 64.png";
+// import image3 from "../Assets/other_images/Rectangle 79.png";
+// import image4 from "../Assets/other_images/Rectangle 81.png";
+// import image5 from "../Assets/other_images/Rectangle 80.png";
+
+// const EventCard = () => {
+//     const images = [
+//         image1,
+//         image2,
+//         image3,
+//         image4,
+//         image5
+//     ];
+
+//     const handleClick = (index) => {
+    
+//     };
+
+//     return (
+//         <Coverflow
+//             width={350}
+//             height={400}
+//             displayQuantityOfSide={2}
+//             navigation={false}
+//             enableScroll={true}
+//             clickable={true}
+//             active={0}
+//             swipe
+//             loop
+//             infiniteScroll={true}
+//             rotation={100} 
+//             // className="overflow-hidden"
+//         >
+//             {images.map((imageUrl, index) => (
+//                 <div
+//                     key={index}
+//                     onClick={() => handleClick(index)}
+//                     onKeyDown={() => handleClick(index)}
+//                     role="menuitem"
+//                     tabIndex="0"
+//                     className="rounded-3xl"
+//                 >
+//                     <img
+//                         src={imageUrl}
+//                         alt={`Image ${index + 1}`}
+//                         // className="object-cover w-full h-full"
+//                     />
+//                 </div>
+//             ))}
+//         </Coverflow>
+//     );
+// }
+
+// export default EventCard;
