@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import EventCard from "../Components/EventCard"; 
+import EventCard from "../Components/EventCard"; 
 import MobileEventCard from "../Components/MobileEventCard"; 
 import redBull from "../Assets/Common_images/redBull.png";
 import monstor from "../Assets/Common_images/monstor.png";
@@ -51,8 +51,8 @@ const Event = () => {
             
             </div>
             
-            {isMobile && <MobileEventCard />}
-            {/* {isMobile ? <MobileEventCard /> : <EventCard />} */}
+            
+            {isMobile ? <MobileEventCard /> : <EventCard />}
             
             
             <div className='flex flex-row py-14 sm:items-center sm:py-16 sm:gap-32'>
@@ -65,8 +65,8 @@ const Event = () => {
             
             </div>
             
-            {isMobile && <MobileEventCard />}
-            {/* {isMobile ? <MobileEventCard /> : <EventCard />} */}
+         
+            {isMobile ? <MobileEventCard /> : <EventCard />}
             
             <div className='flex flex-row py-14 sm:items-center sm:py-16 sm:gap-32'>
                 <div className='flex text-white px-20 mx-auto sm:w-[70%]'>
@@ -78,8 +78,7 @@ const Event = () => {
             
             </div>
             
-            {isMobile && <MobileEventCard />}
-            {/* {isMobile ? <MobileEventCard /> : <EventCard />} */}
+            {isMobile ? <MobileEventCard /> : <EventCard />}
         </div>
     );
 }
