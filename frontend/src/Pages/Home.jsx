@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import "swiper/css";
+import "swiper/css/effect-cards";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper";
+import { EffectCards } from "swiper/modules";
 import redBull from "../Assets/Common_images/redBull.png";
 import monstor from "../Assets/Common_images/monstor.png";
 import adidas from "../Assets/Common_images/adidas.png";
@@ -8,7 +13,7 @@ import wing1 from "../Assets/Common_images/wing1.png";
 import wing2 from "../Assets/Common_images/wing2.png";
 import FeaturedEventCard from "../Components/FeaturedEventCard";
 import eventImage from "../Assets/Common_images/sampleEvent.png";
-import cloud from "../Assets/other_images/clouds.png"
+import cloud from "../Assets/other_images/clouds.png";
 const FeaturedEvents = [
   {
     key: 1,
@@ -66,13 +71,27 @@ const Home = () => {
   }
 
   window.onresize = checkWindowSize;
+
+  SwiperCore.use([EffectCards]);
   return (
-    <div className="w-full">
-      <img src={windowStatus ? heroPc : heroMobile} alt="hero" className="z-20" />
+    <div className="w-full overflow-hidden">
+      <img
+        src={windowStatus ? heroPc : heroMobile}
+        alt="hero"
+        className="z-20"
+      />
       <div className=" bg-[#1c1c1e] flex items-center justify-center sm:py-10 relative overflow-hidden">
-        <img src={cloud} alt="" className="opacity-50 hidden sm:flex absolute w-[40%] rotate-90 -left-[10%] z-0" />
-        <img src={cloud} alt="" className="opacity-50 hidden sm:flex absolute w-[40%] -rotate-90 -right-[10%]" />
-        {windowStatus ?
+        <img
+          src={cloud}
+          alt=""
+          className="opacity-50 hidden sm:flex absolute w-[40%] rotate-90 -left-[10%] z-0"
+        />
+        <img
+          src={cloud}
+          alt=""
+          className="opacity-50 hidden sm:flex absolute w-[40%] -rotate-90 -right-[10%]"
+        />
+        {windowStatus ? (
           <embed
             className="z-10"
             auto="true"
@@ -83,7 +102,7 @@ const Home = () => {
             autostart={1}
             autoplay={1}
           ></embed>
-          :
+        ) : (
           <embed
             className="w-full"
             auto="true"
@@ -92,7 +111,8 @@ const Home = () => {
             frameBorder="0"
             autostart={1}
             autoplay={1}
-          ></embed>}
+          ></embed>
+        )}
       </div>
       <div className="bg-nextHome py-20">
         <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
@@ -111,17 +131,42 @@ const Home = () => {
             <img src={wing2} alt="" className=" w-[15%] sm:w-[10%] " />
           </span>
           <div className="py-10 flex flex-col gap-8 px-5 items-center justify-center relative sm:flex-wrap sm:flex-row">
-            {FeaturedEvents?.map((event) => (
-              <FeaturedEventCard
-                key={event.key}
-                eventName={event.eventName}
-                category={event.category}
-                date={event.date}
-                seats={event.seats}
-                eventImage={event.eventImage}
-                bgColor={event.bgColor}
-              />
-            ))}
+            {windowStatus ? (
+              FeaturedEvents?.map((event) => (
+                <FeaturedEventCard
+                  key={event.key}
+                  eventName={event.eventName}
+                  category={event.category}
+                  date={event.date}
+                  seats={event.seats}
+                  eventImage={event.eventImage}
+                  bgColor={event.bgColor}
+                />
+              ))
+            ) : (
+              <>
+                <Swiper
+                  effect={"cards"}
+                  grabCursor={true}
+                  modules={[EffectCards]}
+                  className="change"
+                >
+                  {FeaturedEvents?.map((event) => (
+                    <SwiperSlide className="slide">
+                      <FeaturedEventCard
+                        key={event.key}
+                        eventName={event.eventName}
+                        category={event.category}
+                        date={event.date}
+                        seats={event.seats}
+                        eventImage={event.eventImage}
+                        bgColor={event.bgColor}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -26,12 +26,6 @@ export default function MobileEventCard() {
         modules={[EffectCards]}
         className="mySwiper"
       >
-        {/* <SwiperSlide><img src={image1} alt="EVENT NAME 1" />
-          <div className="event-name">EVENT NAME 1</div></SwiperSlide>
-        <SwiperSlide><img src={image2} alt="EVENT NAME 2" />
-          <div className="event-name">EVENT NAME 1</div></SwiperSlide>
-        <SwiperSlide><img src={image3} alt="EVENT NAME 3" />
-          <div className="event-name">EVENT NAME 1</div></SwiperSlide> */}
         <SwiperSlide><img src={image4} alt="EVENT NAME 4" />
           <div className="event-name">EVENT NAME 4</div></SwiperSlide>
         <SwiperSlide><img src={image5} alt="EVENT NAME 5" />
