@@ -8,8 +8,11 @@ import adidas from "../Assets/Common_images/adidas.png";
 import ListIcon from "@mui/icons-material/List";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import BlockIcon from "@mui/icons-material/Block";
+import axios from "axios";
 
 const Profile = () => {
+  const name = localStorage.getItem("name");
+  const roll = localStorage.getItem("roll_no");
   return (
     <div className=" bg-black flameBg pb-10 box-border flex flex-col sm:items-center sm:gap-20 ">
       <div className="sm:flex sm:mt-36 sm:w-full justify-evenly">
@@ -20,9 +23,9 @@ const Profile = () => {
             className="rounded-full w-28 sm:w-60 border-2 sm:border-4 border-white/80"
           />
           <span className="montserat text-white flex flex-col gap-2">
-            <h2 className="text-2xl sm:text-5xl font-semibold ">Aniket sahu</h2>
+            <h2 className="text-2xl sm:text-5xl font-semibold ">{name}</h2>
             <h3 className="font-medium text-lg sm:text-3xl sm:font-normal">
-              1021237
+              {roll}
             </h3>
           </span>
         </div>
