@@ -62,22 +62,20 @@ input::placeholder {
 
 /* Start: Centering placeholder */
 
-::-webkit-input-placeholder {
+/* ::-webkit-input-placeholder {
   text-align: center;
-}
+} */
 
-:-moz-placeholder {
-  /* Firefox 18- */
+/* :-moz-placeholder {
   text-align: center;
-}
+} */
 
-::-moz-placeholder {
-  /* Firefox 19+ */
+/* ::-moz-placeholder {
   text-align: center;
-}
+} */
 
-:-ms-input-placeholder {
+/* :-ms-input-placeholder {
   text-align: center;
-}
+} */
 
 /* End: Centering placeholder */
