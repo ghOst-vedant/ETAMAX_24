@@ -1,57 +1,150 @@
-import React from 'react';
-import Coverflow from 'react-coverflow';
-import image1 from "../Assets/other_images/Rectangle 62.png";
-import image2 from "../Assets/other_images/Rectangle 64.png";
-import image3 from "../Assets/other_images/Rectangle 79.png";
-import image4 from "../Assets/other_images/Rectangle 81.png";
-import image5 from "../Assets/other_images/Rectangle 80.png";
+import React, { useMemo } from "react";
+import FeaturedEventCard from "../Components/FeaturedEventCard";
+import eventImage from "../Assets/Common_images/sampleEvent.png";
 
-const EventCard = () => {
-    const images = [
-        image1,
-        image2,
-        image3,
-        image4,
-        image5
-    ];
+const FeaturedEvents = [
+  {
+    key: 1,
+    eventName: "Event-1",
+    date: "13 Mar",
+    category: "Technical",
+    seats: "10/15",
+    eventImage: eventImage,
+    bgColor: "bg-[#86000A]",
+  },
+  {
+    key: 2,
+    eventName: "Event-2",
+    date: "14 Mar",
+    category: "Cultural",
+    seats: "8/15",
+    eventImage: eventImage,
+    bgColor: "bg-[#B7181B]",
+  },
+  {
+    key: 3,
+    eventName: "Events",
+    date: "14 Mar",
+    category: "NSS",
+    seats: "15/30",
+    eventImage: eventImage,
+    bgColor: "bg-[#F44B1E]",
+  },
+  {
+    key: 4,
+    eventName: "Seminar-2",
+    date: "15 Mar",
+    category: "Technical",
+    seats: "15/20",
+    eventImage: eventImage,
+    bgColor: "bg-[#FF8E00]",
+  },
+  {
+    key: 5,
+    eventName: "Seminar-3",
+    date: "15 Mar",
+    category: "Technical",
+    seats: "13/30",
+    eventImage: eventImage,
+    bgColor: "bg-[#FFB800]",
+  },
+  {
+    key: 6,
+    eventName: "Event-1",
+    date: "15 Mar",
+    category: "Cultural",
+    seats: "10/15",
+    eventImage: eventImage,
+    bgColor: "bg-[#86000A]",
+  },
+  {
+    key: 7,
+    eventName: "Event-1",
+    date: "13 Mar",
+    category: "Seminar",
+    seats: "10/15",
+    eventImage: eventImage,
+    bgColor: "bg-[#FF8E00]",
+  },
+  {
+    key: 8,
+    eventName: "Event-1",
+    date: "13 Mar",
+    category: "Cultural",
+    seats: "10/15",
+    eventImage: eventImage,
+    bgColor: "bg-[#86000A]",
+  },
+  {
+    key: 9,
+    eventName: "Seminar-2",
+    date: "15 Mar",
+    category: "Seminar",
+    seats: "15/20",
+    eventImage: eventImage,
+    bgColor: "bg-[#FF8E00]",
+  },
+  {
+    key: 10,
+    eventName: "Seminar-3",
+    date: "15 Mar",
+    category: "Technical",
+    seats: "13/30",
+    eventImage: eventImage,
+    bgColor: "bg-[#FFB800]",
+  },
+  {
+    key: 11,
+    eventName: "Event-1",
+    date: "14 Mar",
+    category: "Technical",
+    seats: "10/15",
+    eventImage: eventImage,
+    bgColor: "bg-[#86000A]",
+  },
+  {
+    key: 12,
+    eventName: "Event-1",
+    date: "13 Mar",
+    category: "Cultural",
+    seats: "10/15",
+    eventImage: eventImage,
+    bgColor: "bg-[#FF8E00]",
+  },
+ 
+];
 
-    const handleClick = (index) => {
+const EventCard = ({ day, event }) => {
+  // Filter events based on selected day and event
+  const filteredEvents = useMemo(() => {
+    let filtered = FeaturedEvents;
 
-    };
+    if (day === "Day One") {
+      filtered = filtered.filter((event) => event.date === "13 Mar");
+    } else if (day === "Day Two") {
+      filtered = filtered.filter((event) => event.date === "14 Mar");
+    } else if (day === "Day Three") {
+      filtered = filtered.filter((event) => event.date === "15 Mar");
+    }
 
-    return (
-        <Coverflow
-            width={350}
-            height={450}
-            displayQuantityOfSide={2}
-            navigation={false}
-            enableScroll={true}
-            clickable={true}
-            active={0}
-            swipe
-            loop
-            infiniteScroll={true}
-            rotation={100}
-        // className="overflow-hidden"
-        >
-            {images.map((imageUrl, index) => (
-                <div
-                    key={index}
-                    onClick={() => handleClick(index)}
-                    onKeyDown={() => handleClick(index)}
-                    role="menuitem"
-                    tabIndex="0"
-                    className="rounded-3xl"
-                >
-                    <img
-                        src={imageUrl}
-                        alt={`Image ${index + 1}`}
-                    // className="object-cover w-full h-full"
-                    />
-                </div>
-            ))}
-        </Coverflow>
-    );
-}
+    if (event === "Cultural") {
+      filtered = filtered.filter((event) => event.category === "Cultural");
+    } else if (event === "Technical") {
+      filtered = filtered.filter((event) => event.category === "Technical");
+    } else if (event === "Seminar") {
+      filtered = filtered.filter((event) => event.category === "Seminar");
+    }
+
+    return filtered;
+  }, [day, event]);
+
+  return (
+    <div className="flex flex-wrap justify-center gap-4">
+      {filteredEvents.map((event) => (
+        <FeaturedEventCard key={event.key} {...event} />
+      ))}
+    </div>
+  );
+};
 
 export default EventCard;

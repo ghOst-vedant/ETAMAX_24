@@ -1,85 +1,145 @@
-import React, { useState, useEffect } from 'react';
-import EventCard from "../Components/EventCard";
-import MobileEventCard from "../Components/MobileEventCard";
+import React, { useState, useEffect } from "react";
+import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import EventCard from "../Components/EventCard"; 
+import MobileEventCard from "../Components/MobileEventCard"; 
 import redBull from "../Assets/Common_images/redBull.png";
 import monstor from "../Assets/Common_images/monstor.png";
 import adidas from "../Assets/Common_images/adidas.png";
 
-const Event = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+const days = ["Day One", "Day Two", "Day Three"];
+const events = ["Cultural", "Technical", "Seminar"];
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 640);
-        };
+const EventCards = () => {
+ 
+  const [day, setDay] = useState(days[0]);
+  const [event, setEvent] = useState(events[0]);
+  const [opendays, setOpenDays] = useState(false);
+  const [openEvents, setOpenEvents] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
-        window.addEventListener('resize', handleResize);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    window.addEventListener('resize', handleResize);
 
-    const [day, setDay] = useState(1);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-    return (
-        <div className='flameBg py-6 pb-20 pt-24 overflow-hidden'>
-            <div className='flex flex-wrap justify-center  gap-10 sm:py-36 sm:gap-12 bg-black/30 py-6 backdrop-blur-sm'>
-                <img src={redBull} alt="sponsor" className="h-12 sm:h-24" />
-                <img src={monstor} alt="sponsor" className="h-12 sm:h-24" />
-                <img src={adidas} alt="sponsor" className="h-12 sm:h-24" />
+  return (
+    <div className='flameBg py-6 pb-20 pt-24 overflow-hidden'>
+      <div className='flex flex-wrap justify-center gap-10 sm:py-36 sm:gap-12 bg-black/30 py-6 backdrop-blur-sm'>
+        <img src={redBull} alt="sponsor" className="h-12 sm:h-24" />
+        <img src={monstor} alt="sponsor" className="h-12 sm:h-24" />
+        <img src={adidas} alt="sponsor" className="h-12 sm:h-24" />
+      </div>
+      
+      <div className='flex flex-col items-center gap-10'>
+        <h2 className='font-cinzel text-4xl font-bold sm:text-5xl mt-16 text-white'>EVENTS</h2>
+
+       
+        {!isMobile && (
+          <div className="px-10 select-none sm:flex sm:flex-col sm:items-center">
+            <div className="flex gap-12 text-white pt-16 sm:pl-20 select-none">
+
+            
+              <span
+                className="flex gap-3 items-center relative cursor-default"
+                onClick={() => setOpenDays(!opendays)}
+              >
+                <p className="font-montserat text-xl">{day}</p>
+                <div className="relative">
+                  {opendays ? (
+                    <KeyboardArrowUpRoundedIcon />
+                  ) : (
+                    <KeyboardArrowDownRoundedIcon />
+                  )}
+                  {opendays && (
+                    <div className="absolute top-[30px] -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-[135px] w-[150px] select-none z-10 backdrop-blur-sm ">
+                      {days?.map((dayOption, index) => (
+                        <div key={index} className="flex flex-col">
+                          <span
+                            className="text-gray-300 text-md font-semibold"
+                            onClick={() => setDay(dayOption)}
+                          >
+                            {dayOption}
+                          </span>
+                          {index < days.length - 1 && (
+                            <hr className="w-[100%] self-center my-2" />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </span>
+
+              <span
+                className="flex gap-3 items-center relative cursor-default"
+                onClick={() => setOpenEvents(!openEvents)}
+              >
+                <p className="font-montserat text-xl">{event}</p>
+                <div className="relative">
+                  {openEvents ? (
+                    <KeyboardArrowUpRoundedIcon />
+                  ) : (
+                    <KeyboardArrowDownRoundedIcon />
+                  )}
+                  {openEvents && (
+                    <div className="absolute top-[30px] -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-[135px] w-[150px] select-none z-10 backdrop-blur-sm">
+                      {events?.map((eventOption, index) => (
+                        <div key={index} className="flex flex-col">
+                          <span
+                            className="text-gray-300 text-md font-semibold"
+                            onClick={() => setEvent(eventOption)}
+                          >
+                            {eventOption}
+                          </span>
+                          {index < events.length - 1 && (
+                            <hr className="w-[100%] self-center my-2" />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </span>
             </div>
+            
+          
+            <div className="py-16" />
+          </div>
+        )}
 
-            <div className='flex flex-col items-center gap-10'>
-                <h2 className='font-cinzel text-4xl font-bold sm:text-5xl mt-16 text-white'>EVENTS</h2>
-
-                <div className='flex flex-wrap justify-center gap-12 sm:py-10 sm:gap-12'>
-                    <button className={`font-montserat text-white sm:text-3xl text-xl ${day === 1 && "border-b-2 border-white "}`} onClick={() => { setDay(1) }}>DAY 1</button>
-                    <button className={`font-montserat text-white sm:text-3xl text-xl ${day === 2 && "border-b-2 border-white "}`} onClick={() => { setDay(2) }}>DAY 2</button>
-                    <button className={`font-montserat text-white sm:text-3xl text-xl ${day === 3 && "border-b-2 border-white "}`} onClick={() => { setDay(3) }}>DAY 3</button>
+   
+        {isMobile ? (
+          <div>
+          
+            {events.map((eventName, index) => (
+              <div key={index} className='flex flex-col items-center pt-6 sm:items-center sm:py-16 sm:gap-32'>
+                <div className='flex text-white px-20 mx-auto sm:w-[70%]'>
+                  <h2 className='font-montserat text-3xl font-semibold sm:text-5xl'>{eventName}</h2>
                 </div>
+                <svg xmlns="http://www.w3.org/2000/svg" className="py- 4 h-5 sm:h-6 w-6 text-white absolute right-0 mr-4" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5l7 7-7 7" />
+                </svg>
+                <MobileEventCard />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div>
+            
+            <EventCard day={day} event={event} />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
-                <div className='flex flex-row sm:py-16 sm:gap-5 pt-4'>
-                    <div className='flex text-white px-20 mx-auto sm:px-35 sm:mx-40 sm:w-[70%]'>
-                        <h2 className='font-montserat text-3xl font-semibold sm:text-5xl'>CULTURAL</h2>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="py- 4 h-5 sm:h-10 sm:w-10 w-6 text-white sm:ml-6 absolute right-0 mr-4" viewBox="0 0 20 20" fill="none" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5l7 7-7 7" />
-                    </svg>
-                </div>
-
-                {/* {isMobile && <MobileEventCard />} */}
-                {isMobile ? <MobileEventCard /> : <EventCard />}
-
-
-                <div className='flex flex-row pt-6 sm:items-center sm:py-16 sm:gap-32'>
-                    <div className='flex text-white px-20 mx-auto sm:w-[70%]'>
-                        <h2 className='font-montserat text-3xl font-semibold sm:text-5xl'>TECHNICAL</h2>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="py- 4 h-5 sm:h-6 w-6 text-white absolute right-0 mr-4" viewBox="0 0 20 20" fill="none" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5l7 7-7 7" />
-                    </svg>
-
-                </div>
-
-                {/* {isMobile && <MobileEventCard />} */}
-                {isMobile ? <MobileEventCard /> : <EventCard />}
-
-                <div className='flex flex-row pt-6 sm:items-center sm:py-16 sm:gap-32'>
-                    <div className='flex text-white px-20 mx-auto sm:w-[70%]'>
-                        <h2 className='font-montserat text-3xl font-semibold sm:text-5xl'>SEMINAR</h2>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="py- 4 h-5 sm:h-6 w-6 text-white absolute right-0 mr-4" viewBox="0 0 20 20" fill="none" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5l7 7-7 7" />
-                    </svg>
-
-                </div>
-
-                {/* {isMobile && <MobileEventCard />} */}
-                {isMobile ? <MobileEventCard /> : <EventCard />}
-            </div>
-        </div>
-    );
-}
-
-export default Event;
+export default EventCards;
