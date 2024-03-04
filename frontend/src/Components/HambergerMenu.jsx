@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HamburgerButton from "./HamburgerButton.jsx";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import navbird from "../Assets/Common_images/navbird.png";
 const events = [
@@ -18,12 +18,41 @@ const events = [
   },
 ];
 const HambergerMenu = ({ setAuth }) => {
+  const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);
+  // token check
+  const [isAuth, setIsAuth] = useState();
+
+  function checkToken() {
+    if (localStorage.getItem("token")) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }
+  useEffect(() => {
+    checkToken();
+  });
+
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("name");
+    localStorage.removeItem("roll_no");
+    localStorage.removeItem("layer");
+    localStorage.removeItem("userpassword");
+    localStorage.removeItem("participations");
+
+    navigate("/");
+    window.location.reload();
+    window.history.pushState({}, document.title, "/");
+  };
   return (
     <div
-      className={`absolute w-full  pt-4 px-2 pl-4  z-10 ${expanded ? "bg-nav shadow-lg  " : "bg-none"
-        }`}
+      className={`absolute w-full  pt-4 px-2 pl-4  z-10 ${
+        expanded ? "bg-nav shadow-lg  " : "bg-none"
+      }`}
     >
       <div className="flex justify-between">
         <NavLink
@@ -78,10 +107,11 @@ const HambergerMenu = ({ setAuth }) => {
         </span>
       </div>
       <ul
-        className={`text-white text-xl ${expanded
-          ? "h-full flex flex-col gap-5 mt-[20px] mb-[10px] font-montserat font-medium"
-          : "h-0 "
-          } transition-all duration-200 w-full items-center pb-2`}
+        className={`text-white text-xl ${
+          expanded
+            ? "h-full flex flex-col gap-5 mt-[20px] mb-[10px] font-montserat font-medium"
+            : "h-0 "
+        } transition-all duration-200 w-full items-center pb-2`}
       >
         <NavLink
           onClick={() => {
@@ -135,10 +165,7 @@ const HambergerMenu = ({ setAuth }) => {
           Profile
         </NavLink>
         <button
-          onClick={() => {
-            setAuth(false);
-            setExpanded(!expanded);
-          }}
+          onClick={handleLogOut}
           activeClassName="active"
           className={`${expanded ? "block" : "hidden"} navlinks`}
         >

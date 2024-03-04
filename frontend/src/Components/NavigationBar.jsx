@@ -1,8 +1,33 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 const Navbar = ({ setAuth }) => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  // const [isAuth, setIsAuth] = useState();
+
+  // function checkToken() {
+  //   if (localStorage.getItem("token")) {
+  //     setIsAuth(true);
+  //   } else {
+  //     setIsAuth(false);
+  //   }
+  // }
+  // useEffect(() => {
+  //   checkToken();
+  // });
+
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("name");
+    localStorage.removeItem("roll_no");
+    localStorage.removeItem("participations");
+
+    navigate("/");
+    window.location.reload();
+    window.history.pushState({}, document.title, "/");
+  };
   return (
     <div className="pt-5 flex  justify-between items-center text-white px-10 bg-transparent absolute w-[100%]">
       <NavLink
@@ -37,9 +62,7 @@ const Navbar = ({ setAuth }) => {
             activeclassname="active"
             to="/"
             className="navlinks"
-            onClick={() => {
-              setAuth(false);
-            }}
+            onClick={handleLogOut}
           >
             Logout
           </NavLink>
