@@ -67,7 +67,7 @@ const Home = () => {
   );
 
   function checkWindowSize() {
-    setWindowStatus(window.innerWidth > 820 ? true : false);
+    setWindowStatus(window.innerWidth > 840 ? true : false);
   }
 
   window.onresize = checkWindowSize;
@@ -100,7 +100,7 @@ const Home = () => {
             src="https://www.youtube.com/embed/ZQyyj0SN860?autoplay=1&controls=0&&showinfo=0&loop=1"
             frameBorder="0"
             autostart={1}
-            autoplay={1}
+            autoPlay={1}
           ></embed>
         ) : (
           <embed

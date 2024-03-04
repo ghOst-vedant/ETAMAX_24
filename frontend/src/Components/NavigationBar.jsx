@@ -37,7 +37,7 @@ const Navbar = ({ setAuth }) => {
         ETAMAX-24
       </NavLink>
       <div className="flex lg:gap-10 sm:gap-5 ">
-        <div className="flex text-white gap-10 items-center font-montserat sm:text-lg">
+        <div className="flex text-white sm:gap-6 lg:gap-10 items-center font-montserat sm:text-md lg:text-lg">
           <NavLink
             exact="true"
             to="/home"
