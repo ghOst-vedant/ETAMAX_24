@@ -79,3 +79,6 @@ input::placeholder {
 } */
 
 /* End: Centering placeholder */
+input {
+  border: none;
+}
