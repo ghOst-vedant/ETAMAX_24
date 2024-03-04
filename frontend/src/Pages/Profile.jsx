@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import ProfileCard from "../Components/ProfileCard";
 import male from "../Assets/other_images/boy.png";
-// import female from "../Assets/other_images/girl.png";
+import female from "../Assets/other_images/girl.png";
 import redBull from "../Assets/Common_images/redBull.png";
 import monstor from "../Assets/Common_images/monstor.png";
 import adidas from "../Assets/Common_images/adidas.png";
@@ -11,14 +11,25 @@ import BlockIcon from "@mui/icons-material/Block";
 import axios from "axios";
 
 const Profile = () => {
+  const [Roll, setRoll] = useState(null);
   const name = localStorage.getItem("name");
   const roll = localStorage.getItem("roll_no");
+  const gender = localStorage.getItem("gender");
+  const handleRollCheck = (e) => {
+    e.preventDefault();
+    const isUser = Boolean(Roll === roll);
+    if (isUser) {
+      alert("Verified!!");
+    } else {
+      alert("Error, Check Roll Number.");
+    }
+  };
   return (
     <div className=" bg-black flameBg pb-10 box-border flex flex-col sm:items-center sm:gap-20 ">
       <div className="sm:flex sm:mt-36 sm:w-full justify-evenly">
         <div className="flex items-center gap-6 pt-24 px-6 sm:pt-0">
           <img
-            src={male}
+            src={gender === "male" ? female : male}
             alt="person_image"
             className="rounded-full w-28 sm:w-60 border-2 sm:border-4 border-white/80"
           />
@@ -81,6 +92,8 @@ const Profile = () => {
             />
             <input
               type="text"
+              value={Roll}
+              onChange={(e) => setRoll(e.target.value)}
               name="rollno"
               id="rollno"
               placeholder="Roll no"
@@ -88,8 +101,8 @@ const Profile = () => {
             />
           </div>
           <button
-            type="submit"
             className="bg-white/30 w-fit m-auto px-8 py-2 text-lg rounded-full border-2 border-white"
+            onClick={handleRollCheck}
           >
             Checkout
           </button>
