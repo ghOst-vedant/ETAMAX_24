@@ -24,13 +24,16 @@ const Login = ({ setAuth }) => {
         password,
       });
       console.log(data.success);
+      console.log(data);
       navigate("/home");
+      console.log(data);
       localStorage.setItem("token", data.token);
       localStorage.setItem("roll_no", data.user.roll_no);
       localStorage.setItem("name", data.user.name);
       const participations = JSON.stringify(data.user.participations);
       localStorage.setItem("participations", participations);
       localStorage.setItem("email", data.user.email);
+      localStorage.setItem("gender", data.user.gender);
       window.location.reload();
     } catch (error) {
       if (error.response) {
