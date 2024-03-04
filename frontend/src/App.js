@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import {
   BrowserRouter as Router,
@@ -14,9 +14,9 @@ import Footer from "./Components/Footer";
 import About from "./Pages/About";
 import Login from "./Pages/Login";
 import Schedule from "./Pages/Schedule";
-// import EventDetails from "./Pages/EventDetails";
 import EventCard from "./Pages/event_cards";
-
+import axios from "axios";
+axios.defaults.baseURL = "http://127.0.0.1:8000/";
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
     window.innerWidth > 820 ? true : false
@@ -28,7 +28,18 @@ const App = () => {
 
   window.onresize = checkWindowSize;
 
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState();
+
+  function checkToken() {
+    if (localStorage.getItem("token")) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }
+  useEffect(() => {
+    checkToken();
+  });
 
   return (
     <div>
