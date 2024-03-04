@@ -25,24 +25,24 @@ const Profile = () => {
     }
   };
   return (
-    <div className=" bg-black flameBg pb-10 box-border flex flex-col sm:items-center sm:gap-20 ">
-      <div className="sm:flex sm:mt-36 sm:w-full justify-evenly">
-        <div className="flex items-center gap-6 pt-24 px-6 sm:pt-0">
+    <div className=" bg-black flameBg pb-10 box-border flex flex-col lg:items-center lg:gap-20 overflow-hidden">
+      <div className="lg:flex lg:mt-36 lg:w-full justify-evenly">
+        <div className="flex items-center gap-6 pt-24 px-6 lg:pt-0">
           <img
             src={gender === "male" ? female : male}
             alt="person_image"
-            className="rounded-full w-28 sm:w-60 border-2 sm:border-4 border-white/80"
+            className="rounded-full w-28 lg:w-60 border-2 lg:border-4 border-white/80"
           />
           <span className="montserat text-white flex flex-col gap-2">
-            <h2 className="text-2xl sm:text-5xl font-semibold ">{name}</h2>
-            <h3 className="font-medium text-lg sm:text-3xl sm:font-normal">
+            <h2 className="text-2xl lg:text-5xl font-semibold ">{name}</h2>
+            <h3 className="font-medium text-lg lg:text-3xl lg:font-normal">
               {roll}
             </h3>
           </span>
         </div>
-        <div className="text-white montserat px-6 my-8 sm:w-[30%]">
-          <h2 className="text-2xl font-semibold pl-2 sm:text-3xl">DASHBOARD</h2>
-          <table className="profile_table mt-2">
+        <div className="text-white montserat px-6 my-8 lg:w-[30%]">
+          <h2 className="text-2xl font-semibold pl-2 lg:text-3xl">DASHBOARD</h2>
+          <table className="profile_table mt-2 lg:w-full">
             <tr>
               <td>
                 <ListIcon />
@@ -70,25 +70,25 @@ const Profile = () => {
           </table>
         </div>
       </div>
-      <div className="px-6 flex flex-col sm:flex-row gap-6 sm:gap-x-20 sm:gap-y-10 sm:flex-wrap sm:justify-center">
+      <div className="px-6 flex flex-col lg:flex-row gap-6 lg:gap-x-20 lg:gap-y-10 lg:flex-wrap lg:justify-center items-center">
         <ProfileCard />
         <ProfileCard />
         <ProfileCard />
         <ProfileCard />
       </div>
       <div className="flex flex-col items-center mt-6 gap-4 px-6">
-        <h2 className="text-xl font-semibold pl-2 text-white sm:text-3xl sm:pl-0">
+        <h2 className="text-xl font-semibold pl-2 text-white lg:text-3xl lg:pl-0">
           CHECKOUT
         </h2>
         <form
           action="submit"
-          className="flex flex-col border-2 border-white rounded-2xl bg-black/20 p-4 gap-4 text-white w-[80%] sm:w-[30%] sm:flex-row"
+          className="flex flex-col border-2 border-white rounded-2xl bg-black/20 p-4 gap-4 text-white w-[80%] sm:w-[30%] lg:w-[30%] lg:flex-row"
         >
-          <div className="bg-white/30 border-2 border-white rounded-full flex p-1 gap-2">
+          <div className="bg-white/30 border-2 border-white rounded-full flex p-1 gap-2 lg:w-[1300px]">
             <img
               src={male}
               alt="icon"
-              className="w-[20%] sm:w-[18%] rounded-full"
+              className="w-[20%] lg:w-[18%] rounded-full"
             />
             <input
               type="text"
@@ -108,10 +108,10 @@ const Profile = () => {
           </button>
         </form>
       </div>
-      <div className="flex flex-wrap gap-4 mt-10 mx-auto sm:mt-0 sm:gap-10">
-        <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-        <img src={monstor} alt="sponsor" className="h-14 sm:h-24" />
-        <img src={adidas} alt="sponsor" className="h-14 sm:h-24" />
+      <div className="flex flex-wrap gap-4 mt-10 mx-auto lg:mt-0 lg:gap-10">
+        <img src={redBull} alt="sponsor" className="h-14 lg:h-24" />
+        <img src={monstor} alt="sponsor" className="h-14 lg:h-24" />
+        <img src={adidas} alt="sponsor" className="h-14 lg:h-24" />
       </div>
     </div>
   );

@@ -19,11 +19,11 @@ import axios from "axios";
 axios.defaults.baseURL = "http://127.0.0.1:8000/";
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
-    window.innerWidth > 820 ? true : false
+    window.innerWidth > 850 ? true : false
   );
 
   function checkWindowSize() {
-    setWindowStatus(window.innerWidth > 820 ? true : false);
+    setWindowStatus(window.innerWidth > 850 ? true : false);
   }
 
   window.onresize = checkWindowSize;

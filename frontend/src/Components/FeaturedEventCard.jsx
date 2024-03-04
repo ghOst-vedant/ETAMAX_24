@@ -13,7 +13,7 @@ const FeaturedEventCard = ({
 }) => {
   return (
     <div
-      className={`${bgColor} rounded-xl flex flex-col px-5 py-5 items-center sm:w-[30%]`}
+      className={`${bgColor} rounded-xl flex flex-col px-5 py-5 items-center sm:w-[40%] lg:w-[30%]`}
     >
       <div className="flex relative sm:w-[100%]">
         <img
