@@ -54,7 +54,7 @@ const Home = () => {
   );
 
   function checkWindowSize() {
-    setWindowStatus(window.innerWidth > 820 ? true : false);
+    setWindowStatus(window.innerWidth > 840 ? true : false);
   }
 
   window.onresize = checkWindowSize;
