@@ -16,6 +16,7 @@ import Login from "./Pages/Login";
 import Schedule from "./Pages/Schedule";
 import EventCard from "./Pages/event_cards";
 import axios from "axios";
+import EventDetails from "./Pages/EventDetails";
 axios.defaults.baseURL = "http://127.0.0.1:8000/";
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
@@ -70,6 +71,10 @@ const App = () => {
           <Route
             path="/events"
             element={isAuth ? <EventCard /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/eventdetails"
+            element={isAuth ? <EventDetails /> : <Navigate to="/" />}
           />
           <Route
             path="/"

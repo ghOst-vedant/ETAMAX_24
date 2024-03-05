@@ -12,36 +12,52 @@ const days = ["Day One", "Day Two", "Day Three"];
 const events = ["Cultural", "Technical", "Seminar"];
 
 const EventCards = () => {
-
   const [day, setDay] = useState(days[0]);
   const [event, setEvent] = useState(events[0]);
   const [opendays, setOpenDays] = useState(false);
   const [openEvents, setOpenEvents] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
+  // try {
+  //   const { data } = await axios.post(`/api/u/auth/login/`, {
+  //     username: id,
+  //     password,
+  //   });
+  //   console.log(data.success);
+  //   console.log(data);
+  //   window.location.reload();
+  // } catch (error) {
+  //   if (error.response) {
+  //     alert("Check your Login Credentials and try again"); // Show error message in alert
+  //   } else {
+  //     alert("An error occurred"); // Fallback error message
+  //   }
+  // }
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
-    <div className='flameBg py-6 pb-20 pt-24 overflow-hidden'>
-      <div className='flex flex-wrap justify-center gap-10 sm:py-12 sm:gap-12 bg-black/10 py-6 backdrop-blur-sm sm:mt-4'>
+    <div className="flameBg py-6 pb-20 pt-24 overflow-hidden">
+      <div className="flex flex-wrap justify-center gap-10 sm:py-12 sm:gap-12 bg-black/10 py-6 backdrop-blur-sm sm:mt-4">
         <img src={redBull} alt="sponsor" className="h-12 sm:h-24" />
         <img src={monstor} alt="sponsor" className="h-12 sm:h-24" />
         <img src={adidas} alt="sponsor" className="h-12 sm:h-24" />
       </div>
 
-      <div className='flex flex-col items-center'>
-        <h2 className='font-cinzel text-4xl font-bold sm:text-5xl mt-16 text-white'>EVENTS</h2>
-
+      <div className="flex flex-col items-center">
+        <h2 className="font-cinzel text-4xl font-bold sm:text-5xl mt-16 text-white">
+          EVENTS
+        </h2>
 
         {!isMobile && (
           <div className="px-10 select-none sm:flex sm:flex-col sm:items-center">
@@ -112,19 +128,33 @@ const EventCards = () => {
           </div>
         )}
 
-
         {isMobile ? (
           <div className="flex flex-col gap-20 mt-10">
-
             {events.map((eventName, index) => (
-              <div key={index} className='flex flex-col items-center sm:items-center sm:py-16 gap-10'>
+              <div
+                key={index}
+                className="flex flex-col items-center sm:items-center sm:py-16 gap-10"
+              >
                 <div className="flex">
-                  <div className='flex text-white px-20 mx-auto sm:w-[70%]'>
-                    <h2 className='font-montserat text-3xl font-semibold sm:text-5xl'>{eventName}</h2>
+                  <div className="flex text-white px-20 mx-auto sm:w-[70%]">
+                    <h2 className="font-montserat text-3xl font-semibold sm:text-5xl">
+                      {eventName}
+                    </h2>
                   </div>
                   <Link to="/schedule" className="absolute right-0 mr-4 mt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="py- 4 h-5 sm:h-6 w-6 text-white" viewBox="0 0 20 20" fill="none" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5l7 7-7 7" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="py- 4 h-5 sm:h-6 w-6 text-white"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M1 5l7 7-7 7"
+                      />
                     </svg>
                   </Link>
                 </div>
@@ -134,7 +164,9 @@ const EventCards = () => {
           </div>
         ) : (
           <div>
-            <EventCard day={day} event={event} />
+            <Link to="/eventdetails">
+              <EventCard day={day} event={event} />
+            </Link>
           </div>
         )}
       </div>
