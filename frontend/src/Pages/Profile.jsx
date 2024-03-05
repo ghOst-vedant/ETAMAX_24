@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfileCard from "../Components/ProfileCard";
 import male from "../Assets/other_images/boy.png";
 import female from "../Assets/other_images/girl.png";
@@ -12,6 +12,7 @@ import axios from "axios";
 
 const Profile = () => {
   const [Roll, setRoll] = useState(null);
+  const [featuredEvents, setFeaturedEvents] = useState([]);
   const name = localStorage.getItem("name");
   const roll = localStorage.getItem("roll_no");
   const gender = localStorage.getItem("gender");
@@ -24,6 +25,22 @@ const Profile = () => {
       alert("Error, Check Roll Number.");
     }
   };
+  const token = localStorage.getItem("token");
+  const getFeaturedEvents = async () => {
+    const { data } = await axios.get(`/api/e/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
+    const allEvents = data.events;
+    const result = allEvents.filter((event) => event.is_featured === true);
+    setFeaturedEvents(result);
+  };
+
+  useEffect(() => {
+    getFeaturedEvents();
+  }, []);
+  console.log(featuredEvents);
   return (
     <div className=" bg-black flameBg pb-10 box-border flex flex-col lg:items-center lg:gap-20 overflow-hidden">
       <div className="lg:flex lg:mt-36 lg:w-full justify-evenly">

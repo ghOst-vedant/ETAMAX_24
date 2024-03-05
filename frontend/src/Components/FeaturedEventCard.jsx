@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import ChairAltOutlinedIcon from "@mui/icons-material/ChairAltOutlined";
@@ -11,6 +11,22 @@ const FeaturedEventCard = ({
   bgColor,
   eventImage,
 }) => {
+  const [windowStatus, setWindowStatus] = useState(
+    window.innerWidth > 820 ? true : false
+  );
+
+  function checkWindowSize() {
+    setWindowStatus(window.innerWidth > 820 ? true : false);
+  }
+
+  window.onresize = checkWindowSize;
+  if (date === 1) {
+    date = "14th Mar";
+  } else if (date === 2) {
+    date = "15th Mar";
+  } else {
+    date = "16th Mar";
+  }
   return (
     <div
       className={`${bgColor} rounded-xl flex flex-col px-5 py-5 items-center sm:w-[40%] lg:w-[30%]`}
@@ -39,7 +55,7 @@ const FeaturedEventCard = ({
           </h1>
         </div>
       </div>
-      <div className="mt-5 mb-2 flex gap-10 items-center ">
+      <div className="mt-5 mb-2 flex gap-10 items-center justify-between w-full px-[20%]">
         <span className="flex flex-col items-center gap-2 text-white">
           {" "}
           <CalendarTodayOutlinedIcon
@@ -48,7 +64,9 @@ const FeaturedEventCard = ({
               color: "white",
             }}
           />
-          <span className="text-center font-montserat font-medium">{date}</span>
+          <span className="text-center font-montserat font-medium text-nowrap">
+            {date}
+          </span>
         </span>
         <span className="flex flex-col items-center gap-2 text-white">
           {" "}
@@ -59,7 +77,11 @@ const FeaturedEventCard = ({
             }}
           />
           <span className=" font-montserat font-medium uppercase">
-            {category}
+            {category === "c"
+              ? "Cultural"
+              : category === "T"
+              ? "Technical"
+              : "Seminar"}
           </span>
         </span>
         <span className="flex flex-col items-center gap-2 text-white">
