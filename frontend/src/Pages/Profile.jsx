@@ -103,7 +103,7 @@ const Profile = () => {
         >
           <div className="bg-white/30 border-2 border-white rounded-full flex p-1 gap-2 lg:w-[1300px]">
             <img
-              src={male}
+              src={gender === "male" ? female : male}
               alt="icon"
               className="w-[20%] lg:w-[18%] rounded-full"
             />
