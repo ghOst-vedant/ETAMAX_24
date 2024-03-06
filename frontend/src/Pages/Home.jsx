@@ -20,29 +20,30 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const token = localStorage.getItem("token");
+  const [allEvents, setAllEvents] = useState();
+
   const getFeaturedEvents = async () => {
     const { data } = await axios.get(`/api/e/`, {
       headers: {
         Authorization: `Token ${token}`,
       },
     });
-    const allEvents = data.events;
+    setAllEvents(data.events);
     // Filter events to get only featured events
     setFeaturedEvents(() =>
-      allEvents.filter((event) => {
+      allEvents?.filter((event) => {
         return event.is_featured === true;
       })
     );
-    // console.log("ALL EVENTS:", allEvents);
 
-    const result = allEvents.filter((event) => event.is_featured === true);
-
+    const result = allEvents?.filter((event) => event.is_featured === true);
     setFeaturedEvents(result);
   };
-
+  // console.log(allEvents);
   useEffect(() => {
     getFeaturedEvents();
   }, []);
+
   const [windowStatus, setWindowStatus] = useState(
     window.innerWidth > 820 ? true : false
   );
@@ -54,12 +55,6 @@ const Home = () => {
   window.onresize = checkWindowSize;
 
   SwiperCore.use([EffectCards]);
-
-  // function setEventId(e) {
-  //   localStorage.setItem("eventId", e.target.eventId);
-  //   // navigate("/event-details");
-  // }
-
   return (
     <div className="w-full overflow-hidden">
       <img
@@ -130,6 +125,7 @@ const Home = () => {
                     seats={event.max_seats}
                     eventImage={eventImage}
                     index={index}
+                    teamSize={event.team_size}
                   />
                 );
               })

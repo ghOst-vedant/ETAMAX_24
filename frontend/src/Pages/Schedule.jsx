@@ -38,8 +38,20 @@ const Schedule = () => {
         Authorization: `Token ${token}`,
       },
     });
-    setAllEvents(data.events);
-    setFilteredEvents(data.events);
+    function compare(a, b) {
+      const start1 = a.start.toUpperCase();
+      const start2 = b.start.toUpperCase();
+      let comparison = 0;
+
+      if (start1 > start2) {
+        comparison = 1;
+      } else if (start1 < start2) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+    setAllEvents(data.events.sort(compare));
+    setFilteredEvents(data.events.sort(compare));
   };
 
   useEffect(() => {
