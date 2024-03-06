@@ -114,7 +114,7 @@ const EventCards = () => {
 
         {isMobile ? (
           <div className="flex flex-col gap-20 mt-10">
-            {events.map((eventName, index) => (
+            {events.slice(1, events.length).map((eventName, index) => (
               <div
                 key={index}
                 className="flex flex-col items-center sm:items-center sm:py-16 gap-10"
@@ -142,7 +142,7 @@ const EventCards = () => {
                     </svg>
                   </Link>
                 </div>
-                <MobileEventCard />
+                <MobileEventCard eventType={eventName} />
               </div>
             ))}
           </div>

@@ -62,4 +62,15 @@ input::placeholder {
 
 input {
   border: none;
+  outline: none;
+  -webkit-background-clip: text !important;
+  color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
 }

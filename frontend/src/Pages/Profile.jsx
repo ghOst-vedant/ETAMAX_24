@@ -25,19 +25,19 @@ const Profile = () => {
       alert("Error, Check Roll Number.");
     }
   };
-  const token = localStorage.getItem("token");
-  const getFeaturedEvents = async () => {
-    const { data } = await axios.get(`/api/e/`, {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    });
-    const allEvents = data.events;
-    const result = allEvents.filter((event) => event.is_featured === true);
-    setFeaturedEvents(result);
-  };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const getFeaturedEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      const allEvents = data.events;
+      const result = allEvents.filter((event) => event.is_featured === true);
+      setFeaturedEvents(result);
+    };
     getFeaturedEvents();
   }, []);
   console.log(featuredEvents);
@@ -103,7 +103,7 @@ const Profile = () => {
         >
           <div className="bg-white/30 border-2 border-white rounded-full flex p-1 gap-2 lg:w-[1300px]">
             <img
-              src={male}
+              src={gender === "male" ? female : male}
               alt="icon"
               className="w-[20%] lg:w-[18%] rounded-full"
             />

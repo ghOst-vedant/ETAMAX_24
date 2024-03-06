@@ -7,7 +7,6 @@ import eventImage from "../Assets/Common_images/sampleEvent.png";
 import { useNavigate } from "react-router-dom";
 import GroupsIcon from "@mui/icons-material/Groups";
 import PeopleIcon from "@mui/icons-material/People";
-import Person from "@mui/icons-material/Person";
 const FeaturedEventCard = ({
   eventId,
   eventName,
@@ -93,7 +92,7 @@ const FeaturedEventCard = ({
           </h1>
         </div>
       </div>
-      <div className="mt-5 mb-2 flex gap-10 items-center justify-between lg:w-full lg:px-[10%]">
+      <div className="mt-5 mb-2 flex gap-10 items-center justify-between lg:w-full lg:px-[20%]">
         <span className="flex flex-col items-center gap-2 text-white">
           {" "}
           <CalendarTodayOutlinedIcon

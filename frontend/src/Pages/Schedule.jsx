@@ -32,29 +32,30 @@ const Schedule = () => {
   const currDayRef = useRef(days[0]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const token = localStorage.getItem("token");
-  const getEvents = async () => {
-    const { data } = await axios.get(`/api/e/`, {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    });
-    function compare(a, b) {
-      const start1 = a.start.toUpperCase();
-      const start2 = b.start.toUpperCase();
-      let comparison = 0;
-
-      if (start1 > start2) {
-        comparison = 1;
-      } else if (start1 < start2) {
-        comparison = -1;
-      }
-      return comparison;
-    }
-    setAllEvents(data.events.sort(compare));
-    setFilteredEvents(data.events.sort(compare));
-  };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const getEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      function compare(a, b) {
+        const start1 = a.start.toUpperCase();
+        const start2 = b.start.toUpperCase();
+        let comparison = 0;
+
+        if (start1 > start2) {
+          comparison = 1;
+        } else if (start1 < start2) {
+          comparison = -1;
+        }
+        return comparison;
+      }
+      setAllEvents(data.events.sort(compare));
+      setFilteredEvents(data.events.sort(compare));
+    };
     getEvents();
   }, []);
 

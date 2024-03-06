@@ -16,7 +16,7 @@ function EventDetails() {
       console.log(event);
     };
     eventId && getEventDetails();
-  }, []);
+  }, [eventId, token]);
   return (
     <div className="flameBg w-full h-fit py-[30vw] px-[9.5vw] flex flex-col items-center font-montserat sm:p-[10vw]">
       <div className="flex sm:flex-row flex-col gap-[5.2vw] items-center sm:items-start">
@@ -24,6 +24,7 @@ function EventDetails() {
           <img
             src={require("../Assets/other_images/Rectangle 25.png")}
             className="h-[62.5vw] w-fit sm:h-full sm:w-fit"
+            alt="eventimage"
           ></img>
         </div>
         <div className="sm:flex-[100%] flex flex-col items-center sm:inline">

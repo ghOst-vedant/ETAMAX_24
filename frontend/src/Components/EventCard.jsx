@@ -2,23 +2,23 @@ import React, { useEffect, useMemo, useState } from "react";
 import FeaturedEventCard from "../Components/FeaturedEventCard";
 import eventImage from "../Assets/Common_images/sampleEvent.png";
 import axios from "axios";
-import { Link } from "@mui/material";
 
 const EventCard = ({ day, event }) => {
   const token = localStorage.getItem("token");
   const [allEvents, setAllEvents] = useState([]);
-  const getEvents = async () => {
-    const { data } = await axios.get(`/api/e/`, {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    });
-    setAllEvents(data.events);
-  };
 
   useEffect(() => {
+    const getEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setAllEvents(data.events);
+    };
+
     getEvents();
-  }, []);
+  }, [token]);
 
   // Filter events based on selected day and event
   const filteredEvents = useMemo(() => {
@@ -41,7 +41,7 @@ const EventCard = ({ day, event }) => {
     }
 
     return filtered;
-  }, [day, event]);
+  }, [day, event, allEvents]);
 
   return (
     <div className="flex flex-wrap justify-center gap-10 px-10 w-[100vw]">

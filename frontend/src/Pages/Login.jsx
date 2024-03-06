@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import loginBird from "../Assets/other_images/loginBird.png";
 import user from "../Assets/other_images/user.png";
-import letter from "../Assets/other_images/letter.png";
 import lock from "../Assets/other_images/lock.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Login = ({ setToken }) => {
-  const [login, setlogin] = useState(true); //true means login and false means signup
   const [id, setId] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-  const [tokenExist, setTokenExist] = useState();
 
   const handleLogin = async () => {
     try {
@@ -18,9 +15,6 @@ const Login = ({ setToken }) => {
         username: id,
         password,
       });
-      // console.log(data.success);
-      // console.log(data);
-      // console.log(data);
       localStorage.setItem("token", data.token);
       localStorage.setItem("roll_no", data.user.roll_no);
       localStorage.setItem("name", data.user.name);
@@ -38,24 +32,9 @@ const Login = ({ setToken }) => {
       }
     }
   };
-  const checkToken = () => {
-    if (localStorage.getItem("token")) {
-      setTokenExist(true);
-    } else {
-      setTokenExist(false);
-      // console.log("You need to Login first");
-    }
-  };
-  useEffect(() => {
-    checkToken();
-  });
   return (
     <div className="flameBg h-[100vh] overflow-y-hidden">
-      <div
-        className={`h-[100%] flex px-10 ${
-          login ? "pt-[30vw] sm:pt-32" : "pt-[20vw] sm:pt-20"
-        }`}
-      >
+      <div className={`h-[100%] flex px-10 "pt-[30vw] sm:pt-32`}>
         <div className="flex flex-col items-center gap-4 font-montserat sm:mx-auto">
           <img src={loginBird} alt="phoenix" className="h-48 sm:h-60" />
           <form action="submit" className="flex flex-col gap-4">
@@ -72,7 +51,7 @@ const Login = ({ setToken }) => {
                 name="rollno"
                 id="rollno"
                 placeholder="Roll no / email"
-                className="text-xl w-[80%] bg-transparent rounded-r-full font-semibold text-white"
+                className="text-xl w-full bg-transparent border-none rounded-r-full font-semibold text-white"
               />
             </div>
             <div className="bg-white/30 border-2 border-white rounded-full flex p-2 gap-2">
@@ -88,7 +67,7 @@ const Login = ({ setToken }) => {
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className="text-xl w-[80%] bg-transparent rounded-r-full font-semibold text-white"
+                className="text-xl w-full bg-transparent rounded-r-full font-semibold text-white border-none"
               />
             </div>
             <div
@@ -103,6 +82,7 @@ const Login = ({ setToken }) => {
             className="w-fit py-3 px-6 text-xl font-semibold text-white border-b-[3px]"
             href="https://docs.google.com/forms/d/1bVbL0jvBTaey4DfAmp5_UGMlMt94NXWYd_0uoKVnlgI/edit?usp=drivesdk"
             target="_blank"
+            rel="noreferrer"
           >
             Signup
           </a>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import axios from "axios";
@@ -107,19 +107,4 @@ const Navbar = () => {
     </div>
   );
 };
-
-// const events = [
-//   {
-//     EventName: "Seminar-1",
-//     Message: "Seats Full",
-//   },
-//   {
-//     EventName: "Event-2",
-//     Message: "Seats Full",
-//   },
-//   {
-//     EventName: "Event-2",
-//     Message: "Seats Full",
-//   },
-// ];
 export default Navbar;
