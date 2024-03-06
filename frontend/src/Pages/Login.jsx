@@ -52,9 +52,8 @@ const Login = ({ setToken }) => {
   return (
     <div className="flameBg h-[100vh] overflow-y-hidden">
       <div
-        className={`h-[100%] flex px-10 ${
-          login ? "pt-[30vw] sm:pt-32" : "pt-[20vw] sm:pt-20"
-        }`}
+        className={`h-[100%] flex px-10 ${login ? "pt-[30vw] sm:pt-32" : "pt-[20vw] sm:pt-20"
+          }`}
       >
         <div className="flex flex-col items-center gap-4 font-montserat sm:mx-auto">
           <img src={loginBird} alt="phoenix" className="h-48 sm:h-60" />
@@ -72,7 +71,7 @@ const Login = ({ setToken }) => {
                 name="rollno"
                 id="rollno"
                 placeholder="Roll no / email"
-                className="text-xl w-[80%] bg-transparent rounded-r-full font-semibold text-white"
+                className="text-xl w-full bg-transparent border-none rounded-r-full font-semibold text-white"
               />
             </div>
             <div className="bg-white/30 border-2 border-white rounded-full flex p-2 gap-2">
@@ -88,7 +87,7 @@ const Login = ({ setToken }) => {
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className="text-xl w-[80%] bg-transparent rounded-r-full font-semibold text-white"
+                className="text-xl w-full bg-transparent rounded-r-full font-semibold text-white border-none"
               />
             </div>
             <div
