@@ -152,7 +152,7 @@ const Profile = () => {
               name="rollno"
               id="rollno"
               placeholder="Roll no"
-              className="text-xl outline-none w-[80%] bg-transparent rounded-r-full"
+              className="text-xl outline-none border-none w-[80%] bg-transparent rounded-r-full"
             />
           </div>
           <button

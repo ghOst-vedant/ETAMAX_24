@@ -15,11 +15,11 @@ import FeaturedEventCard from "../Components/FeaturedEventCard";
 import eventImage from "../Assets/Common_images/sampleEvent.png";
 import cloud from "../Assets/other_images/clouds.png";
 import axios from "axios";
+// import sponsor from "../sponsor.json"
 
 const Home = () => {
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const token = localStorage.getItem("token");
-
   useEffect(() => {
     const getFeaturedEvents = async () => {
       const { data } = await axios.get(`/api/e/`, {
@@ -35,7 +35,6 @@ const Home = () => {
         })
       );
       // console.log("ALL EVENTS:", allEvents);
-
       const result = allEvents.filter((event) => event.is_featured === true);
 
       setFeaturedEvents(result);
@@ -53,12 +52,6 @@ const Home = () => {
   window.onresize = checkWindowSize;
 
   SwiperCore.use([EffectCards]);
-
-  // function setEventId(e) {
-  //   localStorage.setItem("eventId", e.target.eventId);
-  //   // navigate("/event-details");
-  // }
-
   return (
     <div className="w-full overflow-hidden">
       <img
@@ -79,11 +72,11 @@ const Home = () => {
         />
         {windowStatus ? (
           <embed
-            className="z-10"
+            className="z-10 w-[58.5%]"
             auto="true"
             width="900"
             height="500"
-            src="https://www.youtube.com/embed/ZQyyj0SN860?autoplay=1&controls=0&&showinfo=0&loop=1"
+            src="https://res.cloudinary.com/djijqbjom/video/upload/v1709709837/video_frf3w6.mp4?"
             frameBorder="0"
             autostart={1}
             autoPlay={1}
@@ -93,7 +86,7 @@ const Home = () => {
             className="w-full"
             auto="true"
             height="220"
-            src="https://www.youtube.com/embed/ZQyyj0SN860?autoplay=1&controls=0&&showinfo=0&loop=1"
+            src="https://res.cloudinary.com/djijqbjom/video/upload/v1709709837/video_frf3w6.mp4?"
             frameBorder="0"
             autoStart={1}
             autoPlay={1}
@@ -104,8 +97,8 @@ const Home = () => {
         <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
           {/* sponsors */}
           <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-          <img src={monstor} alt="sponsor" className="h-14 sm:h-24" />
-          <img src={adidas} alt="sponsor" className="h-14 sm:h-24" />
+          <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
+          <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
         </div>
         {/* Features Section */}
         <div className="flex flex-col pt-9">
@@ -126,9 +119,11 @@ const Home = () => {
                     eventName={event.title}
                     category={event.category}
                     date={event.day}
-                    seats={event.max_seats}
+                    max_seats={event.max_seats}
+                    seats={event.seats}
                     eventImage={eventImage}
                     index={index}
+                    teamSize={event.team_size}
                   />
                 );
               })
