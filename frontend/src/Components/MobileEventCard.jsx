@@ -1,41 +1,64 @@
-import 'swiper/css';
-import 'swiper/css/effect-cards';
-import React from 'react';
-import './MobileEventCard.css';
-// import image1 from "../Assets/other_images/Frame 95.png";
-// import image2 from "../Assets/other_images/Rectangle 91.png";
-// import image3 from "../Assets/other_images/Rectangle 92.png";
-import image4 from "../Assets/other_images/Rectangle 62.png";
-import image5 from "../Assets/other_images/Rectangle 64.png";
-import image6 from "../Assets/other_images/Rectangle 79.png";
-import image7 from "../Assets/other_images/Rectangle 81.png";
-import image8 from "../Assets/other_images/Rectangle 80.png";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import "swiper/css";
+import "swiper/css/effect-cards";
+import React, { useEffect, useState } from "react";
+import "./MobileEventCard.css";
+import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
-import { EffectCards } from 'swiper/modules';
-
+import { EffectCards } from "swiper/modules";
+import axios from "axios";
+import FeaturedEventCard from "./FeaturedEventCard";
+import eventImage from "../Assets/Common_images/sampleEvent.png";
 
 SwiperCore.use([EffectCards]);
 
-export default function MobileEventCard() {
+export default function MobileEventCard({ eventType }) {
+  const token = localStorage.getItem("token");
+  const [allEvents, setAllEvents] = useState([]);
+
+  useEffect(() => {
+    const eventMapping = {
+      "Select Event": "E",
+      Cultural: "C",
+      Technical: "T",
+      Seminar: "s",
+    };
+    const getEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setAllEvents(() =>
+        data.events.filter(
+          (event) => event.category === eventMapping[eventType]
+        )
+      );
+      // console.log(allEvents);
+    };
+    getEvents();
+  }, [eventType, token]);
   return (
     <div className="mySwiper">
       <Swiper
-        effect={'cards'}
+        effect={"cards"}
         grabCursor={true}
         modules={[EffectCards]}
-        className="mySwiper"
+        className="change"
       >
-        <SwiperSlide><img src={image4} alt="EVENT NAME 4" />
-          <div className="event-name">EVENT NAME 4</div></SwiperSlide>
-        <SwiperSlide><img src={image5} alt="EVENT NAME 5" />
-          <div className="event-name">EVENT NAME 5</div></SwiperSlide>
-        <SwiperSlide><img src={image6} alt="EVENT NAME 6" />
-          <div className="event-name">EVENT NAME 6</div></SwiperSlide>
-        <SwiperSlide><img src={image7} alt="EVENT NAME 7" />
-          <div className="event-name">EVENT NAME 7</div></SwiperSlide>
-        <SwiperSlide><img src={image8} alt="EVENT NAME 8" />
-          <div className="event-name">EVENT NAME 8</div></SwiperSlide>
+        {allEvents?.map((event, index) => (
+          <SwiperSlide className="slide">
+            <FeaturedEventCard
+              key={event.event_code}
+              eventId={event.event_code}
+              eventName={event.title}
+              category={event.category}
+              date={event.day}
+              seats={event.max_seats}
+              eventImage={eventImage}
+              index={index}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

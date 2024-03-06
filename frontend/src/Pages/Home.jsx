@@ -15,34 +15,33 @@ import FeaturedEventCard from "../Components/FeaturedEventCard";
 import eventImage from "../Assets/Common_images/sampleEvent.png";
 import cloud from "../Assets/other_images/clouds.png";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const token = localStorage.getItem("token");
-  const getFeaturedEvents = async () => {
-    const { data } = await axios.get(`/api/e/`, {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    });
-    const allEvents = data.events;
-    // Filter events to get only featured events
-    setFeaturedEvents(() =>
-      allEvents.filter((event) => {
-        return event.is_featured === true;
-      })
-    );
-    // console.log("ALL EVENTS:", allEvents);
-
-    const result = allEvents.filter((event) => event.is_featured === true);
-
-    setFeaturedEvents(result);
-  };
 
   useEffect(() => {
+    const getFeaturedEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      const allEvents = data.events;
+      // Filter events to get only featured events
+      setFeaturedEvents(() =>
+        allEvents.filter((event) => {
+          return event.is_featured === true;
+        })
+      );
+      // console.log("ALL EVENTS:", allEvents);
+
+      const result = allEvents.filter((event) => event.is_featured === true);
+
+      setFeaturedEvents(result);
+    };
     getFeaturedEvents();
-  }, []);
+  }, [token]);
   const [windowStatus, setWindowStatus] = useState(
     window.innerWidth > 820 ? true : false
   );
@@ -145,6 +144,7 @@ const Home = () => {
                     <SwiperSlide className="slide">
                       <FeaturedEventCard
                         key={event.event_code}
+                        eventId={event.event_code}
                         eventName={event.title}
                         category={event.category}
                         date={event.day}

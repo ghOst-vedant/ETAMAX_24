@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HamburgerButton from "./HamburgerButton.jsx";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import navbird from "../Assets/Common_images/navbird.png";
 const events = [
@@ -21,19 +21,6 @@ const HambergerMenu = () => {
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);
-  // token check
-  const [isAuth, setIsAuth] = useState();
-
-  function checkToken() {
-    if (localStorage.getItem("token")) {
-      setIsAuth(true);
-    } else {
-      setIsAuth(false);
-    }
-  }
-  useEffect(() => {
-    checkToken();
-  });
 
   const handleLogOut = () => {
     localStorage.removeItem("token");

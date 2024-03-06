@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import ChairAltOutlinedIcon from "@mui/icons-material/ChairAltOutlined";
@@ -64,7 +64,7 @@ const FeaturedEventCard = ({
           </h1>
         </div>
       </div>
-      <div className="mt-5 mb-2 flex gap-10 items-center justify-between w-full px-[20%]">
+      <div className="mt-5 mb-2 flex gap-10 items-center justify-between lg:w-full lg:px-[20%]">
         <span className="flex flex-col items-center gap-2 text-white">
           {" "}
           <CalendarTodayOutlinedIcon

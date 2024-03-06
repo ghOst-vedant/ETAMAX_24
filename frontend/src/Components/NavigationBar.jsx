@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 const Navbar = () => {
