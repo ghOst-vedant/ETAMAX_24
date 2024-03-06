@@ -11,9 +11,9 @@ function EventDetails() {
   const dayReverseMapping = {
     1: "14th March",
     2: "15th March",
-    3: "16th March"
+    3: "16th March",
   };
-  console.log(teamName);
+  // console.log(teamName);
   useEffect(() => {
     const getEventDetails = async () => {
       const {
@@ -24,52 +24,55 @@ function EventDetails() {
         },
       });
       setEvent(event);
-      console.log(event)
+      // console.log(event);
     };
     eventId && getEventDetails();
   }, [eventId, token]);
 
   const addMember = () => {
     //add members here
-    setMembers(() => [...members, inputMember])
-    setInputMember("")
-  }
+    setMembers(() => [...members, inputMember]);
+    setInputMember("");
+  };
 
   const removeMember = (e) => {
-    setMembers(() => (
-      members.filter(m => m !== e.target.id)
-    ))
-  }
+    setMembers(() => members.filter((m) => m !== e.target.id));
+  };
 
   const eventRegister = async () => {
     try {
-
       const headers = {
         Authorization: `token ${token}`,
-        'Content-Type': 'application/json',
-      }
+        "Content-Type": "application/json",
+      };
       const body = {
-        "event_code": eventId,
-        "team_name": teamName,
-        "members": members
-      }
-      console.log(body);
+        event_code: eventId,
+        team_name: teamName,
+        members: members,
+      };
+      // console.log(body);
       if (!teamName) {
-        // console.log(name,tname);
-        await axios.post(`/api/e/register/`, { eventId }, { headers });
+        await axios.post(
+          `/api/e/register/`,
+          { event_code: eventId },
+          { headers }
+        );
       } else {
-        await axios.post(`/api/e/register/`, { "event_code": eventId, "team_name": teamName, "members": members }, { headers });
+        await axios.post(
+          `/api/e/register/`,
+          { event_code: eventId, team_name: teamName, members: members },
+          { headers }
+        );
       }
       // Successful login logic (e.g., save token, redirect)
       setTeamName("");
       setMembers([]);
-      alert("Registered, Go to Profile page to checkOut")
-
+      alert("Registered, Go to Profile page to checkOut");
     } catch (error) {
       if (error.response.data.detail) {
         alert(error.response.data.detail); // Show error message in alert
       } else {
-        console.log(error); // Fallback error message
+        // console.log(error); // Fallback error message
       }
     }
   };
@@ -94,47 +97,69 @@ function EventDetails() {
             </p>
           </div>
           <div className="flex flex-col text-center gap-[0.8vw] mb-10 text-white text-[1.5vw] sm:text-left sm:mb-[2.5vw]">
-            <p className="text-[3.75vw] sm:text-[1.35vw]">Date : {dayReverseMapping[event?.day]}</p>
-            <p className="text-[3.75vw] sm:text-[1.35vw]">Seats Left: {event?.seats} / {event?.max_seats}</p>
-            <p className="text-[3.75vw] sm:text-[1.35vw]">Team size: {event?.team_size}</p>
-            <p className="text-[3.75vw] sm:text-[1.35vw]">Cost: {event?.entry_fee} /-</p>
+            <p className="text-[3.75vw] sm:text-[1.35vw]">
+              Date : {dayReverseMapping[event?.day]}
+            </p>
+            <p className="text-[3.75vw] sm:text-[1.35vw]">
+              Seats Left: {event?.seats} / {event?.max_seats}
+            </p>
+            <p className="text-[3.75vw] sm:text-[1.35vw]">
+              Team size: {event?.team_size}
+            </p>
+            <p className="text-[3.75vw] sm:text-[1.35vw]">
+              Cost: {event?.entry_fee} /-
+            </p>
             <p className="text-[3.75vw] sm:text-[1.35vw]">
               Timings: {event?.start} to {event?.end}
             </p>
           </div>
-          {!joined && event?.team_size > 1 && <div className="mb-10 flex flex-col gap-[6.5vw] sm:gap-[2vw] sm:mb-[2.5vw] sm:w-[60%]">
-            <div className="flex justify-between gap-4">
-              <input
-                type="text"
-                placeholder="Roll number"
-                value={inputMember}
-                id="inputMember"
-                className="bg-transparent border-white border-2 rounded-full flex-[70%] sm:w-[18vw] sm:h-[3vw] sm:text-[1.3vw] px-[3vw] py-[1vw] sm:px-[1.6vw] sm:py-[0.8vw] text-white outline-none"
-                onChange={(e) => { setInputMember(e.target.value) }}
-              ></input>
-              <button className="px-[3.2vw] py-[0.8vw] flex justify-center items-center border-white border-2 rounded-full flex-[30%] font-normal text-white hover:bg-gray-200 hover:text-gray-800 sm:w-[8vw] sm:h-[3vw] sm:text-[1.3vw] sm:px-[2.4vw] sm:py-[0.8vw]" onClick={addMember}>
-                Add
-              </button>
-            </div>
-            <span className="text-white sm:text-xl text-lg">Team Members : </span>
-            <div className="p-[3.25vw] flex gap-[3vw] flex-wrap bg-black bg-opacity-[33%] border-[1px] border-white rounded-xl sm:p-[1.3vw] sm:gap-[1vw]">
-              {
-                members.map((member, index) => (
-                  <p className="text-[3.75vw] p-[3.75vw] text-white bg-white bg-opacity-[45%] border-[1px] border-white rounded-lg sm:text-[1.3vw] sm:px-[2vw] py-[0.7vw] cursor-pointer" key={index} id={member} onClick={removeMember}>
+          {!joined && event?.team_size > 1 && (
+            <div className="mb-10 flex flex-col gap-[6.5vw] sm:gap-[2vw] sm:mb-[2.5vw] sm:w-[60%]">
+              <div className="flex justify-between gap-4">
+                <input
+                  type="text"
+                  placeholder="Roll number"
+                  value={inputMember}
+                  id="inputMember"
+                  className="bg-transparent border-white border-2 rounded-full flex-[70%] sm:w-[18vw] sm:h-[3vw] sm:text-[1.3vw] px-[3vw] py-[1vw] sm:px-[1.6vw] sm:py-[0.8vw] text-white outline-none"
+                  onChange={(e) => {
+                    setInputMember(e.target.value);
+                  }}
+                ></input>
+                <button
+                  className="px-[3.2vw] py-[0.8vw] flex justify-center items-center border-white border-2 rounded-full flex-[30%] font-normal text-white hover:bg-gray-200 hover:text-gray-800 sm:w-[8vw] sm:h-[3vw] sm:text-[1.3vw] sm:px-[2.4vw] sm:py-[0.8vw]"
+                  onClick={addMember}
+                >
+                  Add
+                </button>
+              </div>
+              <span className="text-white sm:text-xl text-lg">
+                Team Members :{" "}
+              </span>
+              <div className="p-[3.25vw] flex gap-[3vw] flex-wrap bg-black bg-opacity-[33%] border-[1px] border-white rounded-xl sm:p-[1.3vw] sm:gap-[1vw]">
+                {members.map((member, index) => (
+                  <p
+                    className="text-[3.75vw] p-[3.75vw] text-white bg-white bg-opacity-[45%] border-[1px] border-white rounded-lg sm:text-[1.3vw] sm:px-[2vw] py-[0.7vw] cursor-pointer"
+                    key={index}
+                    id={member}
+                    onClick={removeMember}
+                  >
                     {member}
                   </p>
-                ))
-              }
+                ))}
+              </div>
+              <input
+                type="text"
+                placeholder="Team Name"
+                value={teamName}
+                id="teamName"
+                className="bg-transparent border-white border-2 rounded-full flex-[70%] sm:w-[18vw] sm:h-[3vw] sm:text-[1.3vw] px-[3vw] py-[1vw] sm:px-[1.6vw] sm:py-[0.8vw] text-white outline-none"
+                onChange={(e) => {
+                  setTeamName(e.target.value);
+                }}
+              ></input>
             </div>
-            <input
-              type="text"
-              placeholder="Team Name"
-              value={teamName}
-              id="teamName"
-              className="bg-transparent border-white border-2 rounded-full flex-[70%] sm:w-[18vw] sm:h-[3vw] sm:text-[1.3vw] px-[3vw] py-[1vw] sm:px-[1.6vw] sm:py-[0.8vw] text-white outline-none"
-              onChange={(e) => { setTeamName(e.target.value) }}
-            ></input>
-          </div>}
+          )}
           <div className="flex flex-col sm:flex-row">
             {joined ? (
               <button

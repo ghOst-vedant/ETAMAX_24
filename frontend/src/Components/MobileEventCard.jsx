@@ -20,7 +20,7 @@ export default function MobileEventCard({ eventType }) {
       "Select Event": "E",
       Cultural: "C",
       Technical: "T",
-      Seminar: "s",
+      Seminar: "S",
     };
     const getEvents = async () => {
       const { data } = await axios.get(`/api/e/`, {

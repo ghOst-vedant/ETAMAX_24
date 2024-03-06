@@ -5,6 +5,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 import Profile from "./Pages/Profile";
 import Home from "./Pages/Home";
@@ -35,33 +36,26 @@ const App = () => {
     localStorage.getItem("token") ? setIsAuth(true) : setIsAuth(false);
   }
   useEffect(() => {
-    setToken();
-  });
+    if (localStorage.getItem("token")) {
+      setIsAuth(true);
+    }
+  }, []);
 
   return (
     <div>
       <Router>
         {isAuth && (windowStatus ? <NavigationBar /> : <HambergerMenu />)}
-        {!isAuth ? (
-          <Routes>
-            <Route path="/auth" element={<Login setToken={setToken} />}></Route>
-            <Route
-              path="/"
-              element={
-                isAuth ? <Navigate to="/home" /> : <Navigate to="/auth" />
-              }
-            ></Route>
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/home" element={<Home />}></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
-            <Route path="/schedule" element={<Schedule />}></Route>
-            <Route path="/events" element={<EventCard />}></Route>
-            <Route path="/event-details" element={<EventDetails />}></Route>
-          </Routes>
-        )}
+        <Routes>
+          <Route
+            path="/"
+            element={isAuth ? <Home /> : <Login setToken={setToken} />}
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/events" element={<EventCard />} />
+          <Route path="/event-details" element={<EventDetails />} />
+        </Routes>
         {isAuth && <Footer />}
       </Router>
     </div>
