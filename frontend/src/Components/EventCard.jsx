@@ -53,7 +53,8 @@ const EventCard = ({ day, event }) => {
             eventName={event.title}
             category={event.category}
             date={event.day}
-            seats={event.max_seats}
+            max_seats={event.max_seats}
+            seats={event.seats}
             eventImage={eventImage}
             index={index}
           />

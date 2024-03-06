@@ -12,6 +12,7 @@ const FeaturedEventCard = ({
   eventName,
   date,
   category,
+  max_seats,
   seats,
   index,
   teamSize,
@@ -26,11 +27,11 @@ const FeaturedEventCard = ({
   ];
 
   if (date === 1) {
-    date = "14th Mar";
+    date = "14 Mar";
   } else if (date === 2) {
-    date = "15th Mar";
+    date = "15 Mar";
   } else {
-    date = "16th Mar";
+    date = "16 Mar";
   }
   const setId = () => {
     localStorage.setItem("eventId", eventId);
@@ -39,9 +40,8 @@ const FeaturedEventCard = ({
 
   return (
     <div
-      className={`${
-        bgColor[index % bgColor.length]
-      } rounded-xl flex flex-col px-5 py-5 items-center sm:w-[40%] lg:w-[30%]`}
+      className={`${bgColor[index % bgColor.length]
+        } rounded-xl flex flex-col px-5 py-5 items-center sm:w-[40%] lg:w-[30%]`}
       onClick={setId}
     >
       <div className="flex relative sm:w-[100%]">
@@ -92,7 +92,7 @@ const FeaturedEventCard = ({
           </h1>
         </div>
       </div>
-      <div className="mt-5 mb-2 flex gap-10 items-center justify-between lg:w-full lg:px-[20%]">
+      <div className="mt-5 mb-2 flex gap-10 items-center justify-between lg:w-full px-0 sm:px-[10%]">
         <span className="flex flex-col items-center gap-2 text-white">
           {" "}
           <CalendarTodayOutlinedIcon
@@ -117,8 +117,8 @@ const FeaturedEventCard = ({
             {category === "c"
               ? "Cultural"
               : category === "T"
-              ? "Technical"
-              : "Seminar"}
+                ? "Technical"
+                : "Seminar"}
           </span>
         </span>
         <span className="flex flex-col items-center gap-2 text-white">
@@ -129,7 +129,7 @@ const FeaturedEventCard = ({
               color: "white",
             }}
           />
-          <span className=" font-montserat font-medium ">{seats}</span>
+          <span className=" font-montserat font-medium ">{seats} / {max_seats}</span>
         </span>
       </div>
     </div>
