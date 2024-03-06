@@ -61,7 +61,6 @@ input::placeholder {
 }
 
 input {
-  border: none;
   outline: none;
   -webkit-background-clip: text !important;
   color: white;
