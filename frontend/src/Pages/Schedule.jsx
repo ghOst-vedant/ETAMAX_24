@@ -3,8 +3,10 @@ import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRound
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { Timeline } from "flowbite-react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Schedule = () => {
+  const navigate = useNavigate();
   const days = ["Select Day", "Day One", "Day Two", "Day Three"];
   const events = ["Select Event", "Cultural", "Technical", "Seminar"];
   const dayMapping = {
@@ -87,6 +89,11 @@ const Schedule = () => {
       }
     }
   };
+
+  // const setId = () => {
+  //   localStorage.setItem("eventId", eventId);
+  //   navigate("/event-details");
+  // };
   return (
     <div className="flameBg bg-black py-16 px-10 select-none sm:flex sm:flex-col sm:items-center">
       <div className="flex gap-12 text-white pt-16 sm:pl-20 select-none">
@@ -175,7 +182,13 @@ const Schedule = () => {
           {filteredEvents?.map((schedule, index) => (
             <Timeline.Item key={index}>
               <Timeline.Point />
-              <Timeline.Content className="border rounded-xl px-4 py-2 pb-0 cursor-default bg-black/20 backdrop-blur-sm">
+              <Timeline.Content
+                className="border  rounded-xl px-4 py-2 pb-0 cursor-default bg-black/20 backdrop-blur-sm"
+                onClick={() => {
+                  localStorage.setItem("eventId", schedule.event_code);
+                  navigate("/event-details");
+                }}
+              >
                 <Timeline.Title className=" font-montserat text-white text-lg flex  justify-between pr-[10%]">
                   <span>{schedule.title}</span>
                   <span>
