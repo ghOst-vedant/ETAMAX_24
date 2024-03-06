@@ -19,7 +19,6 @@ import axios from "axios";
 const Home = () => {
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const token = localStorage.getItem("token");
-
   useEffect(() => {
     const getFeaturedEvents = async () => {
       const { data } = await axios.get(`/api/e/`, {
@@ -35,7 +34,6 @@ const Home = () => {
         })
       );
       // console.log("ALL EVENTS:", allEvents);
-
       const result = allEvents.filter((event) => event.is_featured === true);
 
       setFeaturedEvents(result);
@@ -53,12 +51,6 @@ const Home = () => {
   window.onresize = checkWindowSize;
 
   SwiperCore.use([EffectCards]);
-
-  // function setEventId(e) {
-  //   localStorage.setItem("eventId", e.target.eventId);
-  //   // navigate("/event-details");
-  // }
-
   return (
     <div className="w-full overflow-hidden">
       <img
@@ -129,6 +121,7 @@ const Home = () => {
                     seats={event.max_seats}
                     eventImage={eventImage}
                     index={index}
+                    teamSize={event.team_size}
                   />
                 );
               })
