@@ -31,18 +31,19 @@ const Schedule = () => {
   const currEventRef = useRef(events[0]);
   const currDayRef = useRef(days[0]);
   const [filteredEvents, setFilteredEvents] = useState([]);
-  const token = localStorage.getItem("token");
-  const getEvents = async () => {
-    const { data } = await axios.get(`/api/e/`, {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    });
-    setAllEvents(data.events);
-    setFilteredEvents(data.events);
-  };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    const getEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setAllEvents(data.events);
+      setFilteredEvents(data.events);
+    };
     getEvents();
   }, []);
 

@@ -25,19 +25,19 @@ const Profile = () => {
       alert("Error, Check Roll Number.");
     }
   };
-  const token = localStorage.getItem("token");
-  const getFeaturedEvents = async () => {
-    const { data } = await axios.get(`/api/e/`, {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    });
-    const allEvents = data.events;
-    const result = allEvents.filter((event) => event.is_featured === true);
-    setFeaturedEvents(result);
-  };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const getFeaturedEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      const allEvents = data.events;
+      const result = allEvents.filter((event) => event.is_featured === true);
+      setFeaturedEvents(result);
+    };
     getFeaturedEvents();
   }, []);
   console.log(featuredEvents);
