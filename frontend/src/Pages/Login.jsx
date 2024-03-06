@@ -51,7 +51,7 @@ const Login = ({ setToken }) => {
                 name="rollno"
                 id="rollno"
                 placeholder="Roll no / email"
-                className="text-xl w-[80%] bg-transparent rounded-r-full font-semibold text-white"
+                className="text-xl w-full bg-transparent border-none rounded-r-full font-semibold text-white"
               />
             </div>
             <div className="bg-white/30 border-2 border-white rounded-full flex p-2 gap-2">
@@ -67,7 +67,7 @@ const Login = ({ setToken }) => {
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className="text-xl w-[80%] bg-transparent rounded-r-full font-semibold text-white"
+                className="text-xl w-full bg-transparent rounded-r-full font-semibold text-white border-none"
               />
             </div>
             <div
