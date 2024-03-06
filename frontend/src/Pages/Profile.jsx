@@ -29,18 +29,18 @@ const Profile = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const getFeaturedEvents = async () => {
-      const { data } = await axios.get(`/api/e/`, {
+      const {
+        data: { user },
+      } = await axios.get(`/api/u/me/`, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
-      const allEvents = data.events;
-      const result = allEvents.filter((event) => event.is_featured === true);
-      setFeaturedEvents(result);
+      // const user = data
+      console.log(user);
     };
     getFeaturedEvents();
   }, []);
-  console.log(featuredEvents);
   return (
     <div className=" bg-black flameBg pb-10 box-border flex flex-col lg:items-center lg:gap-20 overflow-hidden">
       <div className="lg:flex lg:mt-36 lg:w-full justify-evenly">
