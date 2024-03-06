@@ -10,24 +10,27 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import BlockIcon from "@mui/icons-material/Block";
 import axios from "axios";
 
+// paid-unpaid/ endpoint
+// criteriacheck/ endpoint
 const Profile = () => {
+  const token = localStorage.getItem("token");
   const [Roll, setRoll] = useState(null);
-  const [featuredEvents, setFeaturedEvents] = useState([]);
+  const [participations, setParticipations] = useState([]);
   const name = localStorage.getItem("name");
   const roll = localStorage.getItem("roll_no");
   const gender = localStorage.getItem("gender");
-  const handleRollCheck = (e) => {
-    e.preventDefault();
+
+  const handleRollCheck = () => {
     const isUser = Boolean(Roll === roll);
     if (isUser) {
-      alert("Verified!!");
+      return true;
     } else {
       alert("Error, Check Roll Number.");
+      return false;
     }
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     const getFeaturedEvents = async () => {
       const {
         data: { user },
@@ -36,11 +39,44 @@ const Profile = () => {
           Authorization: `Token ${token}`,
         },
       });
-      // const user = data
-      console.log(user);
+      setParticipations(user.participations);
     };
     getFeaturedEvents();
-  }, []);
+  }, [token]);
+
+  const handleCheckOut = async (e) => {
+    try {
+      e.preventDefault();
+      if (
+        window.confirm(
+          "Do you want to checkout, You cannot Unregister after checking out!"
+        ) &&
+        handleRollCheck()
+      ) {
+        const headers = {
+          Authorization: `token ${token}`,
+          "Content-Type": "application/json",
+        };
+        const response = await axios.post(
+          `/api/u/checkout/`,
+          {
+            participations: participations,
+            upi_transaction_id: "VADE0CB248932",
+          },
+          {
+            headers,
+          }
+        );
+        alert("Checked Out successfully");
+      }
+    } catch (error) {
+      if (error.response) {
+        console.log(error); // Show error message in alert
+      } else {
+        alert(error); // Fallback error message
+      }
+    }
+  };
   return (
     <div className=" bg-black flameBg pb-10 box-border flex flex-col lg:items-center lg:gap-20 overflow-hidden">
       <div className="lg:flex lg:mt-36 lg:w-full justify-evenly">
@@ -54,6 +90,9 @@ const Profile = () => {
             <h2 className="text-2xl lg:text-5xl font-semibold ">{name}</h2>
             <h3 className="font-medium text-lg lg:text-3xl lg:font-normal">
               {roll}
+            </h3>
+            <h3 className="font-medium text-lg lg:text-xl lg:font-normal bg-red-500 w-fit p-3 rounded-full">
+              Criteria: Not Fulfilled
             </h3>
           </span>
         </div>
@@ -87,11 +126,10 @@ const Profile = () => {
           </table>
         </div>
       </div>
-      <div className="px-6 flex flex-col lg:flex-row gap-6 lg:gap-x-20 lg:gap-y-10 lg:flex-wrap lg:justify-center items-center">
-        <ProfileCard />
-        <ProfileCard />
-        <ProfileCard />
-        <ProfileCard />
+      <div className="sm:w-[80vw] px-6 flex flex-col lg:flex-row gap-6 lg:gap-x-20 lg:gap-y-10 lg:flex-wrap lg:justify-center items-center">
+        {participations.map((participation) => (
+          <ProfileCard card={participation} />
+        ))}
       </div>
       <div className="flex flex-col items-center mt-6 gap-4 px-6">
         <h2 className="text-xl font-semibold pl-2 text-white lg:text-3xl lg:pl-0">
@@ -119,7 +157,7 @@ const Profile = () => {
           </div>
           <button
             className="bg-white/30 w-fit m-auto px-8 py-2 text-lg rounded-full border-2 border-white"
-            onClick={handleRollCheck}
+            onClick={handleCheckOut}
           >
             Checkout
           </button>

@@ -22,7 +22,6 @@ const Login = ({ setToken }) => {
       localStorage.setItem("participations", participations);
       localStorage.setItem("email", data.user.email);
       localStorage.setItem("gender", data.user.gender);
-      navigate("/home");
       setToken();
     } catch (error) {
       if (error.response) {

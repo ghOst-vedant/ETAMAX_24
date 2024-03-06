@@ -11,6 +11,8 @@ const Navbar = () => {
     localStorage.removeItem("name");
     localStorage.removeItem("roll_no");
     localStorage.removeItem("participations");
+    localStorage.removeItem("gender");
+    localStorage.removeItem("eventId");
 
     navigate("/");
     window.location.reload();
@@ -28,7 +30,7 @@ const Navbar = () => {
         <div className="flex text-white sm:gap-6 lg:gap-10 items-center font-montserat sm:text-md lg:text-lg">
           <NavLink
             exact="true"
-            to="/home"
+            to="/"
             activeclassname="active"
             className="navlinks"
           >
