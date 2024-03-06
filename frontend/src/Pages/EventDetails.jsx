@@ -3,16 +3,19 @@ import React, { useEffect, useState } from "react";
 function EventDetails() {
   const [joined, setJoined] = useState(false);
   const token = localStorage.getItem("token");
+  const eventId = localStorage.getItem("eventId");
   useEffect(() => {
     const getEventDetails = async () => {
-      const { data } = await axios.get(`/api/e/`, {
+      const {
+        data: { event },
+      } = await axios.get(`/api/e/${eventId}/`, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
-      console.log(data);
+      console.log(event);
     };
-    getEventDetails();
+    eventId && getEventDetails();
   }, []);
   return (
     <div className="flameBg w-full h-fit py-[30vw] px-[9.5vw] flex flex-col items-center font-montserat sm:p-[10vw]">

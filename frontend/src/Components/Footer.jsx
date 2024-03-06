@@ -36,7 +36,7 @@ const Footer = () => {
       </div>
       <div className="flex flex-col items-center text-white bg-black py-8 gap-2">
         <span className="font-montserat ">
-          Designed with ❤️ by{" "}
+          Designed by{" "}
           <Link
             to="https://ideaplots.com"
             className="text-[#FF8E00] hover:border-b-2 hover:border-orange-400"
@@ -45,7 +45,7 @@ const Footer = () => {
           </Link>
         </span>
         <span className="font-montserat text-center px-6">
-          Developed by Aniket, Vedant, Md Tahir, Sakshi, Koustubh, Alex
+          Developed by Aniket, Vedant, Tahir, Sakshi, Koustubh, Alex
         </span>
       </div>
     </div>

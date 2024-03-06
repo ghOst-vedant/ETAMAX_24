@@ -15,14 +15,8 @@ import FeaturedEventCard from "../Components/FeaturedEventCard";
 import eventImage from "../Assets/Common_images/sampleEvent.png";
 import cloud from "../Assets/other_images/clouds.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const bgColor = [
-  "bg-[#86000A]",
-  "bg-[#B7181B]",
-  "bg-[#F44B1E]",
-  "bg-[#FF8E00]",
-  "bg-[#FFB800]",
-];
 const Home = () => {
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const token = localStorage.getItem("token");
@@ -39,7 +33,7 @@ const Home = () => {
         return event.is_featured === true;
       })
     );
-    console.log("ALL EVENTS:", allEvents);
+    // console.log("ALL EVENTS:", allEvents);
 
     const result = allEvents.filter((event) => event.is_featured === true);
 
@@ -60,6 +54,11 @@ const Home = () => {
   window.onresize = checkWindowSize;
 
   SwiperCore.use([EffectCards]);
+
+  // function setEventId(e) {
+  //   localStorage.setItem("eventId", e.target.eventId);
+  //   // navigate("/event-details");
+  // }
 
   return (
     <div className="w-full overflow-hidden">
@@ -120,17 +119,20 @@ const Home = () => {
           </span>
           <div className="py-10 flex flex-col gap-8 px-5 items-center justify-center relative sm:flex-wrap sm:flex-row">
             {windowStatus ? (
-              featuredEvents?.map((event, index) => (
-                <FeaturedEventCard
-                  key={event.event_code}
-                  eventName={event.title}
-                  category={event.category}
-                  date={event.day}
-                  seats={event.max_seats}
-                  eventImage={eventImage}
-                  bgColor={bgColor[index]}
-                />
-              ))
+              featuredEvents?.map((event, index) => {
+                return (
+                  <FeaturedEventCard
+                    key={event.event_code}
+                    eventId={event.event_code}
+                    eventName={event.title}
+                    category={event.category}
+                    date={event.day}
+                    seats={event.max_seats}
+                    eventImage={eventImage}
+                    index={index}
+                  />
+                );
+              })
             ) : (
               <>
                 <Swiper
@@ -148,7 +150,7 @@ const Home = () => {
                         date={event.day}
                         seats={event.max_seats}
                         eventImage={eventImage}
-                        bgColor={bgColor[index]}
+                        index={index}
                       />
                     </SwiperSlide>
                   ))}

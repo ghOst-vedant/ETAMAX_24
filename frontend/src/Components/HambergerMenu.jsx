@@ -17,7 +17,7 @@ const events = [
     Message: "Seats Full",
   },
 ];
-const HambergerMenu = ({ setAuth }) => {
+const HambergerMenu = () => {
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);

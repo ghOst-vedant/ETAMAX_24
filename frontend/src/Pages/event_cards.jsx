@@ -6,10 +6,10 @@ import MobileEventCard from "../Components/MobileEventCard";
 import redBull from "../Assets/Common_images/redBull.png";
 import monstor from "../Assets/Common_images/monstor.png";
 import adidas from "../Assets/Common_images/adidas.png";
-import { Link } from "react-router-dom";
+import { Link } from "@mui/material";
 
-const days = ["Day One", "Day Two", "Day Three"];
-const events = ["Cultural", "Technical", "Seminar"];
+const days = ["Select Day", "Day One", "Day Two", "Day Three"];
+const events = ["Select Event", "Cultural", "Technical", "Seminar"];
 
 const EventCards = () => {
   const [day, setDay] = useState(days[0]);
@@ -17,22 +17,6 @@ const EventCards = () => {
   const [opendays, setOpenDays] = useState(false);
   const [openEvents, setOpenEvents] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
-
-  // try {
-  //   const { data } = await axios.post(`/api/u/auth/login/`, {
-  //     username: id,
-  //     password,
-  //   });
-  //   console.log(data.success);
-  //   console.log(data);
-  //   window.location.reload();
-  // } catch (error) {
-  //   if (error.response) {
-  //     alert("Check your Login Credentials and try again"); // Show error message in alert
-  //   } else {
-  //     alert("An error occurred"); // Fallback error message
-  //   }
-  // }
 
   useEffect(() => {
     const handleResize = () => {
@@ -74,7 +58,7 @@ const EventCards = () => {
                     <KeyboardArrowDownRoundedIcon />
                   )}
                   {opendays && (
-                    <div className="absolute top-[30px] -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-[135px] w-[150px] select-none z-20 backdrop-blur-sm ">
+                    <div className="absolute top-[30px] -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-fit w-[150px] select-none z-20 backdrop-blur-sm ">
                       {days?.map((dayOption, index) => (
                         <div key={index} className="flex flex-col">
                           <span
@@ -105,7 +89,7 @@ const EventCards = () => {
                     <KeyboardArrowDownRoundedIcon />
                   )}
                   {openEvents && (
-                    <div className="absolute top-[30px] -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-[135px] w-[150px] select-none z-20 backdrop-blur-sm">
+                    <div className="absolute top-[30px] -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-fit w-[150px] select-none z-20 backdrop-blur-sm">
                       {events?.map((eventOption, index) => (
                         <div key={index} className="flex flex-col">
                           <span
@@ -164,9 +148,7 @@ const EventCards = () => {
           </div>
         ) : (
           <div>
-            <Link to="/eventdetails">
-              <EventCard day={day} event={event} />
-            </Link>
+            <EventCard day={day} event={event} />
           </div>
         )}
       </div>
