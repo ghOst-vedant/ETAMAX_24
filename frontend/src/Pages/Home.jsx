@@ -71,11 +71,11 @@ const Home = () => {
         />
         {windowStatus ? (
           <embed
-            className="z-10"
+            className="z-10 w-[58.5%]"
             auto="true"
             width="900"
             height="500"
-            src="https://www.youtube.com/embed/ZQyyj0SN860?autoplay=1&controls=0&&showinfo=0&loop=1"
+            src="https://res.cloudinary.com/djijqbjom/video/upload/v1709709837/video_frf3w6.mp4?"
             frameBorder="0"
             autostart={1}
             autoPlay={1}
@@ -85,7 +85,7 @@ const Home = () => {
             className="w-full"
             auto="true"
             height="220"
-            src="https://www.youtube.com/embed/ZQyyj0SN860?autoplay=1&controls=0&&showinfo=0&loop=1"
+            src="https://res.cloudinary.com/djijqbjom/video/upload/v1709709837/video_frf3w6.mp4?"
             frameBorder="0"
             autoStart={1}
             autoPlay={1}
@@ -118,7 +118,8 @@ const Home = () => {
                     eventName={event.title}
                     category={event.category}
                     date={event.day}
-                    seats={event.max_seats}
+                    max_seats={event.max_seats}
+                    seats={event.seats}
                     eventImage={eventImage}
                     index={index}
                     teamSize={event.team_size}
