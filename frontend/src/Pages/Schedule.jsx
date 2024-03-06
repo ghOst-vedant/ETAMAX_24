@@ -1,113 +1,35 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { Timeline } from "flowbite-react";
 import axios from "axios";
 
-// const schedule = [
-//   {
-//     "Day One": [
-//       {
-//         eventName: "Event-1",
-//         time: "9:00 Pm",
-//         price: "Rs. 100/-",
-//         venue: "Room",
-//       },
-//       {
-//         eventName: "Event-2",
-//         time: "10:00 Pm",
-//         price: "Rs. 200/-",
-//         venue: "Room",
-//       },
-//       {
-//         eventName: "Event-3",
-//         time: "11:00 Pm",
-//         price: "Rs. 200/-",
-//         venue: "Room",
-//       },
-//       {
-//         eventName: "Seminar-1",
-//         time: "12:00 Pm",
-//         price: "Rs. 100/-",
-//         venue: "Room",
-//       },
-//     ],
-//     "Day Two": [
-//       {
-//         eventName: "Event-1",
-//         time: "9:00 Pm",
-//         price: "Rs. 100/-",
-//         venue: "Room",
-//       },
-//       {
-//         eventName: "Event-2",
-//         time: "11:00 Pm",
-//         price: "Rs. 200/-",
-//         venue: "Room",
-//       },
-//       {
-//         eventName: "Event-3",
-//         time: "1:00 Pm",
-//         price: "Rs. 200/-",
-//         venue: "Room",
-//       },
-//       {
-//         eventName: "Seminar-2",
-//         time: "12:00 Pm",
-//         price: "Rs. 100/-",
-//         venue: "Room",
-//       },
-//     ],
-//     "Day Three": [
-//       {
-//         eventName: "Event-1",
-//         time: "9:00 Pm",
-//         price: "Rs. 100/-",
-//         venue: "Room",
-//       },
-//       {
-//         eventName: "Event-2",
-//         time: "10:00 Pm",
-//         price: "Rs. 200/-",
-//         venue: "Room",
-//       },
-//       {
-//         eventName: "Event-3",
-//         time: "11:00 Pm",
-//         price: "Rs. 200/-",
-//         venue: "Room",
-//       },
-//       {
-//         eventName: "Seminar-3",
-//         time: "13:00 Pm",
-//         price: "Free",
-//         venue: "Room",
-//       },
-//     ],
-//   },
-// ];
 const Schedule = () => {
   const days = ["Select Day", "Day One", "Day Two", "Day Three"];
-  const events = ["Select Events", "Cultural", "Technical", "Seminar"];
+  const events = ["Select Event", "Cultural", "Technical", "Seminar"];
+  const dayMapping = {
+    "Select Day": 0,
+    "Day One": 1,
+    "Day Two": 2,
+    "Day Three": 3,
+  };
 
-  // Day wise states for events
-  // const [dayOne, setDayOne] = useState([]);
-  // const [dayTwo, setDayTwo] = useState([]);
-  // const [dayThree, setDayThree] = useState([]);
-
-  // for the selected date
-  const [day, setDay] = useState();
+  const eventMapping = {
+    "Select Event": "E",
+    Cultural: "C",
+    Technical: "T",
+    Seminar: "s",
+  };
 
   // current day on the option panel
-  const [allEvents, setAllEvents] = useState();
 
-  const [currEvent, setCurrEvent] = useState(events[0]);
   // open close option tab
   const [opendays, setOpenDays] = useState(false);
   const [openEvents, setOpenEvents] = useState(false);
 
-  // current day on the option panel
-  const [currDay, setCurrDay] = useState(days[0]);
+  const [allEvents, setAllEvents] = useState();
+  const currEventRef = useRef(events[0]);
+  const currDayRef = useRef(days[0]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const token = localStorage.getItem("token");
   const getEvents = async () => {
@@ -116,29 +38,40 @@ const Schedule = () => {
         Authorization: `Token ${token}`,
       },
     });
-    function compare(a, b) {
-      const start1 = a.start.toUpperCase();
-      const start2 = b.start.toUpperCase();
-      let comparison = 0;
-
-      if (start1 > start2) {
-        comparison = 1;
-      } else if (start1 < start2) {
-        comparison = -1;
-      }
-      return comparison;
-    }
     setAllEvents(data.events);
     setFilteredEvents(data.events);
   };
+
   useEffect(() => {
     getEvents();
   }, []);
+
   const filterEvents = () => {
-    // console.log(currDay, currEvent);
-    if (currDay === "Day One") {
-      const temp = allEvents.filter((el) => el === 1);
-      console.log(temp);
+    if (dayMapping[currDayRef.current] === 0) {
+      if (eventMapping[currEventRef.current] === "E") {
+        setFilteredEvents(() => allEvents);
+      } else {
+        setFilteredEvents(() =>
+          allEvents.filter(
+            (oneEvent) =>
+              eventMapping[currEventRef.current] === oneEvent.category
+          )
+        );
+      }
+    } else {
+      const dayFiltered = allEvents.filter(
+        (oneEvent) => dayMapping[currDayRef.current] === oneEvent.day
+      );
+      if (eventMapping[currEventRef.current] === "E") {
+        setFilteredEvents(() => dayFiltered);
+      } else {
+        setFilteredEvents(() =>
+          dayFiltered.filter(
+            (oneEvent) =>
+              eventMapping[currEventRef.current] === oneEvent.category
+          )
+        );
+      }
     }
   };
   return (
@@ -154,7 +87,7 @@ const Schedule = () => {
             }
           }}
         >
-          <p className=" font-montserat text-xl ">{currDay}</p>
+          <p className=" font-montserat text-xl ">{currDayRef.current}</p>
           <div className="relative">
             {opendays ? (
               <KeyboardArrowUpRoundedIcon />
@@ -162,17 +95,17 @@ const Schedule = () => {
               <KeyboardArrowDownRoundedIcon />
             )}
             {opendays && (
-              <div className="absolute top-[30px]  -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-[175px] w-[150px] select-none z-10 backdrop-blur-sm ">
+              <div className="absolute top-[30px]  -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-fit w-[150px] select-none z-10 backdrop-blur-sm ">
                 {days?.map((day, index) => (
                   <div key={index} className="flex flex-col ">
                     <span
                       className=" text-gray-300  text-md font-semibold "
                       onClick={() => {
-                        setCurrDay(day);
+                        currDayRef.current = day;
                         filterEvents();
                       }}
                     >
-                      {days[index]}{" "}
+                      {day}
                     </span>
                     {index < days.length - 1 && (
                       <hr className=" w-[100%]  self-center my-2" />
@@ -194,7 +127,7 @@ const Schedule = () => {
             }
           }}
         >
-          <p className=" font-montserat text-xl">{currEvent}</p>
+          <p className=" font-montserat text-xl">{currEventRef.current}</p>
           <div className="relative">
             {openEvents ? (
               <KeyboardArrowUpRoundedIcon />
@@ -202,17 +135,17 @@ const Schedule = () => {
               <KeyboardArrowDownRoundedIcon />
             )}
             {openEvents && (
-              <div className="absolute top-[30px] -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-[175px] w-[150px] select-none z-10 backdrop-blur-sm">
+              <div className="absolute top-[30px] -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-fit w-[150px] select-none z-10 backdrop-blur-sm">
                 {events?.map((event, index) => (
                   <div key={index} className="flex flex-col ">
                     <span
                       className=" text-gray-300  text-md font-semibold"
                       onClick={() => {
-                        setCurrEvent(event);
+                        currEventRef.current = event;
                         filterEvents();
                       }}
                     >
-                      {events[index]}{" "}
+                      {events[index]}
                     </span>
                     {index < events.length - 1 && (
                       <hr className=" w-[100%]  self-center my-2" />

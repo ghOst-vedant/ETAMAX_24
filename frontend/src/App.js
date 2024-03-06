@@ -16,6 +16,7 @@ import Login from "./Pages/Login";
 import Schedule from "./Pages/Schedule";
 import EventCard from "./Pages/event_cards";
 import axios from "axios";
+import EventDetails from "./Pages/EventDetails";
 axios.defaults.baseURL = "http://127.0.0.1:8000/";
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
@@ -28,56 +29,39 @@ const App = () => {
 
   window.onresize = checkWindowSize;
 
-  const [isAuth, setIsAuth] = useState();
+  const [isAuth, setIsAuth] = useState(false);
 
-  function checkToken() {
-    if (localStorage.getItem("token")) {
-      setIsAuth(true);
-    } else {
-      setIsAuth(false);
-    }
+  function setToken() {
+    localStorage.getItem("token") ? setIsAuth(true) : setIsAuth(false);
   }
   useEffect(() => {
-    checkToken();
+    setToken();
   });
 
   return (
     <div>
       <Router>
-        {isAuth &&
-          (windowStatus ? (
-            <NavigationBar setAuth={setIsAuth} />
-          ) : (
-            <HambergerMenu setAuth={setIsAuth} />
-          ))}
-        <Routes>
-          <Route
-            path="/home"
-            element={isAuth ? <Home /> : <Navigate to="/" />}
-          />
-          <Route
-            path="/about"
-            element={isAuth ? <About /> : <Navigate to="/" />}
-          />
-          <Route
-            path="/profile"
-            element={isAuth ? <Profile /> : <Navigate to="/" />}
-          />
-          <Route
-            path="/schedule"
-            element={isAuth ? <Schedule /> : <Navigate to="/" />}
-          />
-          <Route
-            path="/events"
-            element={isAuth ? <EventCard /> : <Navigate to="/" />}
-          />
-          <Route
-            path="/"
-            element={
-              !isAuth ? <Login setAuth={setIsAuth} /> : <Navigate to="/home" />
-            }
-          />
-        </Routes>
+        {isAuth && (windowStatus ? <NavigationBar /> : <HambergerMenu />)}
+        {!isAuth ? (
+          <Routes>
+            <Route path="/auth" element={<Login setToken={setToken} />}></Route>
+            <Route
+              path="/"
+              element={
+                isAuth ? <Navigate to="/home" /> : <Navigate to="/auth" />
+              }
+            ></Route>
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/home" element={<Home />}></Route>
+            <Route path="/about" element={<About />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/schedule" element={<Schedule />}></Route>
+            <Route path="/events" element={<EventCard />}></Route>
+            <Route path="/event-details" element={<EventDetails />}></Route>
+          </Routes>
+        )}
         {isAuth && <Footer />}
       </Router>
     </div>

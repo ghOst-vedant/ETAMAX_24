@@ -1,21 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-const Navbar = ({ setAuth }) => {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  // const [isAuth, setIsAuth] = useState();
-
-  // function checkToken() {
-  //   if (localStorage.getItem("token")) {
-  //     setIsAuth(true);
-  //   } else {
-  //     setIsAuth(false);
-  //   }
-  // }
-  // useEffect(() => {
-  //   checkToken();
-  // });
 
   const handleLogOut = () => {
     localStorage.removeItem("token");

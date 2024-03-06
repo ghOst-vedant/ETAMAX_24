@@ -3,23 +3,25 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import ChairAltOutlinedIcon from "@mui/icons-material/ChairAltOutlined";
 import ViewListRoundedIcon from "@mui/icons-material/ViewListRounded";
+import eventImage from "../Assets/Common_images/sampleEvent.png";
+import { useNavigate } from "react-router-dom";
 const FeaturedEventCard = ({
+  eventId,
   eventName,
   date,
   category,
   seats,
-  bgColor,
-  eventImage,
+  index,
 }) => {
-  const [windowStatus, setWindowStatus] = useState(
-    window.innerWidth > 820 ? true : false
-  );
+  const navigate = useNavigate();
+  const bgColor = [
+    "bg-[#86000A]",
+    "bg-[#B7181B]",
+    "bg-[#F44B1E]",
+    "bg-[#FF8E00]",
+    "bg-[#FFB800]",
+  ];
 
-  function checkWindowSize() {
-    setWindowStatus(window.innerWidth > 820 ? true : false);
-  }
-
-  window.onresize = checkWindowSize;
   if (date === 1) {
     date = "14th Mar";
   } else if (date === 2) {
@@ -27,9 +29,16 @@ const FeaturedEventCard = ({
   } else {
     date = "16th Mar";
   }
+  const setId = () => {
+    localStorage.setItem("eventId", eventId);
+    navigate("/event-details");
+  };
   return (
     <div
-      className={`${bgColor} rounded-xl flex flex-col px-5 py-5 items-center sm:w-[40%] lg:w-[30%]`}
+      className={`${
+        bgColor[index % bgColor.length]
+      } rounded-xl flex flex-col px-5 py-5 items-center sm:w-[40%] lg:w-[30%]`}
+      onClick={setId}
     >
       <div className="flex relative sm:w-[100%]">
         <img
