@@ -76,8 +76,8 @@ const Home = () => {
             height="500"
             src="https://res.cloudinary.com/djijqbjom/video/upload/v1709709837/video_frf3w6.mp4?"
             frameBorder="0"
-            autostart={1}
-            autoPlay={1}
+            autoStart={0}
+            autoPlay={0}
           ></embed>
         ) : (
           <embed

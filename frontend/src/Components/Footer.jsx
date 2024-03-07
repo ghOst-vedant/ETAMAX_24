@@ -29,9 +29,14 @@ const Footer = () => {
           </span>
         </span>
         <span className=" flex gap-3 items-center">
-          <InstagramIcon sx={{ fontSize: "2rem", color: "red" }} />
-          <LinkedInIcon sx={{ fontSize: "2rem", color: "red" }} />
-          <YouTubeIcon sx={{ fontSize: "2.25rem", color: "red" }} />
+          <Link
+            to="https://www.instagram.com/etamax_fcrit?igsh=bDFuaDlnbnpyNXM2"
+            target="_blank"
+          >
+            <InstagramIcon sx={{ fontSize: "2rem", color: "red" }} />
+          </Link>
+
+          {/* <LinkedInIcon sx={{ fontSize: "2rem", color: "red" }} /> */}
         </span>
       </div>
       <div className="flex flex-col items-center text-white bg-black py-8 gap-2">

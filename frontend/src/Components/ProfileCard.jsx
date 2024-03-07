@@ -2,6 +2,8 @@ import React from "react";
 import profile_card_bg from "../Assets/Common_images/profile_card_event.png";
 import verified from "../Assets/Common_images/verified.png";
 import unverified from "../Assets/Common_images/unverified.png";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { Link } from "react-router-dom";
 
 const ProfileCard = ({ card }) => {
   const dayReverseMapping = {
@@ -9,8 +11,31 @@ const ProfileCard = ({ card }) => {
     2: "15th March",
     3: "16th March",
   };
+
   return (
     <div className="flex bg-white rounded-3xl gap-3 sm:w-[80%] lg:w-[40%] relative">
+      {/* <img
+        className="absolute left-2 top-2 w-[32px]"
+        src={card?.is_verified && WhatsAppIcon}
+        alt="verified"
+      /> */}
+      {card?.is_verified && (
+        <Link
+          className="absolute top-2 left-2"
+          to={card.event.whatsapp_link}
+          target="_blank"
+        >
+          <WhatsAppIcon
+            fontSize="large"
+            sx={{
+              color: "greenyellow",
+              top: "10px",
+              left: "10px",
+            }}
+            onClick={() => console.log("hello")}
+          />
+        </Link>
+      )}
       <img
         src={profile_card_bg}
         alt="event_image"
