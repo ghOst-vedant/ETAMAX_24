@@ -1,28 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-const Navbar = ({ setAuth }) => {
+import axios from "axios";
+const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [allEvents, setAllEvents] = useState();
+  const [notify, setNotify] = useState([]);
   const navigate = useNavigate();
-  // const [isAuth, setIsAuth] = useState();
+  const token = localStorage.getItem("token");
+  // Notification Event
 
-  // function checkToken() {
-  //   if (localStorage.getItem("token")) {
-  //     setIsAuth(true);
-  //   } else {
-  //     setIsAuth(false);
-  //   }
-  // }
-  // useEffect(() => {
-  //   checkToken();
-  // });
-
+  useEffect(() => {
+    const getEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setAllEvents(data.events);
+      // Filter events to get only featured events
+    };
+    const result = allEvents?.filter(
+      (event) => event.max_seats === event.seats
+    );
+    setNotify(result);
+    getEvents();
+  }, [allEvents, token]);
   const handleLogOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("name");
     localStorage.removeItem("roll_no");
     localStorage.removeItem("participations");
+    localStorage.removeItem("gender");
+    localStorage.removeItem("eventId");
 
     navigate("/");
     window.location.reload();
@@ -37,10 +48,10 @@ const Navbar = ({ setAuth }) => {
         ETAMAX-24
       </NavLink>
       <div className="flex lg:gap-10 sm:gap-5 ">
-        <div className="flex text-white gap-10 items-center font-montserat sm:text-lg">
+        <div className="flex text-white sm:gap-6 lg:gap-10 items-center font-montserat sm:text-md lg:text-lg">
           <NavLink
             exact="true"
-            to="/home"
+            to="/"
             activeclassname="active"
             className="navlinks"
           >
@@ -78,16 +89,14 @@ const Navbar = ({ setAuth }) => {
             <NotificationsIcon />
           </div>
           {open && (
-            <div className="absolute right-5 top-[70px] bg-black/50 rounded-xl px-5 py-4 h-[300px] w-[300px] ">
-              {events?.map((event, index) => (
+            <div className="absolute right-5 top-[70px] bg-black/50 rounded-xl px-5 py-4 h-auto w-[300px] ">
+              {notify?.map((event, index) => (
                 <div key={index} className="flex flex-col ">
-                  <span className=" text-gray-300  text-xl font-medium">
-                    {event.EventName}{" "}
+                  <span className=" text-gray-300  text-lg font-medium">
+                    {event.title}{" "}
                   </span>
-                  <span className="text-gray-300  text-base  ">
-                    {event.Message}{" "}
-                  </span>
-                  {index < events.length - 1 && (
+                  <span className="text-gray-300  text-base  ">Seats Full</span>
+                  {index < notify.length - 1 && (
                     <hr className=" w-[100%]  self-center my-3" />
                   )}
                 </div>
@@ -100,19 +109,4 @@ const Navbar = ({ setAuth }) => {
     </div>
   );
 };
-
-const events = [
-  {
-    EventName: "Seminar-1",
-    Message: "Seats Full",
-  },
-  {
-    EventName: "Event-2",
-    Message: "Seats Full",
-  },
-  {
-    EventName: "Event-2",
-    Message: "Seats Full",
-  },
-];
 export default Navbar;

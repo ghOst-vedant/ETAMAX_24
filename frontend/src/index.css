@@ -60,25 +60,16 @@ input::placeholder {
   opacity: 0.6;
 }
 
-/* Start: Centering placeholder */
-
-/* ::-webkit-input-placeholder {
-  text-align: center;
-} */
-
-/* :-moz-placeholder {
-  text-align: center;
-} */
-
-/* ::-moz-placeholder {
-  text-align: center;
-} */
-
-/* :-ms-input-placeholder {
-  text-align: center;
-} */
-
-/* End: Centering placeholder */
 input {
-  border: none;
+  outline: none;
+  -webkit-background-clip: text !important;
+  color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffffff;
 }

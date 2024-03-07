@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/effect-cards";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { EffectCards } from "swiper/modules";
 import redBull from "../Assets/Common_images/redBull.png";
-import monstor from "../Assets/Common_images/monstor.png";
-import adidas from "../Assets/Common_images/adidas.png";
 import heroPc from "../Assets/Common_images/Hero_Section.png";
 import heroMobile from "../Assets/Common_images/Phone-Hero.png";
 import wing1 from "../Assets/Common_images/wing1.png";
@@ -14,60 +12,39 @@ import wing2 from "../Assets/Common_images/wing2.png";
 import FeaturedEventCard from "../Components/FeaturedEventCard";
 import eventImage from "../Assets/Common_images/sampleEvent.png";
 import cloud from "../Assets/other_images/clouds.png";
-const FeaturedEvents = [
-  {
-    key: 1,
-    eventName: "Event-1",
-    date: "13 Mar",
-    category: "Technical",
-    seats: "10/15",
-    eventImage: eventImage,
-    bgColor: "bg-[#86000A]",
-  },
-  {
-    key: 2,
-    eventName: "Event-2",
-    date: "14 Mar",
-    category: "Cultural",
-    seats: "8/15",
-    eventImage: eventImage,
-    bgColor: "bg-[#B7181B]",
-  },
-  {
-    key: 3,
-    eventName: "Events",
-    date: "14 Mar",
-    category: "NSS",
-    seats: "15/30",
-    eventImage: eventImage,
-    bgColor: "bg-[#F44B1E]",
-  },
-  {
-    key: 4,
-    eventName: "Seminar-2",
-    date: "15 Mar",
-    category: "Technical",
-    seats: "15/20",
-    eventImage: eventImage,
-    bgColor: "bg-[#FF8E00]",
-  },
-  {
-    key: 5,
-    eventName: "Seminar-3",
-    date: "15 Mar",
-    category: "Technical",
-    seats: "13/30",
-    eventImage: eventImage,
-    bgColor: "bg-[#FFB800]",
-  },
-];
+import axios from "axios";
+// import sponsor from "../sponsor.json"
+
 const Home = () => {
+  const [featuredEvents, setFeaturedEvents] = useState([]);
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    const getFeaturedEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      const allEvents = data.events;
+      // Filter events to get only featured events
+      setFeaturedEvents(() =>
+        allEvents.filter((event) => {
+          return event.is_featured === true;
+        })
+      );
+      // console.log("ALL EVENTS:", allEvents);
+      const result = allEvents.filter((event) => event.is_featured === true);
+
+      setFeaturedEvents(result);
+    };
+    getFeaturedEvents();
+  }, [token]);
   const [windowStatus, setWindowStatus] = useState(
     window.innerWidth > 820 ? true : false
   );
 
   function checkWindowSize() {
-    setWindowStatus(window.innerWidth > 820 ? true : false);
+    setWindowStatus(window.innerWidth > 840 ? true : false);
   }
 
   window.onresize = checkWindowSize;
@@ -93,34 +70,34 @@ const Home = () => {
         />
         {windowStatus ? (
           <embed
-            className="z-10"
+            className="z-10 w-[58.5%]"
             auto="true"
             width="900"
             height="500"
-            src="https://www.youtube.com/embed/ZQyyj0SN860?autoplay=1&controls=0&&showinfo=0&loop=1"
+            src="https://res.cloudinary.com/djijqbjom/video/upload/v1709709837/video_frf3w6.mp4?"
             frameBorder="0"
-            autostart={1}
-            autoplay={1}
+            autoStart={0}
+            autoPlay={0}
           ></embed>
         ) : (
           <embed
             className="w-full"
             auto="true"
             height="220"
-            src="https://www.youtube.com/embed/ZQyyj0SN860?autoplay=1&controls=0&&showinfo=0&loop=1"
+            src="https://res.cloudinary.com/djijqbjom/video/upload/v1709709837/video_frf3w6.mp4?"
             frameBorder="0"
-            autostart={1}
-            autoplay={1}
+            autoStart={1}
+            autoPlay={1}
           ></embed>
         )}
       </div>
-      <div className="bg-nextHome py-20">
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
-          {/* sponsors */}
+      <div className="bg-nextHome pb-20">
+        {/* <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
+          sponsors
           <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-          <img src={monstor} alt="sponsor" className="h-14 sm:h-24" />
-          <img src={adidas} alt="sponsor" className="h-14 sm:h-24" />
-        </div>
+          <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
+          <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
+        </div> */}
         {/* Features Section */}
         <div className="flex flex-col pt-9">
           <span className="flex items-center justify-center w-full  bg-black/50  sm:bg-transparent sm:backdrop-blur-none py-5 backdrop-blur-sm">
@@ -132,17 +109,22 @@ const Home = () => {
           </span>
           <div className="py-10 flex flex-col gap-8 px-5 items-center justify-center relative sm:flex-wrap sm:flex-row">
             {windowStatus ? (
-              FeaturedEvents?.map((event) => (
-                <FeaturedEventCard
-                  key={event.key}
-                  eventName={event.eventName}
-                  category={event.category}
-                  date={event.date}
-                  seats={event.seats}
-                  eventImage={event.eventImage}
-                  bgColor={event.bgColor}
-                />
-              ))
+              featuredEvents?.map((event, index) => {
+                return (
+                  <FeaturedEventCard
+                    key={event.event_code}
+                    eventId={event.event_code}
+                    eventName={event.title}
+                    category={event.category}
+                    date={event.day}
+                    max_seats={event.max_seats}
+                    seats={event.seats}
+                    eventImage={event.image_googledrive}
+                    index={index}
+                    teamSize={event.team_size}
+                  />
+                );
+              })
             ) : (
               <>
                 <Swiper
@@ -151,16 +133,18 @@ const Home = () => {
                   modules={[EffectCards]}
                   className="change"
                 >
-                  {FeaturedEvents?.map((event) => (
+                  {featuredEvents?.map((event, index) => (
                     <SwiperSlide className="slide">
                       <FeaturedEventCard
-                        key={event.key}
-                        eventName={event.eventName}
+                        key={event.event_code}
+                        eventId={event.event_code}
+                        eventName={event.title}
                         category={event.category}
-                        date={event.date}
+                        date={event.day}
                         seats={event.seats}
-                        eventImage={event.eventImage}
-                        bgColor={event.bgColor}
+                        max_seats={event.max_seats}
+                        eventImage={event.image_googledrive}
+                        index={index}
                       />
                     </SwiperSlide>
                   ))}

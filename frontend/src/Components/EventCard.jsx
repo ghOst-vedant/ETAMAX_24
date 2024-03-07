@@ -1,148 +1,66 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import FeaturedEventCard from "../Components/FeaturedEventCard";
 import eventImage from "../Assets/Common_images/sampleEvent.png";
-
-const FeaturedEvents = [
-  {
-    key: 1,
-    eventName: "Event-1",
-    date: "14 Mar",
-    category: "Technical",
-    seats: "10/16",
-    eventImage: eventImage,
-    bgColor: "bg-[#86000A]",
-  },
-  {
-    key: 2,
-    eventName: "Event-2",
-    date: "15 Mar",
-    category: "Cultural",
-    seats: "8/16",
-    eventImage: eventImage,
-    bgColor: "bg-[#B7181B]",
-  },
-  {
-    key: 3,
-    eventName: "Events",
-    date: "15 Mar",
-    category: "NSS",
-    seats: "16/30",
-    eventImage: eventImage,
-    bgColor: "bg-[#F44B1E]",
-  },
-  {
-    key: 4,
-    eventName: "Seminar-2",
-    date: "16 Mar",
-    category: "Technical",
-    seats: "16/20",
-    eventImage: eventImage,
-    bgColor: "bg-[#FF8E00]",
-  },
-  {
-    key: 5,
-    eventName: "Seminar-3",
-    date: "16 Mar",
-    category: "Technical",
-    seats: "14/30",
-    eventImage: eventImage,
-    bgColor: "bg-[#FFB800]",
-  },
-  {
-    key: 6,
-    eventName: "Event-1",
-    date: "16 Mar",
-    category: "Cultural",
-    seats: "10/16",
-    eventImage: eventImage,
-    bgColor: "bg-[#86000A]",
-  },
-  {
-    key: 7,
-    eventName: "Event-1",
-    date: "14 Mar",
-    category: "Seminar",
-    seats: "10/16",
-    eventImage: eventImage,
-    bgColor: "bg-[#FF8E00]",
-  },
-  {
-    key: 8,
-    eventName: "Event-1",
-    date: "14 Mar",
-    category: "Cultural",
-    seats: "10/16",
-    eventImage: eventImage,
-    bgColor: "bg-[#86000A]",
-  },
-  {
-    key: 9,
-    eventName: "Seminar-2",
-    date: "16 Mar",
-    category: "Seminar",
-    seats: "16/20",
-    eventImage: eventImage,
-    bgColor: "bg-[#FF8E00]",
-  },
-  {
-    key: 10,
-    eventName: "Seminar-3",
-    date: "16 Mar",
-    category: "Technical",
-    seats: "14/30",
-    eventImage: eventImage,
-    bgColor: "bg-[#FFB800]",
-  },
-  {
-    key: 11,
-    eventName: "Event-1",
-    date: "15 Mar",
-    category: "Technical",
-    seats: "10/16",
-    eventImage: eventImage,
-    bgColor: "bg-[#86000A]",
-  },
-  {
-    key: 12,
-    eventName: "Event-1",
-    date: "14 Mar",
-    category: "Cultural",
-    seats: "10/16",
-    eventImage: eventImage,
-    bgColor: "bg-[#FF8E00]",
-  },
-
-];
+import axios from "axios";
 
 const EventCard = ({ day, event }) => {
+  const token = localStorage.getItem("token");
+  const [allEvents, setAllEvents] = useState([]);
+
+  useEffect(() => {
+    const getEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setAllEvents(data.events);
+    };
+
+    getEvents();
+  }, [token]);
+
   // Filter events based on selected day and event
   const filteredEvents = useMemo(() => {
-    let filtered = FeaturedEvents;
+    let filtered = allEvents;
 
     if (day === "Day One") {
-      filtered = filtered.filter((event) => event.date === "14 Mar");
+      filtered = filtered.filter((event) => event.day === 1);
     } else if (day === "Day Two") {
-      filtered = filtered.filter((event) => event.date === "15 Mar");
+      filtered = filtered.filter((event) => event.day === 2);
     } else if (day === "Day Three") {
-      filtered = filtered.filter((event) => event.date === "16 Mar");
+      filtered = filtered.filter((event) => event.day === 3);
     }
 
     if (event === "Cultural") {
-      filtered = filtered.filter((event) => event.category === "Cultural");
+      filtered = filtered.filter((event) => event.category === "C");
     } else if (event === "Technical") {
-      filtered = filtered.filter((event) => event.category === "Technical");
+      filtered = filtered.filter((event) => event.category === "T");
     } else if (event === "Seminar") {
-      filtered = filtered.filter((event) => event.category === "Seminar");
+      filtered = filtered.filter((event) => event.category === "S");
     }
 
     return filtered;
-  }, [day, event]);
+  }, [day, event, allEvents]);
 
   return (
     <div className="flex flex-wrap justify-center gap-10 px-10 w-[100vw]">
-      {filteredEvents.map((event) => (
-        <FeaturedEventCard key={event.key} {...event} />
-      ))}
+      {filteredEvents.map((event, index) => {
+        return (
+          <FeaturedEventCard
+            key={event.event_code}
+            eventId={event.event_code}
+            eventName={event.title}
+            category={event.category}
+            date={event.day}
+            max_seats={event.max_seats}
+            seats={event.seats}
+            eventImage={event.image_googledrive}
+            teamSize={event.team_size}  
+            index={index}
+          />
+        );
+      })}
     </div>
   );
 };
