@@ -6,7 +6,6 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Link } from "react-router-dom";
 
 const ProfileCard = ({ card }) => {
-  //props me onClick add karna hai
   const dayReverseMapping = {
     1: "14th March",
     2: "15th March",
@@ -14,10 +13,30 @@ const ProfileCard = ({ card }) => {
   };
 
   return (
-    <div
-      className="flex bg-white rounded-3xl gap-3 sm:w-[80%] lg:w-[40%] relative"
-      // onClick={onClick}
-    >
+    <div className="flex rounded-3xl gap-3 sm:w-[80%] lg:w-[40%] relative py-4 px-2 bg-gray-100 items-center justify-center">
+      {/* <img
+        className="absolute left-2 top-2 w-[32px]"
+        src={card?.is_verified && WhatsAppIcon}
+        alt="verified"
+      /> */}
+      {card?.is_verified && (
+        <Link
+          className="absolute top-2 left-2 bg-gray-600 rounded-full items-center justify-center flex px-2"
+          to={card.event.whatsapp_link}
+          target="_blank"
+        >
+          <WhatsAppIcon
+            fontSize="large"
+            sx={{
+              color: "greenyellow",
+              top: "10px",
+              left: "10px",
+            }}
+            onClick={() => console.log("hello")}
+          />
+          <span className="px-2 py-2 text-lg text-green-300 ">Join now</span>
+        </Link>
+      )}
       <img
         src={card?.event?.image_googledrive}
         alt="event_image"
