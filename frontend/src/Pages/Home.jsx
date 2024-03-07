@@ -91,13 +91,13 @@ const Home = () => {
           ></embed>
         )}
       </div>
-      <div className="bg-nextHome py-20">
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
-          {/* sponsors */}
+      <div className="bg-nextHome pb-20">
+        {/* <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
+          sponsors
           <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
           <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
           <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-        </div>
+        </div> */}
         {/* Features Section */}
         <div className="flex flex-col pt-9">
           <span className="flex items-center justify-center w-full  bg-black/50  sm:bg-transparent sm:backdrop-blur-none py-5 backdrop-blur-sm">
@@ -119,7 +119,7 @@ const Home = () => {
                     date={event.day}
                     max_seats={event.max_seats}
                     seats={event.seats}
-                    eventImage={eventImage}
+                    eventImage={event.image_googledrive}
                     index={index}
                     teamSize={event.team_size}
                   />
@@ -141,8 +141,9 @@ const Home = () => {
                         eventName={event.title}
                         category={event.category}
                         date={event.day}
-                        seats={event.max_seats}
-                        eventImage={eventImage}
+                        seats={event.seats}
+                        max_seats={event.max_seats}
+                        eventImage={event.image_googledrive}
                         index={index}
                       />
                     </SwiperSlide>

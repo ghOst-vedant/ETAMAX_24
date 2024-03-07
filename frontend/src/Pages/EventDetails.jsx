@@ -76,14 +76,13 @@ function EventDetails() {
       }
     }
   };
-
   return (
     <div className="flameBg w-full h-fit py-[30vw] px-[9.5vw] flex flex-col items-center font-montserat sm:p-[10vw]">
       <div className="flex flex-col gap-[5.2vw] items-center sm:items-start">
         <div className="rounded-[1.5vw] sm:mx-auto">
           <img
-            src={require("../Assets/other_images/Rectangle 25.png")}
-            className="w-[80%] sm:h-[30%] mx-auto"
+            src={event?.image_googledrive}
+            className="w-[50%] sm:h-[30%] mx-auto"
             alt="eventimage"
           ></img>
         </div>
@@ -108,6 +107,9 @@ function EventDetails() {
             </p>
             <p className="text-[3.75vw] sm:text-[1.35vw]">
               Cost: {event?.entry_fee} /-
+            </p>
+            <p className="text-[3.75vw] sm:text-[1.35vw]">
+              Pize: {event?.prize_money}
             </p>
             <p className="text-[3.75vw] sm:text-[1.35vw]">
               Timings: {event?.start} to {event?.end}

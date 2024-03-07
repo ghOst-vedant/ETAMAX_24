@@ -222,11 +222,11 @@ const Profile = () => {
           </button>
         </form>
       </div>
-      <div className="flex flex-wrap gap-4 mt-10 mx-auto lg:mt-0 lg:gap-10">
+      {/* <div className="flex flex-wrap gap-4 mt-10 mx-auto lg:mt-0 lg:gap-10">
         <img src={redBull} alt="sponsor" className="h-14 lg:h-24" />
         <img src={monstor} alt="sponsor" className="h-14 lg:h-24" />
         <img src={adidas} alt="sponsor" className="h-14 lg:h-24" />
-      </div>
+      </div> */}
     </div>
   );
 };

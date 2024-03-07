@@ -32,11 +32,11 @@ const EventCards = () => {
 
   return (
     <div className="flameBg py-6 pb-20 pt-24 overflow-hidden">
-      <div className="flex flex-wrap justify-center gap-10 sm:py-12 sm:gap-12 bg-black/10 py-6 backdrop-blur-sm sm:mt-4">
+      {/* <div className="flex flex-wrap justify-center gap-10 sm:py-12 sm:gap-12 bg-black/10 py-6 backdrop-blur-sm sm:mt-4">
         <img src={redBull} alt="sponsor" className="h-12 sm:h-24" />
         <img src={monstor} alt="sponsor" className="h-12 sm:h-24" />
         <img src={adidas} alt="sponsor" className="h-12 sm:h-24" />
-      </div>
+      </div> */}
 
       <div className="flex flex-col items-center">
         <h2 className="font-cinzel text-4xl font-bold sm:text-5xl mt-16 text-white">
@@ -113,7 +113,7 @@ const EventCards = () => {
         )}
 
         {isMobile ? (
-          <div className="flex flex-col gap-20 mt-10">
+          <div className="flex flex-col gap-20 mt-10 ">
             {events.slice(1, events.length).map((eventName, index) => (
               <div
                 key={index}

@@ -194,8 +194,8 @@ const Schedule = () => {
                     {schedule.category === "S"
                       ? "seminar"
                       : schedule.category === "T"
-                      ? "Technical"
-                      : "Cultural"}
+                        ? "Technical"
+                        : "Cultural"}
                   </span>
                 </Timeline.Title>
                 <Timeline.Time className=" font-montserat text-white text-md font-medium">
