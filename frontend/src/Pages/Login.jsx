@@ -28,6 +28,7 @@ const Login = ({ setToken }) => {
         alert("Check your Login Credentials and try again"); // Show error message in alert
       } else {
         alert("An error occurred"); // Fallback error message
+        console.log(error);
       }
     }
   };

@@ -5,8 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { EffectCards } from "swiper/modules";
 import redBull from "../Assets/Common_images/redBull.png";
-import monstor from "../Assets/Common_images/monstor.png";
-import adidas from "../Assets/Common_images/adidas.png";
 import heroPc from "../Assets/Common_images/Hero_Section.png";
 import heroMobile from "../Assets/Common_images/Phone-Hero.png";
 import wing1 from "../Assets/Common_images/wing1.png";
@@ -78,8 +76,8 @@ const Home = () => {
             height="500"
             src="https://res.cloudinary.com/djijqbjom/video/upload/v1709709837/video_frf3w6.mp4?"
             frameBorder="0"
-            autostart={1}
-            autoPlay={1}
+            autoStart={0}
+            autoPlay={0}
           ></embed>
         ) : (
           <embed

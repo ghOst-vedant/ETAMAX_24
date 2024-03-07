@@ -57,7 +57,7 @@ const Profile = () => {
           Authorization: `token ${token}`,
           "Content-Type": "application/json",
         };
-        const response = await axios.post(
+        axios.post(
           `/api/u/checkout/`,
           {
             participations: participations,

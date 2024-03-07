@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import ChairAltOutlinedIcon from "@mui/icons-material/ChairAltOutlined";
@@ -40,8 +40,9 @@ const FeaturedEventCard = ({
 
   return (
     <div
-      className={`${bgColor[index % bgColor.length]
-        } rounded-xl flex flex-col px-5 py-5 items-center sm:w-[40%] lg:w-[30%]`}
+      className={`${
+        bgColor[index % bgColor.length]
+      } rounded-xl flex flex-col px-5 py-5 items-center sm:w-[40%] lg:w-[30%]`}
       onClick={setId}
     >
       <div className="flex relative sm:w-[100%]">
@@ -117,8 +118,8 @@ const FeaturedEventCard = ({
             {category === "c"
               ? "Cultural"
               : category === "T"
-                ? "Technical"
-                : "Seminar"}
+              ? "Technical"
+              : "Seminar"}
           </span>
         </span>
         <span className="flex flex-col items-center gap-2 text-white">
@@ -129,7 +130,9 @@ const FeaturedEventCard = ({
               color: "white",
             }}
           />
-          <span className=" font-montserat font-medium ">{seats} / {max_seats}</span>
+          <span className=" font-montserat font-medium ">
+            {seats} / {max_seats}
+          </span>
         </span>
       </div>
     </div>
