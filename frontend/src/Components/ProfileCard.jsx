@@ -4,13 +4,17 @@ import verified from "../Assets/Common_images/verified.png";
 import unverified from "../Assets/Common_images/unverified.png";
 
 const ProfileCard = ({ card }) => {
+  //props me onClick add karna hai
   const dayReverseMapping = {
     1: "14th March",
     2: "15th March",
     3: "16th March",
   };
   return (
-    <div className="flex bg-white rounded-3xl gap-3 sm:w-[80%] lg:w-[40%] relative">
+    <div
+      className="flex bg-white rounded-3xl gap-3 sm:w-[80%] lg:w-[40%] relative"
+      // onClick={onClick}
+    >
       <img
         src={profile_card_bg}
         alt="event_image"
