@@ -119,7 +119,7 @@ const Home = () => {
                     date={event.day}
                     max_seats={event.max_seats}
                     seats={event.seats}
-                    eventImage={eventImage}
+                    eventImage={event.image_googledrive}
                     index={index}
                     teamSize={event.team_size}
                   />
@@ -141,8 +141,9 @@ const Home = () => {
                         eventName={event.title}
                         category={event.category}
                         date={event.day}
-                        seats={event.max_seats}
-                        eventImage={eventImage}
+                        seats={event.seats}
+                        max_seats={event.max_seats}
+                        eventImage={event.image_googledrive}
                         index={index}
                       />
                     </SwiperSlide>
