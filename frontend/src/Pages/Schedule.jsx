@@ -33,7 +33,6 @@ const Schedule = () => {
   const currEventRef = useRef(events[0]);
   const currDayRef = useRef(days[0]);
   const [filteredEvents, setFilteredEvents] = useState([]);
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
