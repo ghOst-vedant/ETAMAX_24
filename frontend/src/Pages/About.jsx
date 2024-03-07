@@ -1,8 +1,6 @@
 import React from "react";
 import navBird from "../Assets/Common_images/navbird.png";
-import redBull from "../Assets/Common_images/redBull.png";
-import monstor from "../Assets/Common_images/monstor.png";
-import adidas from "../Assets/Common_images/adidas.png";
+import Sponsors from "../Components/Sponsors";
 
 const About = () => {
   const about = {
@@ -26,12 +24,7 @@ const About = () => {
           {about.phoenix}
         </p>
       </div>
-      {/* <div className='flex flex-wrap justify-center gap-6 sm:gap-12'>
-                sponsors
-                <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-                <img src={monstor} alt="sponsor" className="h-14 sm:h-24" />
-                <img src={adidas} alt="sponsor" className="h-14 sm:h-24" />
-            </div> */}
+      <Sponsors />
     </div>
   );
 };

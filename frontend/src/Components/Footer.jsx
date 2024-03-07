@@ -49,9 +49,9 @@ const Footer = () => {
             Ideaplots
           </Link>
         </span>
-        <span className="font-montserat text-center px-6">
-          Developed by Aniket, Vedant, Tahir, Sakshi, Koustubh, Mathew
-        </span>
+        <p className="font-montserat text-center px-6">
+          Developed by <Link to="https://www.linkedin.com/in/aniket-sahu028">Aniket</Link>, <Link to="https://www.linkedin.com/in/vedant-gaikwad-b2516b226/">Vedant</Link>, <Link to="https://www.linkedin.com/in/md-tahir-s-91b62422b/">Tahir</Link>, <Link to="https://www.linkedin.com/in/sakshi-patil-se/">Sakshi</Link>, <Link to="https://www.linkedin.com/in/kousthubh-yadavalli-a6299a260/">Koustubh</Link>, <Link to="https://www.linkedin.com/in/mathew-alex-8246101b3/">Mathew</Link>, <Link to="https://www.linkedin.com/in/savio-dias-984b45198/">Savio</Link>, <Link to="https://www.linkedin.com/in/jayesh-chaudhari-b1578b14">Jayesh</Link>,
+        </p>
       </div>
     </div>
   );

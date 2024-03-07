@@ -3,9 +3,6 @@ import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRound
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import EventCard from "../Components/EventCard";
 import MobileEventCard from "../Components/MobileEventCard";
-import redBull from "../Assets/Common_images/redBull.png";
-import monstor from "../Assets/Common_images/monstor.png";
-import adidas from "../Assets/Common_images/adidas.png";
 import { Link } from "@mui/material";
 
 const days = ["Select Day", "Day One", "Day Two", "Day Three"];
