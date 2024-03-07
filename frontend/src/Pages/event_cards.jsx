@@ -113,7 +113,7 @@ const EventCards = () => {
         )}
 
         {isMobile ? (
-          <div className="flex flex-col gap-20 mt-10">
+          <div className="flex flex-col gap-20 mt-10 ">
             {events.slice(1, events.length).map((eventName, index) => (
               <div
                 key={index}

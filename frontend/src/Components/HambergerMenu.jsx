@@ -106,7 +106,7 @@ const HambergerMenu = () => {
           }}
           exact
           activeClassName="active"
-          to="/home"
+          to="/"
           className={`${expanded ? "block" : "hidden"} navlinks`}
         >
           Home

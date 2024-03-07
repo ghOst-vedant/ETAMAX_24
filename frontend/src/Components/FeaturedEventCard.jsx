@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import ChairAltOutlinedIcon from "@mui/icons-material/ChairAltOutlined";
@@ -16,6 +16,7 @@ const FeaturedEventCard = ({
   seats,
   index,
   teamSize,
+  eventImage,
 }) => {
   const navigate = useNavigate();
   const bgColor = [
@@ -41,7 +42,7 @@ const FeaturedEventCard = ({
     <div
       className={`${
         bgColor[index % bgColor.length]
-      } rounded-xl flex flex-col px-5 py-5 items-center sm:w-[40%] lg:w-[30%]`}
+      } rounded-xl flex flex-col px-5 py-5 items-center w-[100%] sm:w-[40%] lg:w-[30%]`}
       onClick={setId}
     >
       <div className="flex relative sm:w-[100%]">
@@ -119,7 +120,7 @@ const FeaturedEventCard = ({
             {category === "c"
               ? "Cultural"
               : category === "T"
-              ? "Technical"
+              ? "Tech"
               : "Seminar"}
           </span>
         </span>

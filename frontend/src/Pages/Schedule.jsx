@@ -33,7 +33,6 @@ const Schedule = () => {
   const currEventRef = useRef(events[0]);
   const currDayRef = useRef(days[0]);
   const [filteredEvents, setFilteredEvents] = useState([]);
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -195,8 +194,8 @@ const Schedule = () => {
                     {schedule.category === "S"
                       ? "seminar"
                       : schedule.category === "T"
-                      ? "Technical"
-                      : "Cultural"}
+                        ? "Technical"
+                        : "Cultural"}
                   </span>
                 </Timeline.Title>
                 <Timeline.Time className=" font-montserat text-white text-md font-medium">

@@ -55,8 +55,8 @@ const EventCard = ({ day, event }) => {
             date={event.day}
             max_seats={event.max_seats}
             seats={event.seats}
-            eventImage={eventImage}
-            teamSize={event.team_size}
+            eventImage={event.image_googledrive}
+            teamSize={event.team_size}  
             index={index}
           />
         );

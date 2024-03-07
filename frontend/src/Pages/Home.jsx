@@ -76,8 +76,8 @@ const Home = () => {
             height="500"
             src="https://res.cloudinary.com/djijqbjom/video/upload/v1709709837/video_frf3w6.mp4?"
             frameBorder="0"
-            autostart={1}
-            autoPlay={1}
+            autoStart={0}
+            autoPlay={0}
           ></embed>
         ) : (
           <embed
@@ -119,7 +119,7 @@ const Home = () => {
                     date={event.day}
                     max_seats={event.max_seats}
                     seats={event.seats}
-                    eventImage={eventImage}
+                    eventImage={event.image_googledrive}
                     index={index}
                     teamSize={event.team_size}
                   />
@@ -141,8 +141,9 @@ const Home = () => {
                         eventName={event.title}
                         category={event.category}
                         date={event.day}
-                        seats={event.max_seats}
-                        eventImage={eventImage}
+                        seats={event.seats}
+                        max_seats={event.max_seats}
+                        eventImage={event.image_googledrive}
                         index={index}
                       />
                     </SwiperSlide>
