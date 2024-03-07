@@ -82,7 +82,7 @@ function EventDetails() {
         <div className="rounded-[1.5vw] sm:mx-auto">
           <img
             src={event?.image_googledrive}
-            className="w-[50%] sm:h-[30%] mx-auto"
+            className="w-[300px] sm:w-[500px] mx-auto"
             alt="eventimage"
           ></img>
         </div>
