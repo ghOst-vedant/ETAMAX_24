@@ -10,8 +10,6 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import BlockIcon from "@mui/icons-material/Block";
 import axios from "axios";
 
-// paid-unpaid/ endpoint
-// criteriacheck/ endpoint
 const Profile = () => {
   const token = localStorage.getItem("token");
   const [Roll, setRoll] = useState(null);
@@ -19,6 +17,11 @@ const Profile = () => {
   const name = localStorage.getItem("name");
   const roll = localStorage.getItem("roll_no");
   const gender = localStorage.getItem("gender");
+  const [criteria, setCriteria] = useState("");
+  const [paid, setPaid] = useState();
+  const [unpaid, setUnpaid] = useState();
+  const [paidTotal, setPaidTotal] = useState(0);
+  const [unpaidTotal, setUnpaidTotal] = useState(0);
 
   const handleRollCheck = () => {
     const isUser = Boolean(Roll === roll);
@@ -41,8 +44,55 @@ const Profile = () => {
       });
       setParticipations(user.participations);
     };
+
+    const getCriteria = async () => {
+      try {
+        await axios.get("/api/u/criteriacheck/", {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
+        setCriteria(true);
+      } catch (e) {
+        setCriteria(false);
+        // console.log(e);
+      }
+    };
+
+    const getPaid = async () => {
+      try {
+        const { data } = await axios.get("/api/u/paid-unpaid/", {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
+        setPaid(() => data?.paid_participations);
+        setUnpaid(() => data?.unpaid_participations);
+        setPaidTotal(() => {
+          let total = 0;
+          data?.paid_participations.forEach((el) => {
+            total += el.event.entry_fee;
+          });
+          return total;
+        });
+        setUnpaidTotal(() => {
+          let total = 0;
+          data?.unpaid_participations.forEach((el) => {
+            total += el.event.entry_fee;
+            console.log(el.event.entry_fee);
+          });
+          return total;
+        });
+      } catch (e) {
+        alert("Unable to process request");
+        console.log(e);
+      }
+    };
     getFeaturedEvents();
+    getCriteria();
+    getPaid();
   }, [token]);
+  console.log(unpaidTotal);
 
   const handleCheckOut = async (e) => {
     try {
@@ -91,9 +141,18 @@ const Profile = () => {
             <h3 className="font-medium text-lg lg:text-3xl lg:font-normal">
               {roll}
             </h3>
-            <h3 className="font-medium text-lg lg:text-xl lg:font-normal bg-red-500 w-fit p-3 rounded-full">
-              Criteria: Not Fulfilled
-            </h3>
+            {criteria ? (
+              <h3
+                title="Make sure you checkout all events and get them verified"
+                className="font-medium text-md lg:text-xl lg:font-normal bg-green-500 w-fit p-2 lg:p-3 rounded-full"
+              >
+                Criteria: Fulfilled
+              </h3>
+            ) : (
+              <h3 className="font-medium text-lg lg:text-xl lg:font-normal bg-red-500 w-fit p-3 rounded-full">
+                Criteria: Not Fulfilled
+              </h3>
+            )}
           </span>
         </div>
         <div className="text-white montserat px-6 my-8 lg:w-[30%]">
@@ -104,24 +163,24 @@ const Profile = () => {
                 <ListIcon />
               </td>
               <td>Enrolled</td>
-              <td>5</td>
-              <td>500 /-</td>
+              <td>{paid?.length + unpaid?.length || 0}</td>
+              <td>{paidTotal + unpaidTotal} /-</td>
             </tr>
             <tr>
               <td>
                 <VerifiedIcon />
               </td>
               <td>Paid</td>
-              <td>2</td>
-              <td>200 /-</td>
+              <td>{paid?.length || 0}</td>
+              <td>{paidTotal} /-</td>
             </tr>
             <tr>
               <td>
                 <BlockIcon />
               </td>
               <td>Unpaid</td>
-              <td>3</td>
-              <td>300 /-</td>
+              <td>{unpaid?.length || 0}</td>
+              <td>{unpaidTotal} /-</td>
             </tr>
           </table>
         </div>
