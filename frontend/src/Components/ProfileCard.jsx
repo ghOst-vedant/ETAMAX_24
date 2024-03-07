@@ -13,7 +13,7 @@ const ProfileCard = ({ card }) => {
   };
 
   return (
-    <div className="flex bg-white rounded-3xl gap-3 sm:w-[80%] lg:w-[40%] relative">
+    <div className="flex rounded-3xl gap-3 sm:w-[80%] lg:w-[40%] relative py-4 px-2 bg-gray-100 items-center justify-center">
       {/* <img
         className="absolute left-2 top-2 w-[32px]"
         src={card?.is_verified && WhatsAppIcon}
@@ -21,7 +21,7 @@ const ProfileCard = ({ card }) => {
       /> */}
       {card?.is_verified && (
         <Link
-          className="absolute top-2 left-2"
+          className="absolute top-2 left-2 bg-gray-600 rounded-full items-center justify-center flex px-2"
           to={card.event.whatsapp_link}
           target="_blank"
         >
@@ -33,20 +33,19 @@ const ProfileCard = ({ card }) => {
               left: "10px",
             }}
             onClick={() => console.log("hello")}
-          />
+          /><span className="px-2 py-2 text-lg text-green-300 ">Join now</span>
         </Link>
       )}
       <img
-        src={profile_card_bg}
+        src={card?.event?.image_googledrive}
         alt="event_image"
-        className="w-[50%] rounded-3xl"
+        className="w-[50%] rounded-3xl h-[100px] sm:h-full object-cover"
       />
       <div className="montserat flex flex-col justify-center pr-2 sm:w-[50%]">
         <h2 className="font-semibold text-lg">{card?.event?.title}</h2>
         <p className="font-medium">{`Entry Fee: ₹ ${card?.event?.entry_fee}`}</p>
-        <p className="font-medium">{`Date: ${
-          dayReverseMapping[card?.event?.day]
-        }`}</p>
+        <p className="font-medium">{`Date: ${dayReverseMapping[card?.event?.day]
+          }`}</p>
         <p className="font-medium">{`Time: ${card?.event?.start.slice(
           0,
           5

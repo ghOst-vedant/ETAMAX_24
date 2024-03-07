@@ -172,9 +172,9 @@ function EventDetails() {
             {registered ? (
               <button
                 onClick={() => { }}
-                className="px-[6.5vw] py-[1vw] border-white border-[1px] rounded-full bg-white bg-opacity-[50%] font-medium hover:bg-lime-700 hover:text-white sm:px-4 sm:py-2 sm:text-xl"
+                className="px-[6.5vw] py-[1vw] border-white border-[1px] rounded-full bg-gray-800 text-white font-medium  sm:px-4 sm:py-2 sm:text-xl"
               >
-                Cannot Reregistered
+                Cannot register
               </button>
             ) : (
               <button
