@@ -26,7 +26,6 @@ const FeaturedEventCard = ({
     "bg-[#FF8E00]",
     "bg-[#FFB800]",
   ];
-
   if (date === 1) {
     date = "14 Mar";
   } else if (date === 2) {
@@ -52,7 +51,7 @@ const FeaturedEventCard = ({
           className="w-[100%] self-center sm:rounded-xl"
         />
         <div className=" absolute right-2  p-1 sm:p-2 z-10">
-          {teamSize < 2 ? (
+          {teamSize === 1 ? (
             <PersonIcon
               sx={{
                 position: "absolute",
@@ -75,16 +74,18 @@ const FeaturedEventCard = ({
               }}
             />
           ) : (
-            <GroupsIcon
-              sx={{
-                position: "absolute",
-                right: "0",
-                fontSize: "2rem",
-                bgcolor: "white",
-                padding: "3px",
-                borderRadius: "1rem",
-              }}
-            />
+            teamSize > 2 && (
+              <GroupsIcon
+                sx={{
+                  position: "absolute",
+                  right: "0",
+                  fontSize: "2rem",
+                  bgcolor: "white",
+                  padding: "3px",
+                  borderRadius: "1rem",
+                }}
+              />
+            )
           )}
         </div>
         <div className="absolute w-full py-2 sm:py-3 bg-black/60 backdrop-blur-sm  rounded-t-xl">
@@ -130,7 +131,9 @@ const FeaturedEventCard = ({
               color: "white",
             }}
           />
-          <span className=" font-montserat font-medium ">{seats} / {max_seats}</span>
+          <span className=" font-montserat font-medium ">
+            {seats} / {max_seats}
+          </span>
         </span>
       </div>
     </div>
