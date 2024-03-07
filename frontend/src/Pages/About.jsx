@@ -26,12 +26,12 @@ const About = () => {
           {about.phoenix}
         </p>
       </div>
-      <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
-        {/* sponsors */}
-        <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-        <img src={monstor} alt="sponsor" className="h-14 sm:h-24" />
-        <img src={adidas} alt="sponsor" className="h-14 sm:h-24" />
-      </div>
+      {/* <div className='flex flex-wrap justify-center gap-6 sm:gap-12'>
+                sponsors
+                <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
+                <img src={monstor} alt="sponsor" className="h-14 sm:h-24" />
+                <img src={adidas} alt="sponsor" className="h-14 sm:h-24" />
+            </div> */}
     </div>
   );
 };
