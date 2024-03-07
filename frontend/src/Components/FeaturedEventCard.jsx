@@ -40,16 +40,15 @@ const FeaturedEventCard = ({
 
   return (
     <div
-      className={`${
-        bgColor[index % bgColor.length]
-      } rounded-xl flex flex-col px-5 py-5 items-center w-[100%] sm:w-[40%] lg:w-[30%]`}
+      className={`${bgColor[index % bgColor.length]
+        } rounded-xl flex flex-col px-5 py-5 items-center w-[100%] sm:w-[40%] lg:w-[30%]`}
       onClick={setId}
     >
-      <div className="flex relative sm:w-[100%]">
+      <div className="flex relative sm:w-[100%] w-[100%]">
         <img
           src={eventImage}
-          alt=""
-          className="w-[100%] self-center sm:rounded-xl"
+          alt="event"
+          className="!h-[145px] !w-[100%] sm:w-[100%] sm:h-[210px] object-cover self-center sm:rounded-xl !shadow-xl"
         />
         <div className=" absolute right-2  p-1 sm:p-2 z-10">
           {teamSize === 1 ? (
@@ -120,8 +119,8 @@ const FeaturedEventCard = ({
             {category === "c"
               ? "Cultural"
               : category === "T"
-              ? "Tech"
-              : "Seminar"}
+                ? "Tech"
+                : "Seminar"}
           </span>
         </span>
         <span className="flex flex-col items-center gap-2 text-white">

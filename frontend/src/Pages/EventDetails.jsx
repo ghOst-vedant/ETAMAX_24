@@ -88,7 +88,7 @@ function EventDetails() {
         <div className="rounded-[1.5vw] sm:mx-auto">
           <img
             src={event?.image_googledrive}
-            className="w-[50%] sm:h-[30%] mx-auto"
+            className="w-[300px] sm:w-[500px] mx-auto"
             alt="eventimage"
           ></img>
         </div>
@@ -171,10 +171,10 @@ function EventDetails() {
           <div className="flex flex-col sm:flex-row">
             {registered ? (
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="px-[6.5vw] py-[1vw] border-white border-[1px] rounded-full bg-white bg-opacity-[50%] font-medium hover:bg-lime-700 hover:text-white sm:px-4 sm:py-2 sm:text-xl"
               >
-                Cannot Registered
+                Cannot Reregistered
               </button>
             ) : (
               <button
