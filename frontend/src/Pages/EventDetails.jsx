@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 function EventDetails() {
-  const [joined, setJoined] = useState(false);
+  const [registered, setRegistered] = useState(false);
   const token = localStorage.getItem("token");
   const eventId = localStorage.getItem("eventId");
   const [event, setEvent] = useState();
@@ -14,6 +14,11 @@ function EventDetails() {
     3: "16th March",
   };
   // console.log(teamName);
+  const participation = JSON.parse(localStorage.getItem("participations"));
+  const regevents = participation.map((parti) => {
+    return parti.event;
+  });
+  console.log(regevents);
   useEffect(() => {
     const getEventDetails = async () => {
       const {
@@ -24,7 +29,6 @@ function EventDetails() {
         },
       });
       setEvent(event);
-      // console.log(event);
     };
     eventId && getEventDetails();
   }, [eventId, token]);
@@ -68,9 +72,11 @@ function EventDetails() {
       setTeamName("");
       setMembers([]);
       alert("Registered, Go to Profile page to checkOut");
+      setRegistered(true);
     } catch (error) {
       if (error.response.data.detail) {
         alert(error.response.data.detail); // Show error message in alert
+        setRegistered(true);
       } else {
         // console.log(error); // Fallback error message
       }
@@ -113,7 +119,7 @@ function EventDetails() {
               Timings: {event?.start} to {event?.end}
             </p>
           </div>
-          {!joined && event?.team_size > 1 && (
+          {!registered && event?.team_size > 1 && (
             <div className="mb-10 flex flex-col gap-[6.5vw] sm:gap-[2vw] sm:mb-[2.5vw] sm:w-[60%]">
               <div className="flex justify-between gap-4">
                 <input
@@ -161,14 +167,12 @@ function EventDetails() {
             </div>
           )}
           <div className="flex flex-col sm:flex-row">
-            {joined ? (
+            {registered ? (
               <button
-                onClick={() => {
-                  setJoined(false);
-                }}
+                onClick={() => {}}
                 className="px-[6.5vw] py-[1vw] border-white border-[1px] rounded-full bg-white bg-opacity-[50%] font-medium hover:bg-lime-700 hover:text-white sm:px-4 sm:py-2 sm:text-xl"
               >
-                Join Whatsapp
+                Cannot Registered
               </button>
             ) : (
               <button
