@@ -50,11 +50,26 @@ const App = () => {
             path="/"
             element={isAuth ? <Home /> : <Login setToken={setToken} />}
           />
-          <Route path="/about" element={<About />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/events" element={<EventCard />} />
-          <Route path="/event-details" element={<EventDetails />} />
+          <Route
+            path="/about"
+            element={isAuth ? <About /> : <Login setToken={setToken} />}
+          />
+          <Route
+            path="/profile"
+            element={isAuth ? <Profile /> : <Login setToken={setToken} />}
+          />
+          <Route
+            path="/schedule"
+            element={isAuth ? <Schedule /> : <Login setToken={setToken} />}
+          />
+          <Route
+            path="/events"
+            element={isAuth ? <EventCard /> : <Login setToken={setToken} />}
+          />
+          <Route
+            path="/event-details"
+            element={isAuth ? <EventDetails /> : <Login setToken={setToken} />}
+          />
         </Routes>
         {isAuth && <Footer />}
       </Router>

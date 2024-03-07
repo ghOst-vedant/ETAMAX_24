@@ -127,6 +127,21 @@ const Profile = () => {
       }
     }
   };
+
+  // const handleUnregister = async (part_id, event_id) => {
+  //   const headers = {
+  //     Authorization: `token ${token}`,
+  //     "Content-Type": "application/json",
+  //   };
+
+  //   const result = await axios.post(
+  //     `/api/e/unregister/`,
+  //     { event_code: event_id, part_id: part_id },
+  //     { headers }
+  //   );
+  //   console.log(result);
+  // };
+
   return (
     <div className=" bg-black flameBg pb-10 box-border flex flex-col lg:items-center lg:gap-20 overflow-hidden">
       <div className="lg:flex lg:mt-36 lg:w-full justify-evenly">
@@ -187,7 +202,13 @@ const Profile = () => {
       </div>
       <div className="sm:w-[80vw] px-6 flex flex-col lg:flex-row gap-6 lg:gap-x-20 lg:gap-y-10 lg:flex-wrap lg:justify-center items-center">
         {participations.map((participation) => (
-          <ProfileCard card={participation} />
+          <ProfileCard
+            card={participation}
+            // onClick={handleUnregister(
+            //   participation?.part_id,
+            //   participation?.event.event_code
+            // )}
+          />
         ))}
       </div>
       <div className="flex flex-col items-center mt-6 gap-4 px-6">
@@ -222,11 +243,6 @@ const Profile = () => {
           </button>
         </form>
       </div>
-      {/* <div className="flex flex-wrap gap-4 mt-10 mx-auto lg:mt-0 lg:gap-10">
-        <img src={redBull} alt="sponsor" className="h-14 lg:h-24" />
-        <img src={monstor} alt="sponsor" className="h-14 lg:h-24" />
-        <img src={adidas} alt="sponsor" className="h-14 lg:h-24" />
-      </div> */}
     </div>
   );
 };
