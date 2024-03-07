@@ -16,7 +16,7 @@ const FeaturedEventCard = ({
   seats,
   index,
   teamSize,
-
+  eventImage
 }) => {
   const navigate = useNavigate();
   const bgColor = [
@@ -49,7 +49,7 @@ const FeaturedEventCard = ({
         <img
           src={eventImage}
           alt=""
-          className=" w-[100%] self-center sm:rounded-xl"
+          className="w-[100%] self-center sm:rounded-xl"
         />
         <div className=" absolute right-2  p-1 sm:p-2 z-10">
           {teamSize < 2 ? (

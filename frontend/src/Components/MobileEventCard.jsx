@@ -55,7 +55,7 @@ export default function MobileEventCard({ eventType }) {
               date={event.day}
               max_seats={event.max_seats}
               seats={event.seats}
-              eventImage={eventImage}
+              eventImage={event.image_googledrive}
               index={index}
             />
           </SwiperSlide>
