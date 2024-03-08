@@ -18,7 +18,7 @@ import Schedule from "./Pages/Schedule";
 import EventCard from "./Pages/event_cards";
 import axios from "axios";
 import EventDetails from "./Pages/EventDetails";
-axios.defaults.baseURL = "https://20.44.59.208:8000/";
+axios.defaults.baseURL = "https://etamax.fcrit.ac.in/";
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
     window.innerWidth > 850 ? true : false
