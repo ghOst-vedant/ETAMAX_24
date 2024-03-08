@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import ProfileCard from "../Components/ProfileCard";
 import male from "../Assets/other_images/boy.png";
 import female from "../Assets/other_images/girl.png";
-import redBull from "../Assets/Common_images/redBull.png";
-import monstor from "../Assets/Common_images/monstor.png";
-import adidas from "../Assets/Common_images/adidas.png";
 import ListIcon from "@mui/icons-material/List";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import BlockIcon from "@mui/icons-material/Block";
@@ -204,10 +201,10 @@ const Profile = () => {
         {participations.map((participation) => (
           <ProfileCard
             card={participation}
-            // onClick={handleUnregister(
-            //   participation?.part_id,
-            //   participation?.event.event_code
-            // )}
+          // onClick={handleUnregister(
+          //   participation?.part_id,
+          //   participation?.event.event_code
+          // )}
           />
         ))}
       </div>

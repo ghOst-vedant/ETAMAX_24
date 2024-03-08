@@ -4,7 +4,6 @@ import "swiper/css/effect-cards";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { EffectCards } from "swiper/modules";
-import redBull from "../Assets/Common_images/redBull.png";
 import heroPc from "../Assets/Common_images/Hero_Section.png";
 import heroMobile from "../Assets/Common_images/Phone-Hero.png";
 import wing1 from "../Assets/Common_images/wing1.png";
