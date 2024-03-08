@@ -33,9 +33,9 @@ const Schedule = () => {
   const currEventRef = useRef(events[0]);
   const currDayRef = useRef(days[0]);
   const [filteredEvents, setFilteredEvents] = useState([]);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     const getEvents = async () => {
       const { data } = await axios.get(`/api/e/`, {
         headers: {
@@ -58,7 +58,7 @@ const Schedule = () => {
       setFilteredEvents(data.events.sort(compare));
     };
     getEvents();
-  }, []);
+  }, [token]);
 
   const filterEvents = () => {
     if (dayMapping[currDayRef.current] === 0) {
@@ -194,8 +194,8 @@ const Schedule = () => {
                     {schedule.category === "S"
                       ? "seminar"
                       : schedule.category === "T"
-                        ? "Technical"
-                        : "Cultural"}
+                      ? "Technical"
+                      : "Cultural"}
                   </span>
                 </Timeline.Title>
                 <Timeline.Time className=" font-montserat text-white text-md font-medium">
