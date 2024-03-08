@@ -40,8 +40,9 @@ const FeaturedEventCard = ({
 
   return (
     <div
-      className={`${bgColor[index % bgColor.length]
-        } rounded-xl flex flex-col px-5 py-5 items-center w-[100%] sm:w-[40%] lg:w-[30%]`}
+      className={`${
+        bgColor[index % bgColor.length]
+      } rounded-xl flex flex-col px-5 py-5 items-center w-[100%] sm:w-[40%] lg:w-[30%]`}
       onClick={setId}
     >
       <div className="flex relative sm:w-[100%] w-[100%]">
@@ -116,11 +117,11 @@ const FeaturedEventCard = ({
             }}
           />
           <span className=" font-montserat font-medium uppercase">
-            {category === "c"
+            {category === "C"
               ? "Cultural"
               : category === "T"
-                ? "Tech"
-                : "Seminar"}
+              ? "Tech"
+              : "Seminar"}
           </span>
         </span>
         <span className="flex flex-col items-center gap-2 text-white">

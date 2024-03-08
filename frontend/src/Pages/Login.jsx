@@ -7,13 +7,12 @@ import { useNavigate } from "react-router-dom";
 const Login = ({ setToken }) => {
   const [id, setId] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const { data } = await axios.post(`/api/u/auth/login/`, {
         username: id,
-        password,
+        password: password,
       });
       localStorage.setItem("token", data.token);
       localStorage.setItem("roll_no", data.user.roll_no);
@@ -34,7 +33,7 @@ const Login = ({ setToken }) => {
   };
   return (
     <div className="flameBg h-[100vh] overflow-y-hidden">
-      <div className={`h-[100%] flex px-10 "pt-[30vw] sm:pt-32`}>
+      <div className={`h-[100%] flex px-10 pt-[30vw] sm:pt-32`}>
         <div className="flex flex-col items-center gap-4 font-montserat sm:mx-auto">
           <img src={loginBird} alt="phoenix" className="h-48 sm:h-60" />
           <form action="submit" className="flex flex-col gap-4">

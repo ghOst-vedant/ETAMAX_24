@@ -25,7 +25,7 @@ const Navbar = () => {
     );
     setNotify(result);
     getEvents();
-  }, [allEvents, token]);
+  }, [token]);
   const handleLogOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");

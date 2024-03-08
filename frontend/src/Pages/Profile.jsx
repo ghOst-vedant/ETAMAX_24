@@ -40,6 +40,7 @@ const Profile = () => {
         },
       });
       setParticipations(user.participations);
+      // console.log(user.participations[0].captain);
     };
 
     const getCriteria = async () => {
@@ -52,7 +53,6 @@ const Profile = () => {
         setCriteria(true);
       } catch (e) {
         setCriteria(false);
-        // console.log(e);
       }
     };
 
@@ -65,6 +65,7 @@ const Profile = () => {
         });
         setPaid(() => data?.paid_participations);
         setUnpaid(() => data?.unpaid_participations);
+        console.log(data);
         setPaidTotal(() => {
           let total = 0;
           data?.paid_participations.forEach((el) => {
@@ -76,7 +77,6 @@ const Profile = () => {
           let total = 0;
           data?.unpaid_participations.forEach((el) => {
             total += el.event.entry_fee;
-            console.log(el.event.entry_fee);
           });
           return total;
         });
@@ -89,7 +89,6 @@ const Profile = () => {
     getCriteria();
     getPaid();
   }, [token]);
-  console.log(unpaidTotal);
 
   const handleCheckOut = async (e) => {
     try {
@@ -124,20 +123,6 @@ const Profile = () => {
       }
     }
   };
-
-  // const handleUnregister = async (part_id, event_id) => {
-  //   const headers = {
-  //     Authorization: `token ${token}`,
-  //     "Content-Type": "application/json",
-  //   };
-
-  //   const result = await axios.post(
-  //     `/api/e/unregister/`,
-  //     { event_code: event_id, part_id: part_id },
-  //     { headers }
-  //   );
-  //   console.log(result);
-  // };
 
   return (
     <div className=" bg-black flameBg pb-10 box-border flex flex-col lg:items-center lg:gap-20 overflow-hidden">
@@ -199,13 +184,7 @@ const Profile = () => {
       </div>
       <div className="sm:w-[80vw] px-6 flex flex-col lg:flex-row gap-6 lg:gap-x-20 lg:gap-y-10 lg:flex-wrap lg:justify-center items-center">
         {participations.map((participation) => (
-          <ProfileCard
-            card={participation}
-          // onClick={handleUnregister(
-          //   participation?.part_id,
-          //   participation?.event.event_code
-          // )}
-          />
+          <ProfileCard key={participation.part_id} card={participation} />
         ))}
       </div>
       <div className="flex flex-col items-center mt-6 gap-4 px-6">

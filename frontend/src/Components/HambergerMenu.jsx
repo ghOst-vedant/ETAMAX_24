@@ -1,26 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HamburgerButton from "./HamburgerButton.jsx";
 import { NavLink, useNavigate } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import navbird from "../Assets/Common_images/navbird.png";
-const events = [
-  {
-    EventName: "Seminar-1",
-    Message: "Seats Full",
-  },
-  {
-    EventName: "Event-2",
-    Message: "Seats Full",
-  },
-  {
-    EventName: "Event-2",
-    Message: "Seats Full",
-  },
-];
+import axios from "axios";
 const HambergerMenu = () => {
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);
+  const [notify, setNotify] = useState([]);
+  const [allEvents, setAllEvents] = useState();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const getEvents = async () => {
+      const { data } = await axios.get(`/api/e/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setAllEvents(data.events);
+      // Filter events to get only featured events
+    };
+    const result = allEvents?.filter(
+      (event) => event.max_seats === event.seats
+    );
+    setNotify(result);
+    getEvents();
+  }, [token]);
 
   const handleLogOut = () => {
     localStorage.removeItem("token");
@@ -35,6 +42,7 @@ const HambergerMenu = () => {
     window.location.reload();
     window.history.pushState({}, document.title, "/");
   };
+
   return (
     <div
       className={`absolute w-full  pt-4 px-2 pl-4  z-10 ${
@@ -64,16 +72,16 @@ const HambergerMenu = () => {
                 <NotificationsIcon sx={{ fontSize: "2rem", color: "white" }} />
               </div>
               {open && (
-                <div className="absolute right-12 top-[75px] bg-black/50 rounded-xl px-5 py-4 h-[300px] w-[300px] ">
-                  {events?.map((event, index) => (
-                    <div key={index} className="flex flex-col font-montserat">
-                      <span className=" text-gray-300  text-xl font-medium">
-                        {event.EventName}{" "}
+                <div className="absolute right-5 top-[70px] bg-black/50 rounded-xl px-5 py-4 h-auto w-[300px] ">
+                  {notify?.map((event, index) => (
+                    <div key={index} className="flex flex-col ">
+                      <span className=" text-gray-300  text-lg font-medium">
+                        {event.title}{" "}
                       </span>
                       <span className="text-gray-300  text-base  ">
-                        {event.Message}{" "}
+                        Seats Full
                       </span>
-                      {index < events.length - 1 && (
+                      {index < notify.length - 1 && (
                         <hr className=" w-[100%]  self-center my-3" />
                       )}
                     </div>
