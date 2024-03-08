@@ -14,11 +14,7 @@ function EventDetails() {
     3: "16th March",
   };
   // console.log(teamName);
-  const participation = JSON.parse(localStorage.getItem("participations"));
-  const regevents = participation.map((parti) => {
-    return parti.event;
-  });
-  console.log(regevents);
+
   useEffect(() => {
     const getEventDetails = async () => {
       const {
@@ -171,7 +167,7 @@ function EventDetails() {
           <div className="flex flex-col sm:flex-row">
             {registered ? (
               <button
-                onClick={() => { }}
+                onClick={() => {}}
                 className="px-[6.5vw] py-[1vw] border-white border-[1px] rounded-full bg-gray-800 text-white font-medium  sm:px-4 sm:py-2 sm:text-xl"
               >
                 Cannot register

@@ -7,13 +7,12 @@ import { useNavigate } from "react-router-dom";
 const Login = ({ setToken }) => {
   const [id, setId] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const { data } = await axios.post(`/api/u/auth/login/`, {
-        username: 1021243,
-        password: "8e719ed2",
+        username: id,
+        password: password,
       });
       localStorage.setItem("token", data.token);
       localStorage.setItem("roll_no", data.user.roll_no);
