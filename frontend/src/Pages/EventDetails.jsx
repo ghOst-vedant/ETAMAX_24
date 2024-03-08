@@ -31,8 +31,12 @@ function EventDetails() {
 
   const addMember = () => {
     //add members here
-    setMembers(() => [...members, inputMember]);
-    setInputMember("");
+    if (!inputMember.trim().length) {
+      alert("Enter a valid number");
+    } else {
+      setMembers(() => [...members, inputMember]);
+      setInputMember("");
+    }
   };
 
   const removeMember = (e) => {
@@ -137,6 +141,9 @@ function EventDetails() {
                   Add
                 </button>
               </div>
+              <p className="text-white text-base sm:text-lg">
+                (The one registering does not have to put their roll number.)
+              </p>
               <span className="text-white sm:text-xl text-lg">
                 Team Members :{" "}
               </span>

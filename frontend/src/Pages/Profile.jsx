@@ -65,7 +65,6 @@ const Profile = () => {
         });
         setPaid(() => data?.paid_participations);
         setUnpaid(() => data?.unpaid_participations);
-        console.log(data);
         setPaidTotal(() => {
           let total = 0;
           data?.paid_participations.forEach((el) => {

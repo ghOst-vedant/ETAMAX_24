@@ -19,11 +19,14 @@ const Navbar = () => {
       });
       setAllEvents(data.events);
       // Filter events to get only featured events
+      const result = allEvents?.filter(
+        (event) => event.max_seats === event.seats
+      );
+      setNotify(() =>
+        data.events?.filter((event) => event.max_seats === event.seats)
+      );
     };
-    const result = allEvents?.filter(
-      (event) => event.max_seats === event.seats
-    );
-    setNotify(result);
+
     getEvents();
   }, [token]);
   const handleLogOut = () => {
