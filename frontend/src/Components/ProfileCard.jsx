@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import profile_card_bg from "../Assets/Common_images/profile_card_event.png";
 import verified from "../Assets/Common_images/verified.png";
 import unverified from "../Assets/Common_images/unverified.png";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";

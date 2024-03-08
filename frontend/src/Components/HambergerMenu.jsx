@@ -21,11 +21,14 @@ const HambergerMenu = () => {
       });
       setAllEvents(data.events);
       // Filter events to get only featured events
+      const result = allEvents?.filter(
+        (event) => event.max_seats === event.seats
+      );
+      setNotify(() =>
+        data.events?.filter((event) => event.seats >= event.max_seats)
+      );
     };
-    const result = allEvents?.filter(
-      (event) => event.max_seats === event.seats
-    );
-    setNotify(result);
+
     getEvents();
   }, [token]);
 
@@ -72,7 +75,7 @@ const HambergerMenu = () => {
                 <NotificationsIcon sx={{ fontSize: "2rem", color: "white" }} />
               </div>
               {open && (
-                <div className="absolute right-5 top-[70px] bg-black/50 rounded-xl px-5 py-4 h-auto w-[300px] ">
+                <div className="absolute right-5 top-[70px] bg-black/80 rounded-xl px-5 py-4 min-h-fit max-h-[400px] overflow-y-scroll w-[300px] ">
                   {notify?.map((event, index) => (
                     <div key={index} className="flex flex-col ">
                       <span className=" text-gray-300  text-lg font-medium">
