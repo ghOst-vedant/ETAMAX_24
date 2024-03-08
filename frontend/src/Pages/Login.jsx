@@ -11,10 +11,16 @@ const Login = ({ setToken }) => {
 
   const handleLogin = async () => {
     try {
-      const { data } = await axios.post(`/api/u/auth/login/`, {
-        username: 1021243,
-        password: "8e719ed2",
-      });
+      const { data } = await axios.post(
+        `/api/u/auth/login/`,
+        {
+          username: 1021243,
+          password: "8e719ed2",
+        },
+        {
+          headers: { "Access-Control-Allow-Origin": "*" },
+        }
+      );
       localStorage.setItem("token", data.token);
       localStorage.setItem("roll_no", data.user.roll_no);
       localStorage.setItem("name", data.user.name);
