@@ -18,7 +18,7 @@ import Schedule from "./Pages/Schedule";
 import EventCard from "./Pages/event_cards";
 import axios from "axios";
 import EventDetails from "./Pages/EventDetails";
-axios.defaults.baseURL = "http://etamax.ideaplots.com/";
+axios.defaults.baseURL = "https://etamax.ideaplots.com/";
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
     window.innerWidth > 850 ? true : false
