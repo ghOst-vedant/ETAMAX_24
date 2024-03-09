@@ -46,9 +46,9 @@ const EventCard = ({ day, event }) => {
   }, [day, event, allEvents]);
 
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
+    <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
       <Suspense fallback={<CircularProgress color="error" />}>
-        <div className="flex flex-wrap justify-center gap-10 px-10 w-[100vw]">
+        <div className="flex flex-wrap justify-center gap-10 px-4 sm:px-10 w-[100vw]">
           {filteredEvents.map((event, index) => {
             return (
               <FeaturedEventCard
