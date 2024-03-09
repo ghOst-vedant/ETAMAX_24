@@ -134,6 +134,9 @@ function EventDetails() {
           </div>
           {!registered && event?.team_size > 1 && (
             <div className="mb-10 flex flex-col gap-[6.5vw] sm:gap-[2vw] sm:mb-[2.5vw] sm:w-[60%]">
+              <span className="text-white sm:text-xl text-lg">
+                Team Members :{" "}
+              </span>
               <div className="flex justify-between gap-4">
                 <input
                   type="text"
@@ -155,9 +158,6 @@ function EventDetails() {
               <p className="text-white text-base sm:text-lg">
                 (The one registering does not have to put their roll number.)
               </p>
-              <span className="text-white sm:text-xl text-lg">
-                Team Members :{" "}
-              </span>
               <div className="p-[3.25vw] flex gap-[3vw] flex-wrap bg-black bg-opacity-[33%] border-[1px] border-white rounded-xl sm:p-[1.3vw] sm:gap-[1vw]">
                 {members.map((member, index) => (
                   <p
@@ -185,7 +185,7 @@ function EventDetails() {
           <div className="flex flex-col sm:flex-row">
             {registered ? (
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="px-[6.5vw] py-[1vw] border-white border-[1px] rounded-full bg-gray-800 text-white font-medium  sm:px-4 sm:py-2 sm:text-xl"
               >
                 Cannot register
