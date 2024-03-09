@@ -35,12 +35,12 @@ const EventCards = () => {
           EVENTS
         </h2>
         <div className="px-10 select-none sm:flex sm:flex-col sm:items-center">
-          <div className="flex gap-12 text-white pt-16 select-none">
+          <div className="flex gap-8 sm:gap-12 text-white pt-16 select-none">
             <span
-              className="flex gap-3 items-center relative cursor-default"
+              className="flex gap-1 sm:gap-3 items-center relative cursor-default"
               onClick={() => setOpenDays(!opendays)}
             >
-              <p className="font-montserat text-xl">{day}</p>
+              <p className="font-montserat text-lg sm:text-xl">{day}</p>
               <div className="relative">
                 {opendays ? (
                   <KeyboardArrowUpRoundedIcon />
@@ -68,10 +68,10 @@ const EventCards = () => {
             </span>
 
             <span
-              className="flex gap-3 items-center relative cursor-default"
+              className="flex gap-1 sm:gap-3 items-center relative cursor-default"
               onClick={() => setOpenEvents(!openEvents)}
             >
-              <p className="font-montserat text-xl">{event}</p>
+              <p className="font-montserat text-lg sm:text-xl">{event}</p>
               <div className="relative">
                 {openEvents ? (
                   <KeyboardArrowUpRoundedIcon />
