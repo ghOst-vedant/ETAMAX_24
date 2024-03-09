@@ -1,12 +1,10 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import React, { useState, useEffect } from "react";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import MobileEventCard from "../Components/MobileEventCard";
-import { CircularProgress, Link } from "@mui/material";
-import ErrorFallback from "../Components/ErrorBoundary";
 import Sponsors from "../Components/Sponsors";
-const EventCard = lazy(() => import("../Components/EventCard"));
+import EventCard from "../Components/EventCard";
+import { Link } from "react-router-dom";
 
 const days = ["Select Day", "Day One", "Day Two", "Day Three"];
 const events = ["Select Event", "Cultural", "Technical", "Seminar"];
@@ -110,52 +108,41 @@ const EventCards = () => {
 
         {isMobile ? (
           <div className="flex flex-col gap-20 mt-10 ">
-            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
-              <Suspense fallback={<CircularProgress color="error" />}>
-                {events.slice(1, events.length).map((eventName, index) => (
-                  <div
-                    key={eventName}
-                    className="flex flex-col items-center sm:items-center sm:py-16 gap-10"
-                  >
-                    <div className="flex">
-                      <div className="flex text-white px-20 mx-auto sm:w-[70%]">
-                        <h2 className="font-montserat text-3xl font-semibold sm:text-5xl">
-                          {eventName}
-                        </h2>
-                      </div>
-                      <Link
-                        to="/schedule"
-                        className="absolute right-0 mr-4 mt-2"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="py- 4 h-5 sm:h-6 w-6 text-white"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M1 5l7 7-7 7"
-                          />
-                        </svg>
-                      </Link>
-                    </div>
-                    <MobileEventCard eventType={eventName} />
+            {events.slice(1, events.length).map((eventName, index) => (
+              <div
+                key={eventName}
+                className="flex flex-col items-center sm:items-center sm:py-16 gap-10"
+              >
+                <div className="flex">
+                  <div className="flex text-white px-20 mx-auto sm:w-[70%]">
+                    <h2 className="font-montserat text-3xl font-semibold sm:text-5xl">
+                      {eventName}
+                    </h2>
                   </div>
-                ))}
-              </Suspense>
-            </ErrorBoundary>
+                  <Link to="/schedule" className="absolute right-0 mr-4 mt-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="py- 4 h-5 sm:h-6 w-6 text-white"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M1 5l7 7-7 7"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+                <MobileEventCard eventType={eventName} />
+              </div>
+            ))}
           </div>
         ) : (
           <div>
-            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
-              <Suspense fallback={<CircularProgress color="error" />}>
-                <EventCard day={day} event={event} />
-              </Suspense>
-            </ErrorBoundary>
+            <EventCard day={day} event={event} />
           </div>
         )}
       </div>

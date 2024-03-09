@@ -1,6 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import FeaturedEventCard from "../Components/FeaturedEventCard";
 import axios from "axios";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "./ErrorBoundary";
+import { CircularProgress } from "@mui/material";
 
 const EventCard = ({ day, event }) => {
   const token = localStorage.getItem("token");
@@ -43,24 +46,28 @@ const EventCard = ({ day, event }) => {
   }, [day, event, allEvents]);
 
   return (
-    <div className="flex flex-wrap justify-center gap-10 px-10 w-[100vw]">
-      {filteredEvents.map((event, index) => {
-        return (
-          <FeaturedEventCard
-            key={event.event_code}
-            eventId={event.event_code}
-            eventName={event.title}
-            category={event.category}
-            date={event.day}
-            max_seats={event.max_seats}
-            seats={event.seats}
-            eventImage={event.image_googledrive}
-            teamSize={event.team_size}
-            index={index}
-          />
-        );
-      })}
-    </div>
+    <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
+      <Suspense fallback={<CircularProgress color="error" />}>
+        <div className="flex flex-wrap justify-center gap-10 px-10 w-[100vw]">
+          {filteredEvents.map((event, index) => {
+            return (
+              <FeaturedEventCard
+                key={event.event_code}
+                eventId={event.event_code}
+                eventName={event.title}
+                category={event.category}
+                date={event.day}
+                max_seats={event.max_seats}
+                seats={event.seats}
+                eventImage={event.image_googledrive}
+                teamSize={event.team_size}
+                index={index}
+              />
+            );
+          })}
+        </div>
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 
