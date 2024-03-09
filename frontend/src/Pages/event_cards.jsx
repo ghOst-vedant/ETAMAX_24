@@ -31,6 +31,8 @@ const EventCards = () => {
 
   return (
     <div className="flameBg py-6 pb-20 pt-24 overflow-hidden">
+      <Sponsors />
+
       <div className="flex flex-col items-center">
         <h2 className="font-cinzel text-4xl font-bold sm:text-5xl mt-16 text-white">
           EVENTS

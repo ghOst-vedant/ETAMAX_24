@@ -4,6 +4,7 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import { Timeline } from "flowbite-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Sponsors from "../Components/Sponsors";
 
 const Schedule = () => {
   const navigate = useNavigate();
@@ -94,10 +95,11 @@ const Schedule = () => {
   //   navigate("/event-details");
   // };
   return (
-    <div className="flameBg bg-black py-16 px-10 select-none sm:flex sm:flex-col sm:items-center">
-      <div className="flex gap-12 text-white pt-16 sm:pl-20 select-none">
+    <div className="flameBg bg-black py-16 select-none sm:flex sm:flex-col sm:items-center overflow-hidden">
+      <Sponsors />
+      <div className="flex gap-8 sm:gap-12 text-white pt-16 select-none px-5 sm:px-10">
         <span
-          className="flex gap-3 items-center relative cursor-default"
+          className="flex gap-2 sm:gap-3 items-center relative cursor-default"
           onClick={() => {
             if (opendays) {
               setOpenDays(false);
@@ -106,7 +108,9 @@ const Schedule = () => {
             }
           }}
         >
-          <p className=" font-montserat text-xl ">{currDayRef.current}</p>
+          <p className=" font-montserat text-lg sm:text-xl ">
+            {currDayRef.current}
+          </p>
           <div className="relative">
             {opendays ? (
               <KeyboardArrowUpRoundedIcon />
@@ -116,9 +120,9 @@ const Schedule = () => {
             {opendays && (
               <div className="absolute top-[30px]  -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-fit w-[150px] select-none z-10 backdrop-blur-sm ">
                 {days?.map((day, index) => (
-                  <div key={day} className="flex flex-col ">
+                  <div key={index} className="flex flex-col">
                     <span
-                      className=" text-gray-300  text-md font-semibold "
+                      className=" text-gray-300 text-md font-semibold "
                       onClick={() => {
                         currDayRef.current = day;
                         filterEvents();
@@ -146,7 +150,9 @@ const Schedule = () => {
             }
           }}
         >
-          <p className=" font-montserat text-xl">{currEventRef.current}</p>
+          <p className=" font-montserat text-lg sm:text-xl">
+            {currEventRef.current}
+          </p>
           <div className="relative">
             {openEvents ? (
               <KeyboardArrowUpRoundedIcon />
@@ -176,25 +182,25 @@ const Schedule = () => {
           </div>
         </span>
       </div>
-      <div className="py-16 px-6 sm:w-[60%] z-5 ">
+      <div className="py-16 w-full sm:w-[60%] z-5 px-5 sm:px-10">
         <Timeline>
           {filteredEvents?.map((schedule, index) => (
             <Timeline.Item key={index}>
               <Timeline.Point />
               <Timeline.Content
-                className="border  rounded-xl px-4 py-2 pb-0 cursor-default bg-black/20 backdrop-blur-sm"
+                className="border rounded-xl px-2 sm:px-4 py-2 pb-0 bg-black/20 backdrop-blur-sm cursor-pointer"
                 onClick={() => {
                   localStorage.setItem("eventId", schedule.event_code);
                   navigate("/event-details");
                 }}
               >
-                <Timeline.Title className=" font-montserat text-white text-lg flex  justify-between pr-[10%]">
+                <Timeline.Title className=" font-montserat text-white text-lg flex  justify-between w-full">
                   <span>{schedule.title}</span>
-                  <span>
+                  <span className="text-gray-300">
                     {schedule.category === "S"
                       ? "seminar"
                       : schedule.category === "T"
-                      ? "Technical"
+                      ? "Tech"
                       : "Cultural"}
                   </span>
                 </Timeline.Title>
@@ -202,7 +208,7 @@ const Schedule = () => {
                   {schedule.start} {schedule.end}
                 </Timeline.Time>
                 <Timeline.Body className=" font-montserat text-white text-md font-medium">
-                  ₹ {schedule.entry_fee} Rs. <br />
+                  {schedule.entry_fee} Rs. <br />
                 </Timeline.Body>
               </Timeline.Content>
             </Timeline.Item>
