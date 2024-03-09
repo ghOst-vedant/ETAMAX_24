@@ -3,7 +3,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import ChairAltOutlinedIcon from "@mui/icons-material/ChairAltOutlined";
 import ViewListRoundedIcon from "@mui/icons-material/ViewListRounded";
-import eventImage from "../Assets/Common_images/sampleEvent.png";
 import { useNavigate } from "react-router-dom";
 import GroupsIcon from "@mui/icons-material/Groups";
 import PeopleIcon from "@mui/icons-material/People";

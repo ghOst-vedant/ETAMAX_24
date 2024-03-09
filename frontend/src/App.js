@@ -1,23 +1,18 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
-import Profile from "./Pages/Profile";
-import Home from "./Pages/Home";
+import React, { useEffect, useState, lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HambergerMenu from "./Components/HambergerMenu";
 import NavigationBar from "./Components/NavigationBar";
 import Footer from "./Components/Footer";
-import About from "./Pages/About";
-import Login from "./Pages/Login";
-import Schedule from "./Pages/Schedule";
-import EventCard from "./Pages/event_cards";
 import axios from "axios";
-import EventDetails from "./Pages/EventDetails";
+import { CircularProgress } from "@mui/material";
+const Home = lazy(() => import("./Pages/Home"));
+const About = lazy(() => import("./Pages/About"));
+const Profile = lazy(() => import("./Pages/Profile"));
+const Login = lazy(() => import("./Pages/Login"));
+const Schedule = lazy(() => import("./Pages/Schedule"));
+const EventCard = lazy(() => import("./Pages/event_cards"));
+const EventDetails = lazy(() => import("./Pages/EventDetails"));
+
 axios.defaults.baseURL = "https://etamax.fcrit.ac.in/";
 const App = () => {
   const [windowStatus, setWindowStatus] = useState(
@@ -45,32 +40,37 @@ const App = () => {
     <div>
       <Router>
         {isAuth && (windowStatus ? <NavigationBar /> : <HambergerMenu />)}
-        <Routes>
-          <Route
-            path="/"
-            element={isAuth ? <Home /> : <Login setToken={setToken} />}
-          />
-          <Route
-            path="/about"
-            element={isAuth ? <About /> : <Login setToken={setToken} />}
-          />
-          <Route
-            path="/profile"
-            element={isAuth ? <Profile /> : <Login setToken={setToken} />}
-          />
-          <Route
-            path="/schedule"
-            element={isAuth ? <Schedule /> : <Login setToken={setToken} />}
-          />
-          <Route
-            path="/events"
-            element={isAuth ? <EventCard /> : <Login setToken={setToken} />}
-          />
-          <Route
-            path="/event-details"
-            element={isAuth ? <EventDetails /> : <Login setToken={setToken} />}
-          />
-        </Routes>
+        <Suspense fallback={<CircularProgress color="error" />}>
+          <Routes>
+            <Route
+              path="/"
+              element={isAuth ? <Home /> : <Login setToken={setToken} />}
+            />
+            <Route
+              path="/about"
+              element={isAuth ? <About /> : <Login setToken={setToken} />}
+            />
+            <Route
+              path="/profile"
+              element={isAuth ? <Profile /> : <Login setToken={setToken} />}
+            />
+            <Route
+              path="/schedule"
+              element={isAuth ? <Schedule /> : <Login setToken={setToken} />}
+            />
+            <Route
+              path="/events"
+              element={isAuth ? <EventCard /> : <Login setToken={setToken} />}
+            />
+            <Route
+              path="/event-details"
+              element={
+                isAuth ? <EventDetails /> : <Login setToken={setToken} />
+              }
+            />
+          </Routes>
+        </Suspense>
+
         {isAuth && <Footer />}
       </Router>
     </div>

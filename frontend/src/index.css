@@ -73,7 +73,7 @@ input:-webkit-autofill:active {
   -webkit-background-clip: text;
   -webkit-text-fill-color: #ffffff;
 }
-    
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -100,9 +100,10 @@ input:-webkit-autofill:active {
   }
 }
 
-.slider {  
-  .slide-track {
-    animation: scroll 10s linear infinite;
-  }
+.slide-track {
+  animation: scroll 10s linear infinite;
 }
-  
+
+iframe {
+  display: none;
+}

@@ -13,7 +13,6 @@ function EventDetails() {
     2: "15th March",
     3: "16th March",
   };
-  // console.log(teamName);
 
   useEffect(() => {
     const getEventDetails = async () => {
@@ -62,11 +61,7 @@ function EventDetails() {
           { headers }
         );
       } else {
-        await axios.post(
-          `/api/e/register/`,
-          { event_code: eventId, team_name: teamName, members: members },
-          { headers }
-        );
+        await axios.post(`/api/e/register/`, { body }, { headers });
       }
       // Successful login logic (e.g., save token, redirect)
       setTeamName("");
@@ -82,6 +77,7 @@ function EventDetails() {
       }
     }
   };
+
   return (
     <div className="flameBg w-full h-fit py-[30vw] px-[9.5vw] flex flex-col items-center font-montserat sm:p-[10vw]">
       <div className="flex flex-col gap-[5.2vw] items-center sm:items-start">
@@ -94,12 +90,26 @@ function EventDetails() {
         </div>
         <div className="sm:flex-[100%] flex flex-col items-center sm:inline">
           <div className="mb-7 flex flex-col text-center gap-[0.8vw] sm:text-left sm:mb-[2vw]">
-            <h1 className="text-[6.25vw] font-semibold text-white sm:text-[3vw]">
-              {event?.title}
-            </h1>
-            <p className="text-white text-justify text-[3.75vw] sm:text-[1.35vw]">
-              {event?.description}
-            </p>
+            <div className="flex flex-col gap-[4vw] sm:gap-[2vw]">
+              <div>
+                <h1 className="text-[6.25vw] font-semibold text-white sm:text-[3vw]">
+                  {event?.title}
+                </h1>
+                <p className="text-white text-justify text-[3.75vw] sm:text-[1.35vw]">
+                  {event?.description}
+                </p>
+              </div>
+              <div>
+                <p className="text-[4.5vw] font-medium text-white sm:text-[2.25vw]">
+                  Event Rules:
+                </p>
+                {event?.event_rules && (
+                  <p className="text-white text-justify text-[3.75vw] sm:text-[1.35vw]">
+                    {event?.event_rules}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
           <div className="flex flex-col text-center gap-[0.8vw] mb-10 text-white text-[1.5vw] sm:text-left sm:mb-[2.5vw]">
             <p className="text-[3.75vw] sm:text-[1.35vw]">
@@ -151,7 +161,7 @@ function EventDetails() {
                 {members.map((member, index) => (
                   <p
                     className="text-[3.75vw] p-[3.75vw] text-white bg-white bg-opacity-[45%] border-[1px] border-white rounded-lg sm:text-[1.3vw] sm:px-[2vw] py-[0.7vw] cursor-pointer"
-                    key={index}
+                    key={member}
                     id={member}
                     onClick={removeMember}
                   >

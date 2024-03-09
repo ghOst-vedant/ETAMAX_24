@@ -3,7 +3,6 @@ import loginBird from "../Assets/other_images/loginBird.png";
 import user from "../Assets/other_images/user.png";
 import lock from "../Assets/other_images/lock.png";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 const Login = ({ setToken }) => {
   const [id, setId] = useState();
   const [password, setPassword] = useState();

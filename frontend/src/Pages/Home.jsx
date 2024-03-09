@@ -9,10 +9,8 @@ import heroMobile from "../Assets/Common_images/Phone-Hero.png";
 import wing1 from "../Assets/Common_images/wing1.png";
 import wing2 from "../Assets/Common_images/wing2.png";
 import FeaturedEventCard from "../Components/FeaturedEventCard";
-import eventImage from "../Assets/Common_images/sampleEvent.png";
 import cloud from "../Assets/other_images/clouds.png";
 import axios from "axios";
-// import sponsor from "../sponsor.json"
 
 const Home = () => {
   const [featuredEvents, setFeaturedEvents] = useState([]);
@@ -24,17 +22,12 @@ const Home = () => {
           Authorization: `Token ${token}`,
         },
       });
-      const allEvents = data.events;
       // Filter events to get only featured events
       setFeaturedEvents(() =>
-        allEvents.filter((event) => {
+        data.events.filter((event) => {
           return event.is_featured === true;
         })
       );
-      // console.log("ALL EVENTS:", allEvents);
-      const result = allEvents.filter((event) => event.is_featured === true);
-
-      setFeaturedEvents(result);
     };
     getFeaturedEvents();
   }, [token]);
@@ -91,13 +84,6 @@ const Home = () => {
         )}
       </div>
       <div className="bg-nextHome pb-20">
-        {/* <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
-          sponsors
-          <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-          <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-          <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-        </div> */}
-        {/* Features Section */}
         <div className="flex flex-col pt-9">
           <span className="flex items-center justify-center w-full  bg-black/50  sm:bg-transparent sm:backdrop-blur-none py-5 backdrop-blur-sm">
             <img src={wing1} alt="" className=" w-[15%] sm:w-[10%] " />
@@ -133,7 +119,7 @@ const Home = () => {
                   className="change"
                 >
                   {featuredEvents?.map((event, index) => (
-                    <SwiperSlide className="slide">
+                    <SwiperSlide key={index} className="slide">
                       <FeaturedEventCard
                         key={event.event_code}
                         eventId={event.event_code}

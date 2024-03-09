@@ -116,7 +116,7 @@ const Schedule = () => {
             {opendays && (
               <div className="absolute top-[30px]  -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-fit w-[150px] select-none z-10 backdrop-blur-sm ">
                 {days?.map((day, index) => (
-                  <div key={index} className="flex flex-col ">
+                  <div key={day} className="flex flex-col ">
                     <span
                       className=" text-gray-300  text-md font-semibold "
                       onClick={() => {
@@ -156,7 +156,7 @@ const Schedule = () => {
             {openEvents && (
               <div className="absolute top-[30px] -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-fit w-[150px] select-none z-10 backdrop-blur-sm">
                 {events?.map((event, index) => (
-                  <div key={index} className="flex flex-col ">
+                  <div key={event} className="flex flex-col ">
                     <span
                       className=" text-gray-300  text-md font-semibold"
                       onClick={() => {
