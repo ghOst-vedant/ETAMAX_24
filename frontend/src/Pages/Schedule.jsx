@@ -21,7 +21,7 @@ const Schedule = () => {
     "Select Event": "E",
     Cultural: "C",
     Technical: "T",
-    Seminar: "s",
+    Seminar: "S",
   };
 
   // current day on the option panel
@@ -31,8 +31,12 @@ const Schedule = () => {
   const [openEvents, setOpenEvents] = useState(false);
 
   const [allEvents, setAllEvents] = useState();
-  const currEventRef = useRef(events[0]);
-  const currDayRef = useRef(days[0]);
+  const currEventRef = useRef(
+    localStorage.getItem("scheduleEventFilter") || events[1]
+  );
+  const currDayRef = useRef(
+    localStorage.getItem("scheduleDayFilter") || days[1]
+  );
   const [filteredEvents, setFilteredEvents] = useState([]);
   const token = localStorage.getItem("token");
 
@@ -90,6 +94,10 @@ const Schedule = () => {
     }
   };
 
+  useEffect(() => {
+    allEvents && filterEvents();
+  }, [allEvents]);
+
   // const setId = () => {
   //   localStorage.setItem("eventId", eventId);
   //   navigate("/event-details");
@@ -125,6 +133,7 @@ const Schedule = () => {
                       className=" text-gray-300 text-md font-semibold "
                       onClick={() => {
                         currDayRef.current = day;
+                        localStorage.setItem("scheduleDayFilter", day);
                         filterEvents();
                       }}
                     >
@@ -167,6 +176,7 @@ const Schedule = () => {
                       className=" text-gray-300  text-md font-semibold"
                       onClick={() => {
                         currEventRef.current = event;
+                        localStorage.setItem("scheduleEventFilter", event);
                         filterEvents();
                       }}
                     >

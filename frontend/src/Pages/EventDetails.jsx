@@ -126,7 +126,7 @@ function EventDetails() {
               Cost: {event?.entry_fee} /-
             </p>
             <p className="text-[3.75vw] sm:text-[1.35vw]">
-              Pize: {event?.prize_money}
+              Prize: {event?.prize_money}
             </p>
             <p className="text-[3.75vw] sm:text-[1.35vw]">
               Timings: {event?.start} to {event?.end}
@@ -185,7 +185,7 @@ function EventDetails() {
           <div className="flex flex-col sm:flex-row">
             {registered ? (
               <button
-                onClick={() => { }}
+                onClick={() => {}}
                 className="px-[6.5vw] py-[1vw] border-white border-[1px] rounded-full bg-gray-800 text-white font-medium  sm:px-4 sm:py-2 sm:text-xl"
               >
                 Cannot register
