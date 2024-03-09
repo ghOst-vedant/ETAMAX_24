@@ -3,7 +3,8 @@ import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRound
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import EventCard from "../Components/EventCard";
 import MobileEventCard from "../Components/MobileEventCard";
-import { Link } from "@mui/material";
+import Sponsors from "../Components/Sponsors";
+import { Link } from "react-router-dom";
 
 const days = ["Select Day", "Day One", "Day Two", "Day Three"];
 const events = ["Select Event", "Cultural", "Technical", "Seminar"];
@@ -29,11 +30,7 @@ const EventCards = () => {
 
   return (
     <div className="flameBg py-6 pb-20 pt-24 overflow-hidden">
-      {/* <div className="flex flex-wrap justify-center gap-10 sm:py-12 sm:gap-12 bg-black/10 py-6 backdrop-blur-sm sm:mt-4">
-        <img src={redBull} alt="sponsor" className="h-12 sm:h-24" />
-        <img src={monstor} alt="sponsor" className="h-12 sm:h-24" />
-        <img src={adidas} alt="sponsor" className="h-12 sm:h-24" />
-      </div> */}
+      <Sponsors />
 
       <div className="flex flex-col items-center">
         <h2 className="font-cinzel text-4xl font-bold sm:text-5xl mt-16 text-white">
@@ -122,7 +119,7 @@ const EventCards = () => {
                       {eventName}
                     </h2>
                   </div>
-                  <Link to="/schedule" className="absolute right-0 mr-4 mt-2">
+                  <Link to="/schedule" className="absolute right-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="py- 4 h-5 sm:h-6 w-6 text-white"

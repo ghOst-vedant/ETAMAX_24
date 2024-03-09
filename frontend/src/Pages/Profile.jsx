@@ -140,12 +140,12 @@ const Profile = () => {
             {criteria ? (
               <h3
                 title="Make sure you checkout all events and get them verified"
-                className="font-medium text-md lg:text-xl lg:font-normal bg-green-500 w-fit p-2 lg:p-3 rounded-full"
+                className="font-medium text-md lg:text-xl lg:font-normal bg-green-500 w-fit p-2 lg:p-3 rounded-lg"
               >
                 Criteria: Fulfilled
               </h3>
             ) : (
-              <h3 className="font-medium text-lg lg:text-xl lg:font-normal bg-red-500 w-fit p-3 rounded-full">
+              <h3 className="font-medium text-lg lg:text-xl lg:font-normal bg-red-500 w-fit p-3 rounded-lg">
                 Criteria: Not Fulfilled
               </h3>
             )}

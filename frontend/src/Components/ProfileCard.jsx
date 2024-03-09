@@ -60,14 +60,13 @@ const ProfileCard = ({ card }) => {
       <img
         src={card?.event?.image_googledrive}
         alt="event_image"
-        className="w-[50%] rounded-3xl h-[140px] sm:h-full object-cover"
+        className="w-[50%] rounded-3xl h-[140px] sm:w-[40%] object-cover"
       />
       <div className="montserat flex flex-col justify-center pr-2 sm:w-[50%]">
         <h2 className="font-semibold text-lg">{card?.event?.title}</h2>
         <p className="font-medium">{`Entry Fee: ₹ ${card?.event?.entry_fee}`}</p>
-        <p className="font-medium">{`Date: ${
-          dayReverseMapping[card?.event?.day]
-        }`}</p>
+        <p className="font-medium">{`Date: ${dayReverseMapping[card?.event?.day]
+          }`}</p>
         <p className="font-medium">{`Time: ${card?.event?.start.slice(
           0,
           5

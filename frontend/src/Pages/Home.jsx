@@ -12,7 +12,7 @@ import FeaturedEventCard from "../Components/FeaturedEventCard";
 import eventImage from "../Assets/Common_images/sampleEvent.png";
 import cloud from "../Assets/other_images/clouds.png";
 import axios from "axios";
-// import sponsor from "../sponsor.json"
+import Sponsors from '../Components/Sponsors'
 
 const Home = () => {
   const [featuredEvents, setFeaturedEvents] = useState([]);
@@ -90,15 +90,10 @@ const Home = () => {
           ></embed>
         )}
       </div>
-      <div className="bg-nextHome pb-20">
-        {/* <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
-          sponsors
-          <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-          <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-          <img src={redBull} alt="sponsor" className="h-14 sm:h-24" />
-        </div> */}
+      <div className="bg-nextHome pb-20 pt-10">
+        <Sponsors />
         {/* Features Section */}
-        <div className="flex flex-col pt-9">
+        <div className="flex flex-col sm:pt-9 pt-20">
           <span className="flex items-center justify-center w-full  bg-black/50  sm:bg-transparent sm:backdrop-blur-none py-5 backdrop-blur-sm">
             <img src={wing1} alt="" className=" w-[15%] sm:w-[10%] " />
             <h1 className=" font-cinzel sm:text-5xl text-2xl text-white font-semibold px-1 ">
