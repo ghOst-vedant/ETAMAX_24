@@ -61,7 +61,7 @@ function EventDetails() {
           { headers }
         );
       } else {
-        await axios.post(`/api/e/register/`, { body }, { headers });
+        await axios.post(`/api/e/register/`, body, { headers });
       }
       // Successful login logic (e.g., save token, redirect)
       setTeamName("");
