@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import MobileEventCard from "../Components/MobileEventCard";
 import Sponsors from "../Components/Sponsors";
 import EventCard from "../Components/EventCard";
-import { Link } from "react-router-dom";
 
 const days = ["Select Day", "Day One", "Day Two", "Day Three"];
 const events = ["Select Event", "Cultural", "Technical", "Seminar"];
