@@ -76,14 +76,24 @@ const Login = ({ setToken }) => {
             </div>
           </form>
 
-          <a
-            className="w-fit py-3 px-6 text-xl font-semibold text-white border-b-[3px]"
-            href="https://docs.google.com/forms/d/1bVbL0jvBTaey4DfAmp5_UGMlMt94NXWYd_0uoKVnlgI/edit?usp=drivesdk"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Signup
-          </a>
+          <div className="flex flex-wrap gap-4 justify-center items-center">
+            <a
+              className="w-fit py-3 px-6 text-xl font-semibold text-white border-b-[3px]"
+              href="https://docs.google.com/forms/d/1bVbL0jvBTaey4DfAmp5_UGMlMt94NXWYd_0uoKVnlgI/edit?usp=drivesdk"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Signup for FCRIT students
+            </a>
+            <a
+              className="w-fit py-3 px-6 text-xl font-semibold text-white border-b-[3px]"
+              href="https://forms.gle/UAYdSkTeQLYhBo4J7"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Signup for other students
+            </a>
+          </div>
         </div>
       </div>
     </div>
