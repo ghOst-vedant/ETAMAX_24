@@ -5,6 +5,7 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import MobileEventCard from "../Components/MobileEventCard";
 import { CircularProgress, Link } from "@mui/material";
 import ErrorFallback from "../Components/ErrorBoundary";
+import Sponsors from "../Components/Sponsors";
 const EventCard = lazy(() => import("../Components/EventCard"));
 
 const days = ["Select Day", "Day One", "Day Two", "Day Three"];

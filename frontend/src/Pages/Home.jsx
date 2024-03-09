@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/effect-cards";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,25 +12,26 @@ import FeaturedEventCard from "../Components/FeaturedEventCard";
 import cloud from "../Assets/other_images/clouds.png";
 import axios from "axios";
 import Sponsors from "../Components/Sponsors";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "../Components/ErrorBoundary";
+import { CircularProgress } from "@mui/material";
 
 const Home = () => {
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const token = localStorage.getItem("token");
   useEffect(() => {
-    const getFeaturedEvents = async () => {
+    const getEvents = async () => {
       const { data } = await axios.get(`/api/e/`, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
-      // Filter events to get only featured events
       setFeaturedEvents(() =>
-        data.events.filter((event) => {
-          return event.is_featured === true;
-        })
+        data.events.filter((event) => event.is_featured === true)
       );
+      // console.log(allEvents);
     };
-    getFeaturedEvents();
+    getEvents();
   }, [token]);
   const [windowStatus, setWindowStatus] = useState(
     window.innerWidth > 820 ? true : false
@@ -115,28 +116,35 @@ const Home = () => {
               })
             ) : (
               <>
-                <Swiper
-                  effect={"cards"}
-                  grabCursor={true}
-                  modules={[EffectCards]}
-                  className="change"
+                <ErrorBoundary
+                  FallbackComponent={ErrorFallback}
+                  onReset={() => {}}
                 >
-                  {featuredEvents?.map((event, index) => (
-                    <SwiperSlide key={index} className="slide">
-                      <FeaturedEventCard
-                        key={event.event_code}
-                        eventId={event.event_code}
-                        eventName={event.title}
-                        category={event.category}
-                        date={event.day}
-                        seats={event.seats}
-                        max_seats={event.max_seats}
-                        eventImage={event.image_googledrive}
-                        index={index}
-                      />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                  <Suspense fallback={<CircularProgress color="error" />}>
+                    <Swiper
+                      effect={"cards"}
+                      grabCursor={true}
+                      modules={[EffectCards]}
+                      className="change"
+                    >
+                      {featuredEvents?.map((event, index) => (
+                        <SwiperSlide key={event.event_code} className="slide">
+                          <FeaturedEventCard
+                            key={event.event_code}
+                            eventId={event.event_code}
+                            eventName={event.title}
+                            category={event.category}
+                            date={event.day}
+                            max_seats={event.max_seats}
+                            seats={event.seats}
+                            eventImage={event.image_googledrive}
+                            index={index}
+                          />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </Suspense>
+                </ErrorBoundary>
               </>
             )}
           </div>

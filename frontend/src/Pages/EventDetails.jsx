@@ -99,16 +99,17 @@ function EventDetails() {
                   {event?.description}
                 </p>
               </div>
-              <div>
-                <p className="text-[4.5vw] font-medium text-white sm:text-[2.25vw]">
-                  Event Rules:
-                </p>
-                {event?.event_rules && (
+              {event?.event_rules !== "null" && (
+                <div>
+                  <p className="text-[4.5vw] font-medium text-white sm:text-[2.25vw]">
+                    Event Rules:
+                  </p>
+
                   <p className="text-white text-justify text-[3.75vw] sm:text-[1.35vw]">
                     {event?.event_rules}
                   </p>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex flex-col text-center gap-[0.8vw] mb-10 text-white text-[1.5vw] sm:text-left sm:mb-[2.5vw]">
