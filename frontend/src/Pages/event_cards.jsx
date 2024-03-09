@@ -9,8 +9,12 @@ const events = ["Select Event", "Cultural", "Technical", "Seminar"];
 
 const EventCards = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
-  const [day, setDay] = useState(isMobile ? days[1] : days[0]);
-  const [event, setEvent] = useState(isMobile ? events[1] : events[0]);
+  const [day, setDay] = useState(
+    localStorage.getItem("dayFilter") || (isMobile ? days[1] : days[0])
+  );
+  const [event, setEvent] = useState(
+    localStorage.getItem("eventFilter") || (isMobile ? events[1] : events[0])
+  );
   const [opendays, setOpenDays] = useState(false);
   const [openEvents, setOpenEvents] = useState(false);
 
@@ -53,7 +57,10 @@ const EventCards = () => {
                       <div key={dayOption} className="flex flex-col">
                         <span
                           className="text-gray-300 text-md font-semibold"
-                          onClick={() => setDay(dayOption)}
+                          onClick={() => {
+                            setDay(dayOption);
+                            localStorage.setItem("dayFilter", dayOption);
+                          }}
                         >
                           {dayOption}
                         </span>
@@ -84,7 +91,10 @@ const EventCards = () => {
                       <div key={eventOption} className="flex flex-col">
                         <span
                           className="text-gray-300 text-md font-semibold"
-                          onClick={() => setEvent(eventOption)}
+                          onClick={() => {
+                            setEvent(eventOption);
+                            localStorage.setItem("eventFilter", eventOption);
+                          }}
                         >
                           {eventOption}
                         </span>
