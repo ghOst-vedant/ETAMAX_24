@@ -4,7 +4,6 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import axios from "axios";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [allEvents, setAllEvents] = useState();
   const [notify, setNotify] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -17,11 +16,7 @@ const Navbar = () => {
           Authorization: `Token ${token}`,
         },
       });
-      setAllEvents(data.events);
-      // Filter events to get only featured events
-      const result = allEvents?.filter(
-        (event) => event.max_seats === event.seats
-      );
+
       setNotify(() =>
         data.events?.filter((event) => event.max_seats === event.seats)
       );
@@ -94,7 +89,7 @@ const Navbar = () => {
           {open && (
             <div className="absolute right-5 top-[70px] bg-black/50 rounded-xl px-5 py-4 h-auto w-[300px] ">
               {notify?.map((event, index) => (
-                <div key={index} className="flex flex-col ">
+                <div key={event.event_code} className="flex flex-col ">
                   <span className=" text-gray-300  text-lg font-medium">
                     {event.title}{" "}
                   </span>

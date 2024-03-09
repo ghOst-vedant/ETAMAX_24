@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import FeaturedEventCard from "../Components/FeaturedEventCard";
-import eventImage from "../Assets/Common_images/sampleEvent.png";
 import axios from "axios";
 
 const EventCard = ({ day, event }) => {
@@ -56,7 +55,7 @@ const EventCard = ({ day, event }) => {
             max_seats={event.max_seats}
             seats={event.seats}
             eventImage={event.image_googledrive}
-            teamSize={event.team_size}  
+            teamSize={event.team_size}
             index={index}
           />
         );

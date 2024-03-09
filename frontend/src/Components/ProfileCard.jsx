@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import verified from "../Assets/Common_images/verified.png";
 import unverified from "../Assets/Common_images/unverified.png";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";

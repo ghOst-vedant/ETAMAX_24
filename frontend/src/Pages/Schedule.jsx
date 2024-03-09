@@ -108,7 +108,9 @@ const Schedule = () => {
             }
           }}
         >
-          <p className=" font-montserat text-lg sm:text-xl ">{currDayRef.current}</p>
+          <p className=" font-montserat text-lg sm:text-xl ">
+            {currDayRef.current}
+          </p>
           <div className="relative">
             {opendays ? (
               <KeyboardArrowUpRoundedIcon />
@@ -148,7 +150,9 @@ const Schedule = () => {
             }
           }}
         >
-          <p className=" font-montserat text-lg sm:text-xl">{currEventRef.current}</p>
+          <p className=" font-montserat text-lg sm:text-xl">
+            {currEventRef.current}
+          </p>
           <div className="relative">
             {openEvents ? (
               <KeyboardArrowUpRoundedIcon />
@@ -158,7 +162,7 @@ const Schedule = () => {
             {openEvents && (
               <div className="absolute top-[30px] -right-[10px] bg-black/70 rounded-xl px-5 py-4 h-fit w-[150px] select-none z-10 backdrop-blur-sm">
                 {events?.map((event, index) => (
-                  <div key={index} className="flex flex-col ">
+                  <div key={event} className="flex flex-col ">
                     <span
                       className=" text-gray-300  text-md font-semibold"
                       onClick={() => {
@@ -196,8 +200,8 @@ const Schedule = () => {
                     {schedule.category === "S"
                       ? "seminar"
                       : schedule.category === "T"
-                        ? "Tech"
-                        : "Cultural"}
+                      ? "Tech"
+                      : "Cultural"}
                   </span>
                 </Timeline.Title>
                 <Timeline.Time className=" font-montserat text-white text-md font-medium">

@@ -7,7 +7,6 @@ import SwiperCore from "swiper";
 import { EffectCards } from "swiper/modules";
 import axios from "axios";
 import FeaturedEventCard from "./FeaturedEventCard";
-import eventImage from "../Assets/Common_images/sampleEvent.png";
 
 SwiperCore.use([EffectCards]);
 
@@ -37,6 +36,7 @@ export default function MobileEventCard({ eventType }) {
     };
     getEvents();
   }, [eventType, token]);
+
   return (
     <div className="mySwiper">
       <Swiper
@@ -46,7 +46,7 @@ export default function MobileEventCard({ eventType }) {
         className="change"
       >
         {allEvents?.map((event, index) => (
-          <SwiperSlide className="slide">
+          <SwiperSlide key={event.event_code} className="slide">
             <FeaturedEventCard
               key={event.event_code}
               eventId={event.event_code}
