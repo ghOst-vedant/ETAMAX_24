@@ -128,7 +128,7 @@ const Profile = () => {
       <div className="lg:flex lg:mt-36 lg:w-full justify-evenly">
         <div className="flex items-center gap-6 pt-24 px-6 lg:pt-0">
           <img
-            src={gender === "Male" ? male : female}
+            src={gender === "M" ? male : female}
             alt="person_image"
             className="rounded-full w-28 lg:w-60 border-2 lg:border-4 border-white/80"
           />
@@ -196,7 +196,7 @@ const Profile = () => {
         >
           <div className="bg-white/30 border-2 border-white rounded-full flex p-1 gap-2 lg:w-[1300px]">
             <img
-              src={gender === "Male" ? male : female}
+              src={gender === "M" ? male : female}
               alt="icon"
               className="w-[20%] lg:w-[18%] rounded-full"
             />
