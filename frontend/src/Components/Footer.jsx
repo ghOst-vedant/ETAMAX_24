@@ -71,7 +71,7 @@ const Footer = () => {
             Savio
           </Link>
           ,{" "}
-          <Link to="https://www.linkedin.com/in/jayesh-chaudhari-b1578b14">
+          <Link to="https://www.linkedin.com/in/jayesh-chaudhari-b1578b149/">
             Jayesh
           </Link>
           ,
