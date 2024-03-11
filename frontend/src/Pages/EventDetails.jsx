@@ -117,7 +117,7 @@ function EventDetails() {
               Date : {dayReverseMapping[event?.day]}
             </p>
             <p className="text-[3.75vw] sm:text-[1.35vw]">
-              Seats Left: {event?.seats} / {event?.max_seats}
+              Seats Booked: {event?.seats} / {event?.max_seats}
             </p>
             <p className="text-[3.75vw] sm:text-[1.35vw]">
               Team size: {event?.team_size}
