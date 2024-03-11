@@ -128,9 +128,17 @@ function EventDetails() {
             <p className="text-[3.75vw] sm:text-[1.35vw]">
               Prize: {event?.prize_money}
             </p>
-            <p className="text-[3.75vw] sm:text-[1.35vw]">
-              Timings: {event?.start} to {event?.end}
-            </p>
+            {event?.title === "Escape Room" ||
+            event?.title === "Infinite Flight Simulator" ? (
+              <p className="text-[3.75vw] sm:text-[1.35vw]">
+                Timings:{" "}
+                <span className="font-bold">Refer the ETAMAX brochure.</span>
+              </p>
+            ) : (
+              <p className="text-[3.75vw] sm:text-[1.35vw]">
+                Timings: {event?.start} to {event?.end}
+              </p>
+            )}
           </div>
           {!registered && event?.team_size > 1 && (
             <div className="mb-10 flex flex-col gap-[6.5vw] sm:gap-[2vw] sm:mb-[2.5vw] sm:w-[60%]">

@@ -18,7 +18,7 @@ const Navbar = () => {
       });
 
       setNotify(() =>
-        data.events?.filter((event) => event.max_seats === event.seats)
+        data.events?.filter((event) => event.max_seats >= event.seats)
       );
     };
 
@@ -87,7 +87,7 @@ const Navbar = () => {
             <NotificationsIcon />
           </div>
           {open && (
-            <div className="absolute right-5 top-[70px] bg-black/50 rounded-xl px-5 py-4 h-auto w-[300px] ">
+            <div className="absolute z-50 right-5 top-[70px] bg-black/80 rounded-xl px-5 py-4 min-h-fit max-h-[400px] overflow-y-scroll w-[300px] ">
               {notify?.map((event, index) => (
                 <div key={event.event_code} className="flex flex-col ">
                   <span className=" text-gray-300  text-lg font-medium">
