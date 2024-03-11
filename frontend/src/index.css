@@ -79,7 +79,7 @@ input:-webkit-autofill:active {
     transform: translateX(0);
   }
   50% {
-    transform: translateX(-750px);
+    transform: translateX(-1550px);
   }
   0% {
     transform: translateX(0);
@@ -92,7 +92,7 @@ input:-webkit-autofill:active {
       transform: translateX(0);
     }
     50% {
-      transform: translateX(-300px);
+      transform: translateX(-1200px);
     }
     0% {
       transform: translateX(0);
@@ -106,7 +106,7 @@ input:-webkit-autofill:active {
       transform: translateX(0);
     }
     50% {
-      transform: translateX(200px);
+      transform: translateX(-750px);
     }
     0% {
       transform: translateX(0);
@@ -115,12 +115,12 @@ input:-webkit-autofill:active {
 }
 
 .slide-track {
-  animation: scroll 12s linear infinite;
+  animation: scroll 20s linear infinite;
 }
 
 @media screen and (min-width: 1024px) {
   .slide-track {
-    animation: roll 5s linear infinite;
+    animation: roll 15s linear infinite;
   }
 }
 

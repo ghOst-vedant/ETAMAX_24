@@ -5,6 +5,9 @@ import redbull from "../Assets/Sponsors/redBull.png";
 import uconnect from "../Assets/Sponsors/Uconnect.png";
 import mosho from "../Assets/Sponsors/mosho.png";
 import horidrill from "../Assets/Sponsors/horidrill.jpeg";
+import jamboree from "../Assets/Sponsors/Jamboree.jpeg";
+import ims from "../Assets/Sponsors/ims.jpg";
+import aecc from "../Assets/Sponsors/aecc.jpg";
 
 const Sponsors = () => {
   const Sponsors = [
@@ -14,6 +17,9 @@ const Sponsors = () => {
     { image: uconnect },
     { image: horidrill },
     { image: ideaplots },
+    { image: jamboree },
+    { image: ims },
+    { image: aecc },
   ];
 
   return (
