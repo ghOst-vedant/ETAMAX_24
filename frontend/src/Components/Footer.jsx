@@ -60,7 +60,7 @@ const Footer = () => {
           ,{" "}
           <Link to="https://www.linkedin.com/in/sakshi-patil-se/">Sakshi</Link>,{" "}
           <Link to="https://www.linkedin.com/in/kousthubh-yadavalli-a6299a260/">
-            Koustubh
+            Kousthubh
           </Link>
           ,{" "}
           <Link to="https://www.linkedin.com/in/mathew-alex-8246101b3/">
