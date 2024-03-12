@@ -18,7 +18,7 @@ const Navbar = () => {
       });
 
       setNotify(() =>
-        data.events?.filter((event) => event.max_seats >= event.seats)
+        data.events?.filter((event) => event.max_seats <= event.seats)
       );
     };
 
