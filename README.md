@@ -16,7 +16,7 @@ The backend of the Faces Event website was implemented using Django, a high-leve
 ## Deployment
 Both the frontend and backend of the website were deployed on Azure. The deployment setup includes:
 
-- **Frontend Server**: It was served on root path using npm run build with the help og nginx
+- **Frontend Server**: It was served on root path using npm run build with the help of nginx
 
 - **Backend Server**: It is connected via Nginx and Gunicorn for efficient handling of incoming requests. You can learn more about Nginx and Gunicorn in this [DigitalOcean tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-22-04).
 
